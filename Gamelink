@@ -1,1 +1,2273 @@
-https://editor.p5js.org/harsentoa/full/sZZ-3veEA
+const players = [
+    // A조
+    // 러시아 (Russia)
+    { team: "Russia", name: "Igor Akinfeev", koreanName: "이고르 아킨페프", age: 32, position: "GK", number: 1, stat: 80, speed: 81, shot: 75, pass: 72, dribble: 81, defense: 55, physical: 77, gk: 79 },
+    { team: "Russia", name: "Andrey Lunev", koreanName: "안드레이 루뇨프", age: 27, position: "GK", number: 12, stat: 79, speed: 80, shot: 74, pass: 75, dribble: 80, defense: 40, physical: 79, gk: 78 },
+    { team: "Russia", name: "Vladimir Gabulov", koreanName: "블라디미르 가불로프", age: 35, position: "GK", number: 20, stat: 73, speed: 65, shot: 67, pass: 56, dribble: 66, defense: 45, physical: 65, gk: 74 },
+    { team: "Russia", name: "Mário Fernandes", koreanName: "마리오 페르난데스", age: 28, position: "DF", number: 2, stat: 81, speed: 84, shot: 60, pass: 74, dribble: 80, defense: 78, physical: 79, gk: 15 },
+    { team: "Russia", name: "Ilya Kutepov", koreanName: "일리야 쿠테포프", age: 25, position: "DF", number: 3, stat: 72, speed: 64, shot: 30, pass: 50, dribble: 52, defense: 74, physical: 77, gk: 12 },
+    { team: "Russia", name: "Sergei Ignashevich", koreanName: "세르게이 이그나셰비치", age: 39, position: "DF", number: 4, stat: 75, speed: 38, shot: 58, pass: 60, dribble: 54, defense: 77, physical: 81, gk: 14 },
+    { team: "Russia", name: "Andrey Semyonov", koreanName: "안드레이 세묘노프", age: 29, position: "DF", number: 5, stat: 71, speed: 68, shot: 32, pass: 48, dribble: 50, defense: 73, physical: 75, gk: 13 },
+    { team: "Russia", name: "Fyodor Kudryashov", koreanName: "표도르 쿠드랴쇼프", age: 31, position: "DF", number: 13, stat: 72, speed: 80, shot: 48, pass: 62, dribble: 67, defense: 70, physical: 71, gk: 14 },
+    { team: "Russia", name: "Vladimir Granat", koreanName: "블라디미르 그라나트", age: 31, position: "DF", number: 14, stat: 71, speed: 69, shot: 42, pass: 57, dribble: 60, defense: 72, physical: 74, gk: 12 },
+    { team: "Russia", name: "Igor Smolnikov", koreanName: "이고르 스몰니코프", age: 30, position: "DF", number: 23, stat: 77, speed: 86, shot: 62, pass: 68, dribble: 75, defense: 74, physical: 75, gk: 14 },
+    { team: "Russia", name: "Denis Cheryshev", koreanName: "데니스 체리셰프", age: 28, position: "MF", number: 6, stat: 75, speed: 84, shot: 74, pass: 70, dribble: 78, defense: 42, physical: 65, gk: 14 },
+    { team: "Russia", name: "Daler Kuzyayev", koreanName: "달레르 쿠쟈예프", age: 25, position: "MF", number: 7, stat: 73, speed: 74, shot: 66, pass: 71, dribble: 75, defense: 68, physical: 70, gk: 14 },
+    { team: "Russia", name: "Yuri Gazinsky", koreanName: "유리 가진스키", age: 29, position: "MF", number: 8, stat: 74, speed: 65, shot: 68, pass: 72, dribble: 73, defense: 71, physical: 76, gk: 14 },
+    { team: "Russia", name: "Alan Dzagoev", koreanName: "알란 자고예프", age: 28, position: "MF", number: 9, stat: 79, speed: 76, shot: 76, pass: 78, dribble: 81, defense: 55, physical: 68, gk: 15 },
+    { team: "Russia", name: "Roman Zobnin", koreanName: "로만 조브닌", age: 24, position: "MF", number: 11, stat: 77, speed: 80, shot: 69, pass: 74, dribble: 79, defense: 72, physical: 73, gk: 14 },
+    { team: "Russia", name: "Aleksei Miranchuk", koreanName: "알렉세이 미란추크", age: 23, position: "MF", number: 15, stat: 76, speed: 78, shot: 73, pass: 75, dribble: 80, defense: 45, physical: 64, gk: 14 },
+    { team: "Russia", name: "Anton Miranchuk", koreanName: "안톤 미란추크", age: 23, position: "MF", number: 16, stat: 74, speed: 79, shot: 70, pass: 72, dribble: 78, defense: 43, physical: 62, gk: 14 },
+    { team: "Russia", name: "Aleksandr Golovin", koreanName: "알렉산드르 골로빈", age: 22, position: "MF", number: 17, stat: 79, speed: 82, shot: 74, pass: 78, dribble: 83, defense: 60, physical: 68, gk: 14 },
+    { team: "Russia", name: "Yuri Zhirkov", koreanName: "유리 지르코프", age: 35, position: "MF", number: 18, stat: 76, speed: 80, shot: 68, pass: 74, dribble: 78, defense: 72, physical: 70, gk: 14 },
+    { team: "Russia", name: "Aleksandr Samedov", koreanName: "알렉산드르 사메도프", age: 34, position: "MF", number: 19, stat: 76, speed: 82, shot: 73, pass: 74, dribble: 78, defense: 50, physical: 68, gk: 15 },
+    { team: "Russia", name: "Aleksandr Yerokhin", koreanName: "알렉산드르 예로힌", age: 29, position: "MF", number: 21, stat: 73, speed: 68, shot: 70, pass: 68, dribble: 71, defense: 65, physical: 80, gk: 14 },
+    { team: "Russia", name: "Fyodor Smolov", koreanName: "표도르 스몰로프", age: 28, position: "FW", number: 10, stat: 80, speed: 85, shot: 81, pass: 68, dribble: 82, defense: 40, physical: 72, gk: 14 },
+    { team: "Russia", name: "Artem Dzyuba", koreanName: "아르템 쥬바", age: 30, position: "FW", number: 22, stat: 75, speed: 60, shot: 76, pass: 62, dribble: 68, defense: 45, physical: 88, gk: 14 },
+    // 사우디아라비아 (Saudi Arabia)
+    { team: "Saudi Arabia", name: "Abdullah Al-Mayouf", koreanName: "압둘라 알마유프", age: 31, position: "GK", number: 1, stat: 71, speed: 72, shot: 65, pass: 63, dribble: 70, defense: 40, physical: 68, gk: 72 },
+    { team: "Saudi Arabia", name: "Yasser Al-Mosailem", koreanName: "야세르 알모사일렘", age: 34, position: "GK", number: 21, stat: 70, speed: 68, shot: 62, pass: 60, dribble: 65, defense: 42, physical: 66, gk: 71 },
+    { team: "Saudi Arabia", name: "Mohammed Al-Owais", koreanName: "모하메드 알오와이스", age: 27, position: "GK", number: 22, stat: 69, speed: 70, shot: 64, pass: 61, dribble: 68, defense: 41, physical: 67, gk: 70 },
+    { team: "Saudi Arabia", name: "Mansoor Al-Harbi", koreanName: "만수르 알하르비", age: 31, position: "DF", number: 2, stat: 68, speed: 78, shot: 55, pass: 62, dribble: 67, defense: 66, physical: 70, gk: 13 },
+    { team: "Saudi Arabia", name: "Osama Hawsawi", koreanName: "오사마 하우사위", age: 34, position: "DF", number: 3, stat: 74, speed: 62, shot: 35, pass: 50, dribble: 52, defense: 76, physical: 78, gk: 12 },
+    { team: "Saudi Arabia", name: "Ali Al-Bulaihi", koreanName: "알리 알불라이히", age: 29, position: "DF", number: 4, stat: 67, speed: 70, shot: 38, pass: 48, dribble: 55, defense: 68, physical: 72, gk: 11 },
+    { team: "Saudi Arabia", name: "Omar Hawsawi", koreanName: "오마르 하우사위", age: 33, position: "DF", number: 5, stat: 73, speed: 64, shot: 33, pass: 48, dribble: 50, defense: 75, physical: 77, gk: 13 },
+    { team: "Saudi Arabia", name: "Mohammed Al-Breik", koreanName: "모함메드 알브레이크", age: 26, position: "DF", number: 6, stat: 72, speed: 82, shot: 60, pass: 68, dribble: 72, defense: 68, physical: 65, gk: 13 },
+    { team: "Saudi Arabia", name: "Yasser Al-Shahrani", koreanName: "야세르 알샤흐라니", age: 26, position: "DF", number: 13, stat: 76, speed: 91, shot: 65, pass: 70, dribble: 78, defense: 72, physical: 70, gk: 15 },
+    { team: "Saudi Arabia", name: "Motaz Hawsawi", koreanName: "모타즈 하우사위", age: 26, position: "DF", number: 23, stat: 70, speed: 68, shot: 36, pass: 45, dribble: 52, defense: 71, physical: 74, gk: 12 },
+    { team: "Saudi Arabia", name: "Salman Al-Faraj", koreanName: "살만 알파라지", age: 29, position: "MF", number: 7, stat: 75, speed: 74, shot: 70, pass: 76, dribble: 78, defense: 65, physical: 70, gk: 15 },
+    { team: "Saudi Arabia", name: "Yahya Al-Shehri", koreanName: "야흐아 알셰흐리", age: 28, position: "MF", number: 8, stat: 74, speed: 84, shot: 68, pass: 72, dribble: 80, defense: 38, physical: 55, gk: 13 },
+    { team: "Saudi Arabia", name: "Hattan Bahebri", koreanName: "하탄 바헤브리", age: 26, position: "MF", number: 9, stat: 68, speed: 75, shot: 65, pass: 64, dribble: 72, defense: 45, physical: 60, gk: 12 },
+    { team: "Saudi Arabia", name: "Abdulmalek Al-Khaibri", koreanName: "압둘말렉 알카이브리", age: 32, position: "MF", number: 11, stat: 69, speed: 62, shot: 55, pass: 65, dribble: 67, defense: 68, physical: 75, gk: 13 },
+    { team: "Saudi Arabia", name: "Mohamed Kanno", koreanName: "모하메드 칸노", age: 24, position: "MF", number: 12, stat: 66, speed: 68, shot: 60, pass: 65, dribble: 68, defense: 62, physical: 72, gk: 12 },
+    { team: "Saudi Arabia", name: "Abdullah Otayf", koreanName: "압둘라 오타이프", age: 26, position: "MF", number: 14, stat: 71, speed: 70, shot: 62, pass: 74, dribble: 75, defense: 64, physical: 63, gk: 13 },
+    { team: "Saudi Arabia", name: "Abdullah Al-Khaibari", koreanName: "압둘라 알카이바리", age: 22, position: "MF", number: 15, stat: 64, speed: 68, shot: 52, pass: 62, dribble: 65, defense: 63, physical: 68, gk: 11 },
+    { team: "Saudi Arabia", name: "Hussain Al-Mogahwi", koreanName: "후사인 알모카위", age: 30, position: "MF", number: 16, stat: 72, speed: 70, shot: 68, pass: 71, dribble: 74, defense: 58, physical: 65, gk: 13 },
+    { team: "Saudi Arabia", name: "Taisir Al-Jassim", koreanName: "타이시르 알자삼", age: 34, position: "MF", number: 17, stat: 73, speed: 68, shot: 70, pass: 72, dribble: 75, defense: 55, physical: 68, gk: 14 },
+    { team: "Saudi Arabia", name: "Salem Al-Dawsari", koreanName: "살렘 알다우사리", age: 27, position: "MF", number: 18, stat: 73, speed: 88, shot: 68, pass: 65, dribble: 81, defense: 40, physical: 62, gk: 13 },
+    { team: "Saudi Arabia", name: "Mohammad Al-Sahlawi", koreanName: "무함마드 알살라위", age: 31, position: "FW", number: 10, stat: 72, speed: 76, shot: 73, pass: 60, dribble: 70, defense: 35, physical: 70, gk: 13 },
+    { team: "Saudi Arabia", name: "Fahad Al-Muwallad", koreanName: "파하드 알무왈라드", age: 24, position: "FW", number: 19, stat: 71, speed: 93, shot: 68, pass: 62, dribble: 75, defense: 38, physical: 60, gk: 13 },
+    { team: "Saudi Arabia", name: "Muhannad Assiri", koreanName: "무한나드 아시리", age: 32, position: "FW", number: 20, stat: 69, speed: 74, shot: 70, pass: 58, dribble: 68, defense: 32, physical: 68, gk: 11 },
+    // 이집트 (Egypt)
+    { team: "Egypt", name: "Essam El-Hadary", koreanName: "에삼 엘하다리", age: 45, position: "GK", number: 1, stat: 73, speed: null, shot: null, pass: null, dribble: null, defense: null, physical: null, gk: 73 },
+    { team: "Egypt", name: "Sherif Ekramy", koreanName: "셰리프 에크라미", age: 35, position: "GK", number: 16, stat: 69, speed: null, shot: null, pass: null, dribble: null, defense: null, physical: null, gk: 69 },
+    { team: "Egypt", name: "Mohamed El-Shenawy", koreanName: "모하메드 엘셰나위", age: 30, position: "GK", number: 23, stat: 69, speed: null, shot: null, pass: null, dribble: null, defense: null, physical: null, gk: 69 },
+    { team: "Egypt", name: "Ali Gabr", koreanName: "알리 가브르", age: 29, position: "DF", number: 2, stat: 72, speed: 59, shot: 28, pass: 41, dribble: 45, defense: 73, physical: 80, gk: 13 },
+    { team: "Egypt", name: "Ahmed Elmohamady", koreanName: "아흐메드 엘모하마디", age: 31, position: "DF", number: 3, stat: 73, speed: 77, shot: 62, pass: 70, dribble: 73, defense: 71, physical: 72, gk: 14 },
+    { team: "Egypt", name: "Ahmed Hegazi", koreanName: "아흐메드 헤가지", age: 27, position: "DF", number: 6, stat: 75, speed: 58, shot: 45, pass: 55, dribble: 52, defense: 76, physical: 83, gk: 14 },
+    { team: "Egypt", name: "Ahmed Fathy", koreanName: "아흐메드 파티", age: 34, position: "DF", number: 7, stat: 74, speed: 78, shot: 64, pass: 68, dribble: 72, defense: 73, physical: 75, gk: 14 },
+    { team: "Egypt", name: "Ayman Ashraf", koreanName: "아이만 아슈라프", age: 27, position: "DF", number: 12, stat: 68, speed: 74, shot: 45, pass: 58, dribble: 65, defense: 67, physical: 69, gk: 12 },
+    { team: "Egypt", name: "Mohamed Abdel-Shafy", koreanName: "모하메드 압델샤피", age: 33, position: "DF", number: 13, stat: 72, speed: 79, shot: 58, pass: 65, dribble: 71, defense: 70, physical: 70, gk: 14 },
+    { team: "Egypt", name: "Mahmoud Hamdy", koreanName: "마흐무드 함디", age: 23, position: "DF", number: 15, stat: 65, speed: 68, shot: 32, pass: 42, dribble: 48, defense: 66, physical: 70, gk: 11 },
+    { team: "Egypt", name: "Saad Samir", koreanName: "사드 사미르", age: 29, position: "DF", number: 20, stat: 71, speed: 65, shot: 35, pass: 48, dribble: 50, defense: 72, physical: 76, gk: 12 },
+    { team: "Egypt", name: "Sam Morsy", koreanName: "샘 모르시", age: 27, position: "MF", number: 4, stat: 71, speed: 70, shot: 63, pass: 68, dribble: 72, defense: 68, physical: 77, gk: 13 },
+    { team: "Egypt", name: "Tarek Hamed", koreanName: "타렉 하메드", age: 30, position: "MF", number: 8, stat: 74, speed: 68, shot: 60, pass: 70, dribble: 72, defense: 73, physical: 78, gk: 14 },
+    { team: "Egypt", name: "Mohamed Elneny", koreanName: "모하메드 엘네니", age: 26, position: "MF", number: 17, stat: 77, speed: 72, shot: 68, pass: 78, dribble: 76, defense: 74, physical: 75, gk: 15 },
+    { team: "Egypt", name: "Abdallah Said", koreanName: "압달라 사이드", age: 33, position: "MF", number: 19, stat: 76, speed: 69, shot: 74, pass: 77, dribble: 78, defense: 55, physical: 68, gk: 15 },
+    { team: "Egypt", name: "Trézéguet", koreanName: "트레제게", age: 24, position: "MF", number: 21, stat: 74, speed: 85, shot: 72, pass: 68, dribble: 79, defense: 45, physical: 68, gk: 13 },
+    { team: "Egypt", name: "Amr Warda", koreanName: "아므르 와르다", age: 25, position: "MF", number: 22, stat: 73, speed: 78, shot: 70, pass: 71, dribble: 77, defense: 48, physical: 65, gk: 13 },
+    { team: "Egypt", name: "Marwan Mohsen", koreanName: "마르완 모흐센", age: 29, position: "FW", number: 9, stat: 70, speed: 75, shot: 71, pass: 60, dribble: 68, defense: 38, physical: 72, gk: 12 },
+    { team: "Egypt", name: "Mohamed Salah", koreanName: "모하메드 살라", age: 26, position: "FW", number: 10, stat: 88, speed: 93, shot: 84, pass: 80, dribble: 89, defense: 45, physical: 74, gk: 14 },
+    { team: "Egypt", name: "Kahraba", koreanName: "카흐라바", age: 24, position: "FW", number: 11, stat: 74, speed: 86, shot: 73, pass: 68, dribble: 78, defense: 40, physical: 65, gk: 13 },
+    { team: "Egypt", name: "Ramadan Sobhi", koreanName: "라마단 소비", age: 21, position: "FW", number: 14, stat: 72, speed: 76, shot: 65, pass: 70, dribble: 78, defense: 42, physical: 70, gk: 13 },
+    { team: "Egypt", name: "Shikabala", koreanName: "시카발라", age: 32, position: "FW", number: 18, stat: 74, speed: 75, shot: 75, pass: 72, dribble: 80, defense: 35, physical: 65, gk: 13 },
+    // 우루과이 (Uruguay)
+    { team: "Uruguay", name: "Fernando Muslera", koreanName: "페르난도 무슬레라", age: 32, position: "GK", number: 1, stat: 82, speed: null, shot: null, pass: null, dribble: null, defense: null, physical: null, gk: 82 },
+    { team: "Uruguay", name: "Martín Silva", koreanName: "마르틴 실바", age: 35, position: "GK", number: 12, stat: 77, speed: null, shot: null, pass: null, dribble: null, defense: null, physical: null, gk: 77 },
+    { team: "Uruguay", name: "Martín Campaña", koreanName: "마르틴 캄파냐", age: 29, position: "GK", number: 23, stat: 78, speed: null, shot: null, pass: null, dribble: null, defense: null, physical: null, gk: 78 },
+    { team: "Uruguay", name: "José María Giménez", koreanName: "호세 히메네스", age: 23, position: "DF", number: 2, stat: 83, speed: 74, shot: 48, pass: 58, dribble: 60, defense: 84, physical: 80, gk: 11 },
+    { team: "Uruguay", name: "Diego Godín", koreanName: "디에고 고딘", age: 32, position: "DF", number: 3, stat: 88, speed: 64, shot: 48, pass: 65, dribble: 64, defense: 88, physical: 84, gk: 11 },
+    { team: "Uruguay", name: "Guillermo Varela", koreanName: "기예르모 바렐라", age: 25, position: "DF", number: 4, stat: 73, speed: 82, shot: 55, pass: 68, dribble: 74, defense: 70, physical: 68, gk: 14 },
+    { team: "Uruguay", name: "Maxi Pereira", koreanName: "막시 페레이라", age: 34, position: "DF", number: 16, stat: 78, speed: 75, shot: 68, pass: 75, dribble: 76, defense: 77, physical: 78, gk: 14 },
+    { team: "Uruguay", name: "Gastón Silva", koreanName: "가스톤 실바", age: 24, position: "DF", number: 13, stat: 74, speed: 72, shot: 55, pass: 65, dribble: 68, defense: 74, physical: 75, gk: 13 },
+    { team: "Uruguay", name: "Martín Cáceres", koreanName: "마르틴 카세레스", age: 31, position: "DF", number: 22, stat: 76, speed: 80, shot: 58, pass: 68, dribble: 72, defense: 76, physical: 75, gk: 14 },
+    { team: "Uruguay", name: "Sebastián Coates", koreanName: "세바스티안 코아테스", age: 28, position: "DF", number: 19, stat: 81, speed: 52, shot: 45, pass: 62, dribble: 60, defense: 82, physical: 85, gk: 11 },
+    { team: "Uruguay", name: "Carlos Sánchez", koreanName: "카를로스 산체스", age: 34, position: "MF", number: 5, stat: 79, speed: 84, shot: 75, pass: 76, dribble: 79, defense: 58, physical: 72, gk: 15 },
+    { team: "Uruguay", name: "Rodrigo Bentancur", koreanName: "로드리고 벤탄쿠르", age: 21, position: "MF", number: 6, stat: 77, speed: 74, shot: 65, pass: 78, dribble: 81, defense: 72, physical: 74, gk: 14 },
+    { team: "Uruguay", name: "Cristian Rodríguez", koreanName: "크리스티안 로드리게스", age: 33, position: "MF", number: 7, stat: 75, speed: 78, shot: 74, pass: 72, dribble: 76, defense: 65, physical: 78, gk: 15 },
+    { team: "Uruguay", name: "Nahitan Nández", koreanName: "나이탄 난데스", age: 23, position: "MF", number: 8, stat: 76, speed: 80, shot: 68, pass: 72, dribble: 77, defense: 74, physical: 80, gk: 14 },
+    { team: "Uruguay", name: "Giorgian de Arrascaeta", koreanName: "히오르히안 데 아라스카에타", age: 24, position: "MF", number: 10, stat: 79, speed: 84, shot: 76, pass: 78, dribble: 85, defense: 45, physical: 65, gk: 14 },
+    { team: "Uruguay", name: "Lucas Torreira", koreanName: "루카스 토레이라", age: 22, position: "MF", number: 14, stat: 78, speed: 76, shot: 68, pass: 75, dribble: 79, defense: 76, physical: 75, gk: 14 },
+    { team: "Uruguay", name: "Matías Vecino", koreanName: "마티아스 베시노", age: 27, position: "MF", number: 15, stat: 80, speed: 75, shot: 72, pass: 78, dribble: 79, defense: 77, physical: 80, gk: 15 },
+    { team: "Uruguay", name: "Diego Laxalt", koreanName: "디에고 락살트", age: 25, position: "MF", number: 17, stat: 76, speed: 88, shot: 68, pass: 72, dribble: 78, defense: 70, physical: 74, gk: 14 },
+    { team: "Uruguay", name: "Jonathan Urretaviscaya", koreanName: "호나탄 우레타비스카야", age: 28, position: "MF", number: 20, stat: 76, speed: 90, shot: 72, pass: 70, dribble: 80, defense: 45, physical: 65, gk: 14 },
+    { team: "Uruguay", name: "Luis Suárez", koreanName: "루이스 수아레스", age: 31, position: "FW", number: 9, stat: 92, speed: 82, shot: 90, pass: 79, dribble: 87, defense: 45, physical: 86, gk: 33 },
+    { team: "Uruguay", name: "Cristhian Stuani", koreanName: "크리스티안 스투아니", age: 32, position: "FW", number: 11, stat: 78, speed: 74, shot: 79, pass: 65, dribble: 72, defense: 48, physical: 82, gk: 15 },
+    { team: "Uruguay", name: "Maxi Gómez", koreanName: "막시 고메스", age: 22, position: "FW", number: 18, stat: 77, speed: 72, shot: 78, pass: 62, dribble: 70, defense: 40, physical: 84, gk: 14 },
+    { team: "Uruguay", name: "Edinson Cavani", koreanName: "에딘손 카바니", age: 31, position: "FW", number: 21, stat: 88, speed: 78, shot: 85, pass: 72, dribble: 79, defense: 52, physical: 88, gk: 24 },
+    // B조
+    // 포르투갈 (Portugal)
+    { team: "Portugal", name: "Rui Patrício", koreanName: "후이 파트리시우", age: 30, position: "GK", number: 1, stat: 83, speed: null, shot: null, pass: null, dribble: null, defense: null, physical: null, gk: 83 },
+    { team: "Portugal", name: "Anthony Lopes", koreanName: "앙토니 로페스", age: 28, position: "GK", number: 12, stat: 82, speed: null, shot: null, pass: null, dribble: null, defense: null, physical: null, gk: 82 },
+    { team: "Portugal", name: "Beto", koreanName: "베투", age: 36, position: "GK", number: 22, stat: 76, speed: null, shot: null, pass: null, dribble: null, defense: null, physical: null, gk: 76 },
+    { team: "Portugal", name: "Bruno Alves", koreanName: "브루누 알베스", age: 37, position: "DF", number: 2, stat: 78, speed: 45, shot: 55, pass: 58, dribble: 52, defense: 80, physical: 82, gk: 12 },
+    { team: "Portugal", name: "Pepe", koreanName: "페페", age: 35, position: "DF", number: 3, stat: 86, speed: 68, shot: 55, pass: 62, dribble: 65, defense: 87, physical: 85, gk: 11 },
+    { team: "Portugal", name: "Raphaël Guerreiro", koreanName: "하파엘 게헤이루", age: 25, position: "DF", number: 5, stat: 80, speed: 82, shot: 72, pass: 78, dribble: 82, defense: 76, physical: 70, gk: 14 },
+    { team: "Portugal", name: "José Fonte", koreanName: "조제 폰테", age: 35, position: "DF", number: 6, stat: 80, speed: 42, shot: 38, pass: 55, dribble: 54, defense: 81, physical: 78, gk: 13 },
+    { team: "Portugal", name: "Rúben Dias", koreanName: "후벵 디아스", age: 21, position: "DF", number: 13, stat: 76, speed: 68, shot: 35, pass: 58, dribble: 62, defense: 77, physical: 78, gk: 12 },
+    { team: "Portugal", name: "Ricardo Pereira", koreanName: "히카르두 페레이라", age: 25, position: "DF", number: 15, stat: 81, speed: 88, shot: 68, pass: 75, dribble: 82, defense: 78, physical: 74, gk: 14 },
+    { team: "Portugal", name: "Mário Rui", koreanName: "마리우 후이", age: 27, position: "DF", number: 19, stat: 77, speed: 84, shot: 62, pass: 74, dribble: 78, defense: 74, physical: 68, gk: 14 },
+    { team: "Portugal", name: "Cédric Soares", koreanName: "세드리크 소아르스", age: 27, position: "DF", number: 21, stat: 78, speed: 82, shot: 65, pass: 74, dribble: 76, defense: 77, physical: 72, gk: 14 },
+    { team: "Portugal", name: "Manuel Fernandes", koreanName: "마누엘 페르난데스", age: 32, position: "MF", number: 4, stat: 80, speed: 75, shot: 76, pass: 79, dribble: 82, defense: 68, physical: 74, gk: 15 },
+    { team: "Portugal", name: "João Moutinho", koreanName: "주앙 무티뉴", age: 32, position: "MF", number: 8, stat: 83, speed: 65, shot: 72, pass: 85, dribble: 82, defense: 72, physical: 70, gk: 15 },
+    { team: "Portugal", name: "João Mário", koreanName: "주앙 마리우", age: 25, position: "MF", number: 10, stat: 82, speed: 78, shot: 72, pass: 81, dribble: 85, defense: 68, physical: 72, gk: 15 },
+    { team: "Portugal", name: "Bernardo Silva", koreanName: "베르나르두 실바", age: 24, position: "MF", number: 11, stat: 84, speed: 82, shot: 75, pass: 83, dribble: 91, defense: 45, physical: 62, gk: 14 },
+    { team: "Portugal", name: "William Carvalho", koreanName: "윌리앙 카르발류", age: 26, position: "MF", number: 14, stat: 83, speed: 52, shot: 62, pass: 78, dribble: 75, defense: 81, physical: 88, gk: 15 },
+    { team: "Portugal", name: "Bruno Fernandes", koreanName: "브루누 페르난데스", age: 24, position: "MF", number: 16, stat: 81, speed: 76, shot: 80, pass: 82, dribble: 83, defense: 68, physical: 74, gk: 15 },
+    { team: "Portugal", name: "Adrien Silva", koreanName: "아드리엔 실바", age: 29, position: "MF", number: 23, stat: 81, speed: 72, shot: 74, pass: 80, dribble: 81, defense: 75, physical: 76, gk: 15 },
+    { team: "Portugal", name: "Cristiano Ronaldo", koreanName: "크리스티아누 호날두", age: 33, position: "FW", number: 7, stat: 94, speed: 90, shot: 93, pass: 82, dribble: 90, defense: 35, physical: 80, gk: 14 },
+    { team: "Portugal", name: "André Silva", koreanName: "안드레 실바", age: 23, position: "FW", number: 9, stat: 78, speed: 78, shot: 79, pass: 70, dribble: 78, defense: 38, physical: 72, gk: 14 },
+    { team: "Portugal", name: "Gonçalo Guedes", koreanName: "곤살루 게드스", age: 22, position: "FW", number: 17, stat: 80, speed: 88, shot: 78, pass: 74, dribble: 84, defense: 45, physical: 68, gk: 14 },
+    { team: "Portugal", name: "Gelson Martins", koreanName: "젤송 마르틴스", age: 23, position: "FW", number: 18, stat: 81, speed: 95, shot: 70, pass: 74, dribble: 87, defense: 42, physical: 65, gk: 14 },
+    { team: "Portugal", name: "Ricardo Quaresma", koreanName: "히카르두 콰레스마", age: 35, position: "FW", number: 20, stat: 83, speed: 85, shot: 78, pass: 80, dribble: 88, defense: 38, physical: 70, gk: 15 },
+    // 스페인 (Spain)
+    { team: "Spain", name: "David de Gea", koreanName: "다비드 데 헤아", age: 28, position: "GK", number: 1, stat: 91, speed: null, shot: null, pass: null, dribble: null, defense: null, physical: null, gk: 91 },
+    { team: "Spain", name: "Kepa Arrizabalaga", koreanName: "케파 아리사발라가", age: 24, position: "GK", number: 13, stat: 80, speed: null, shot: null, pass: null, dribble: null, defense: null, physical: null, gk: 80 },
+    { team: "Spain", name: "Pepe Reina", koreanName: "페페 레이나", age: 36, position: "GK", number: 23, stat: 83, speed: null, shot: null, pass: null, dribble: null, defense: null, physical: null, gk: 83 },
+    { team: "Spain", name: "Dani Carvajal", koreanName: "다니 카르바할", age: 26, position: "DF", number: 2, stat: 84, speed: 84, shot: 55, pass: 76, dribble: 81, defense: 82, physical: 78, gk: 14 },
+    { team: "Spain", name: "Gerard Piqué", koreanName: "제라르 피케", age: 31, position: "DF", number: 3, stat: 87, speed: 65, shot: 61, pass: 72, dribble: 70, defense: 87, physical: 82, gk: 10 },
+    { team: "Spain", name: "Nacho", koreanName: "나초 페르난데스", age: 28, position: "DF", number: 4, stat: 81, speed: 78, shot: 45, pass: 68, dribble: 70, defense: 82, physical: 75, gk: 13 },
+    { team: "Spain", name: "César Azpilicueta", koreanName: "세사르 아스필리쿠에타", age: 29, position: "DF", number: 12, stat: 85, speed: 78, shot: 60, pass: 75, dribble: 77, defense: 86, physical: 78, gk: 14 },
+    { team: "Spain", name: "Álvaro Odriozola", koreanName: "알바로 오드리오솔라", age: 23, position: "DF", number: 14, stat: 78, speed: 90, shot: 60, pass: 72, dribble: 80, defense: 74, physical: 68, gk: 14 },
+    { team: "Spain", name: "Sergio Ramos", koreanName: "세르히오 라모스", age: 32, position: "DF", number: 15, stat: 90, speed: 76, shot: 65, pass: 72, dribble: 72, defense: 91, physical: 84, gk: 11 },
+    { team: "Spain", name: "Nacho Monreal", koreanName: "나초 몬레알", age: 32, position: "DF", number: 16, stat: 80, speed: 75, shot: 65, pass: 75, dribble: 76, defense: 80, physical: 72, gk: 14 },
+    { team: "Spain", name: "Jordi Alba", koreanName: "조르디 알바", age: 29, position: "DF", number: 18, stat: 86, speed: 93, shot: 70, pass: 80, dribble: 83, defense: 82, physical: 72, gk: 13 },
+    { team: "Spain", name: "Sergio Busquets", koreanName: "세르히오 부스케츠", age: 30, position: "MF", number: 5, stat: 87, speed: 42, shot: 62, pass: 80, dribble: 78, defense: 85, physical: 80, gk: 13 },
+    { team: "Spain", name: "Andrés Iniesta", koreanName: "안드레스 이니에스타", age: 34, position: "MF", number: 6, stat: 87, speed: 72, shot: 72, pass: 88, dribble: 90, defense: 62, physical: 60, gk: 13 },
+    { team: "Spain", name: "Saúl Ñíguez", koreanName: "사울 니게스", age: 24, position: "MF", number: 7, stat: 83, speed: 78, shot: 78, pass: 80, dribble: 82, defense: 78, physical: 79, gk: 15 },
+    { team: "Spain", name: "Koke", koreanName: "코케", age: 26, position: "MF", number: 8, stat: 85, speed: 74, shot: 78, pass: 86, dribble: 83, defense: 75, physical: 75, gk: 15 },
+    { team: "Spain", name: "Thiago Alcântara", koreanName: "티아고 알칸타라", age: 27, position: "MF", number: 10, stat: 88, speed: 75, shot: 78, pass: 86, dribble: 92, defense: 68, physical: 68, gk: 13 },
+    { team: "Spain", name: "David Silva", koreanName: "다비드 실바", age: 32, position: "MF", number: 21, stat: 89, speed: 70, shot: 78, pass: 88, dribble: 91, defense: 52, physical: 65, gk: 15 },
+    { team: "Spain", name: "Isco", koreanName: "이스코", age: 26, position: "MF", number: 22, stat: 86, speed: 75, shot: 80, pass: 84, dribble: 92, defense: 60, physical: 68, gk: 15 },
+    { team: "Spain", name: "Rodrigo", koreanName: "로드리고 모레노", age: 27, position: "FW", number: 9, stat: 80, speed: 84, shot: 80, pass: 72, dribble: 82, defense: 45, physical: 70, gk: 14 },
+    { team: "Spain", name: "Lucas Vázquez", koreanName: "루카스 바스케스", age: 27, position: "FW", number: 11, stat: 82, speed: 86, shot: 74, pass: 78, dribble: 84, defense: 55, physical: 70, gk: 14 },
+    { team: "Spain", name: "Marco Asensio", koreanName: "마르코 아센시오", age: 22, position: "FW", number: 20, stat: 84, speed: 82, shot: 84, pass: 82, dribble: 86, defense: 45, physical: 68, gk: 14 },
+    { team: "Spain", name: "Iago Aspas", koreanName: "이아고 아스파스", age: 31, position: "FW", number: 17, stat: 84, speed: 84, shot: 84, pass: 78, dribble: 86, defense: 38, physical: 68, gk: 14 },
+    { team: "Spain", name: "Diego Costa", koreanName: "디에고 코스타", age: 30, position: "FW", number: 19, stat: 86, speed: 78, shot: 84, pass: 70, dribble: 80, defense: 45, physical: 88, gk: 14 },
+    // 모로코 (Morocco)
+    { team: "Morocco", name: "Munir Mohamedi", koreanName: "무니르 모하메디", age: 29, position: "GK", number: 1, stat: 72, speed: null, shot: null, pass: null, dribble: null, defense: null, physical: null, gk: 72 },
+    { team: "Morocco", name: "Yassine Bounou", koreanName: "야신 부누", age: 27, position: "GK", number: 12, stat: 75, speed: null, shot: null, pass: null, dribble: null, defense: null, physical: null, gk: 75 },
+    { team: "Morocco", name: "Ahmed Reda Tagnaouti", koreanName: "아흐메드 레다 타그나우티", age: 22, position: "GK", number: 22, stat: 66, speed: null, shot: null, pass: null, dribble: null, defense: null, physical: null, gk: 66 },
+    { team: "Morocco", name: "Achraf Hakimi", koreanName: "아슈라프 하키미", age: 20, position: "DF", number: 2, stat: 75, speed: 90, shot: 60, pass: 70, dribble: 76, defense: 72, physical: 70, gk: 14 },
+    { team: "Morocco", name: "Hamza Mendyl", koreanName: "함자 멘딜", age: 21, position: "DF", number: 3, stat: 69, speed: 85, shot: 45, pass: 60, dribble: 68, defense: 67, physical: 68, gk: 12 },
+    { team: "Morocco", name: "Manuel da Costa", koreanName: "마누엘 다 코스타", age: 32, position: "DF", number: 4, stat: 73, speed: 65, shot: 55, pass: 60, dribble: 62, defense: 74, physical: 78, gk: 13 },
+    { team: "Morocco", name: "Medhi Benatia", koreanName: "메디 베나티아", age: 31, position: "DF", number: 5, stat: 85, speed: 68, shot: 45, pass: 65, dribble: 68, defense: 86, physical: 84, gk: 13 },
+    { team: "Morocco", name: "Romain Saïss", koreanName: "로맹 사이스", age: 28, position: "DF", number: 6, stat: 74, speed: 65, shot: 60, pass: 70, dribble: 70, defense: 74, physical: 78, gk: 14 },
+    { team: "Morocco", name: "Nabil Dirar", koreanName: "나빌 디라르", age: 32, position: "DF", number: 17, stat: 76, speed: 82, shot: 68, pass: 72, dribble: 78, defense: 72, physical: 75, gk: 14 },
+    { team: "Morocco", name: "Mbark Boussoufa", koreanName: "음바르크 부수파", age: 34, position: "MF", number: 7, stat: 78, speed: 70, shot: 72, pass: 79, dribble: 82, defense: 55, physical: 65, gk: 15 },
+    { team: "Morocco", name: "Karim El Ahmadi", koreanName: "카림 엘아흐마디", age: 33, position: "MF", number: 8, stat: 78, speed: 68, shot: 70, pass: 76, dribble: 75, defense: 76, physical: 78, gk: 15 },
+    { team: "Morocco", name: "Younès Belhanda", koreanName: "유네스 벨한다", age: 28, position: "MF", number: 10, stat: 80, speed: 78, shot: 75, pass: 79, dribble: 84, defense: 58, physical: 70, gk: 15 },
+    { team: "Morocco", name: "Fayçal Fajr", koreanName: "파이살 파지르", age: 30, position: "MF", number: 11, stat: 76, speed: 72, shot: 75, pass: 77, dribble: 76, defense: 65, physical: 70, gk: 15 },
+    { team: "Morocco", name: "Youssef Aït Bennasser", koreanName: "유세프 아이트 베나세르", age: 22, position: "MF", number: 14, stat: 72, speed: 70, shot: 62, pass: 71, dribble: 74, defense: 68, physical: 72, gk: 13 },
+    { team: "Morocco", name: "Sofyan Amrabat", koreanName: "소피안 암라바트", age: 22, position: "MF", number: 15, stat: 71, speed: 72, shot: 60, pass: 68, dribble: 72, defense: 70, physical: 76, gk: 13 },
+    { team: "Morocco", name: "Nordin Amrabat", koreanName: "노르딘 암라바트", age: 31, position: "MF", number: 16, stat: 76, speed: 85, shot: 72, pass: 70, dribble: 80, defense: 55, physical: 78, gk: 14 },
+    { team: "Morocco", name: "Hakim Ziyech", koreanName: "하킴 지예흐", age: 25, position: "MF", number: 18, stat: 82, speed: 78, shot: 80, pass: 84, dribble: 85, defense: 55, physical: 68, gk: 15 },
+    { team: "Morocco", name: "Mehdi Carcela-González", koreanName: "메흐디 카르셀라", age: 29, position: "MF", number: 21, stat: 77, speed: 84, shot: 72, pass: 74, dribble: 83, defense: 45, physical: 65, gk: 14 },
+    { team: "Morocco", name: "Amine Harit", koreanName: "아민 하리트", age: 21, position: "MF", number: 23, stat: 76, speed: 82, shot: 68, pass: 72, dribble: 85, defense: 48, physical: 62, gk: 14 },
+    { team: "Morocco", name: "Ayoub El Kaabi", koreanName: "아유브 엘카비", age: 25, position: "FW", number: 9, stat: 70, speed: 75, shot: 71, pass: 60, dribble: 70, defense: 38, physical: 72, gk: 12 },
+    { team: "Morocco", name: "Khalid Boutaïb", koreanName: "칼리드 부타이브", age: 31, position: "FW", number: 13, stat: 74, speed: 72, shot: 75, pass: 62, dribble: 70, defense: 40, physical: 78, gk: 13 },
+    { team: "Morocco", name: "Youssef En-Nesyri", koreanName: "유세프 엔네시리", age: 21, position: "FW", number: 19, stat: 71, speed: 80, shot: 72, pass: 58, dribble: 72, defense: 35, physical: 70, gk: 12 },
+    { team: "Morocco", name: "Aziz Bouhaddouz", koreanName: "아지즈 부하두즈", age: 31, position: "FW", number: 20, stat: 71, speed: 74, shot: 72, pass: 60, dribble: 68, defense: 40, physical: 75, gk: 12 },
+    // 이란 (Iran)
+    { team: "Iran", name: "Alireza Beiranvand", koreanName: "알리레자 베이란반드", age: 26, position: "GK", number: 1, stat: 75, speed: null, shot: null, pass: null, dribble: null, defense: null, physical: null, gk: 75 },
+    { team: "Iran", name: "Mohammad Rashid Mazaheri", koreanName: "모하마드 라시드 마자헤리", age: 29, position: "GK", number: 12, stat: 67, speed: null, shot: null, pass: null, dribble: null, defense: null, physical: null, gk: 67 },
+    { team: "Iran", name: "Amir Abedzadeh", koreanName: "아미르 아베드자데", age: 25, position: "GK", number: 22, stat: 65, speed: null, shot: null, pass: null, dribble: null, defense: null, physical: null, gk: 65 },
+    { team: "Iran", name: "Ehsan Hajsafi", koreanName: "에산 하지사피", age: 28, position: "DF", number: 3, stat: 72, speed: 78, shot: 65, pass: 70, dribble: 74, defense: 70, physical: 70, gk: 14 },
+    { team: "Iran", name: "Rouzbeh Cheshmi", koreanName: "루즈베 체슈미", age: 25, position: "DF", number: 4, stat: 69, speed: 65, shot: 45, pass: 60, dribble: 62, defense: 70, physical: 75, gk: 12 },
+    { team: "Iran", name: "Milad Mohammadi", koreanName: "밀라드 모함마디", age: 25, position: "DF", number: 5, stat: 70, speed: 92, shot: 55, pass: 62, dribble: 72, defense: 68, physical: 65, gk: 13 },
+    { team: "Iran", name: "Morteza Pouraliganji", koreanName: "모르테자 푸랄리간지", age: 26, position: "DF", number: 8, stat: 73, speed: 68, shot: 48, pass: 58, dribble: 60, defense: 74, physical: 77, gk: 13 },
+    { team: "Iran", name: "Mohammad Reza Khanzadeh", koreanName: "모하마드 레자 칸자데", age: 27, position: "DF", number: 13, stat: 68, speed: 70, shot: 35, pass: 50, dribble: 55, defense: 69, physical: 72, gk: 11 },
+    { team: "Iran", "name": "Pejman Montazeri", "koreanName": "페지만 몬타제리", "age": 35, "position": "DF", "number": 15, stat: 71, speed: 60, shot: 42, pass: 55, dribble: 58, defense: 72, physical: 74, gk: 12 },
+    { team: "Iran", name: "Majid Hosseini", koreanName: "마지드 호세이니", age: 22, position: "DF", number: 19, stat: 67, speed: 68, shot: 32, pass: 45, dribble: 50, defense: 68, physical: 72, gk: 11 },
+    { team: "Iran", name: "Ramin Rezaeian", koreanName: "라민 레자에이안", age: 28, position: "DF", number: 23, stat: 73, speed: 82, shot: 65, pass: 70, dribble: 74, defense: 71, physical: 72, gk: 14 },
+    { team: "Iran", name: "Saeid Ezatolahi", koreanName: "사이드 에자톨라히", age: 22, position: "MF", number: 6, stat: 70, speed: 65, shot: 62, pass: 68, dribble: 71, defense: 68, physical: 75, gk: 12 },
+    { team: "Iran", name: "Masoud Shojaei", koreanName: "마수드 쇼자에이", age: 34, position: "MF", number: 7, stat: 72, speed: 65, shot: 70, pass: 74, dribble: 75, defense: 55, physical: 68, gk: 14 },
+    { team: "Iran", name: "Omid Ebrahimi", koreanName: "오미드 에브라히미", age: 31, position: "MF", number: 9, stat: 74, speed: 68, shot: 68, pass: 72, dribble: 73, defense: 72, physical: 76, gk: 14 },
+    { team: "Iran", name: "Vahid Amiri", koreanName: "바히드 아미리", age: 30, position: "MF", number: 11, stat: 71, speed: 80, shot: 65, pass: 68, dribble: 75, defense: 50, physical: 65, gk: 13 },
+    { team: "Iran", name: "Ashkan Dejagah", koreanName: "아슈칸 데자가", age: 32, position: "MF", number: 21, stat: 75, speed: 72, shot: 74, pass: 75, dribble: 78, defense: 52, physical: 68, gk: 15 },
+    { team: "Iran", name: "Karim Ansarifard", koreanName: "카림 안사리파르드", age: 28, position: "FW", number: 10, stat: 74, speed: 76, shot: 75, pass: 65, dribble: 74, defense: 40, physical: 70, gk: 13 },
+    { team: "Iran", name: "Mehdi Taremi", koreanName: "메흐디 타레미", age: 26, position: "FW", number: 14, stat: 73, speed: 80, shot: 72, pass: 65, dribble: 75, defense: 42, physical: 70, gk: 13 },
+    { team: "Iran", name: "Reza Ghoochannejhad", koreanName: "레자 구차네자드", age: 31, position: "FW", number: 16, stat: 73, speed: 78, shot: 74, pass: 62, dribble: 72, defense: 38, physical: 68, gk: 13 },
+    { team: "Iran", name: "Saman Ghoddos", koreanName: "사만 고도스", age: 25, position: "FW", number: 17, stat: 74, speed: 80, shot: 73, pass: 70, dribble: 78, defense: 45, physical: 68, gk: 13 },
+    { team: "Iran", name: "Alireza Jahanbakhsh", koreanName: "알리레자 자한바크슈", age: 25, position: "FW", number: 18, stat: 78, speed: 85, shot: 78, pass: 74, dribble: 82, defense: 50, physical: 72, gk: 14 },
+    { team: "Iran", name: "Sardar Azmoun", koreanName: "사르다르 아즈문", age: 23, position: "FW", number: 20, stat: 75, speed: 82, shot: 75, pass: 68, dribble: 76, defense: 42, physical: 72, gk: 14 },
+    // C조
+    // 프랑스 (France)
+    { team: "France", name: "Hugo Lloris", koreanName: "위고 요리스", age: 32, position: "GK", number: 1, stat: 88, speed: null, shot: null, pass: null, dribble: null, defense: null, physical: null, gk: 88 },
+    { team: "France", name: "Steve Mandanda", koreanName: "스티브 만단다", age: 33, position: "GK", number: 16, stat: 82, speed: null, shot: null, pass: null, dribble: null, defense: null, physical: null, gk: 82 },
+    { team: "France", name: "Alphonse Areola", koreanName: "알퐁스 아레올라", age: 25, position: "GK", number: 23, stat: 79, speed: null, shot: null, pass: null, dribble: null, defense: null, physical: null, gk: 79 },
+    { team: "France", name: "Benjamin Pavard", koreanName: "뱅자맹 파바르", age: 22, position: "DF", number: 2, stat: 76, speed: 74, shot: 55, pass: 70, dribble: 72, defense: 77, physical: 74, gk: 14 },
+    { team: "France", name: "Presnel Kimpembe", koreanName: "프레스넬 킴펨베", age: 23, position: "DF", number: 3, stat: 80, speed: 78, shot: 48, pass: 68, dribble: 70, defense: 81, physical: 82, gk: 13 },
+    { team: "France", name: "Raphaël Varane", koreanName: "라파엘 바란", age: 25, position: "DF", number: 4, stat: 85, speed: 82, shot: 45, pass: 65, dribble: 68, defense: 86, physical: 80, gk: 11 },
+    { team: "France", name: "Samuel Umtiti", koreanName: "사뮈엘 움티티", age: 25, position: "DF", number: 5, stat: 85, speed: 75, shot: 60, pass: 70, dribble: 72, defense: 86, physical: 82, gk: 14 },
+    { team: "France", name: "Adil Rami", koreanName: "아딜 라미", age: 33, position: "DF", number: 17, stat: 80, speed: 65, shot: 52, pass: 60, dribble: 62, defense: 81, physical: 83, gk: 12 },
+    { team: "France", name: "Djibril Sidibé", koreanName: "지브릴 시디베", age: 26, position: "DF", number: 19, stat: 79, speed: 84, shot: 68, pass: 74, dribble: 78, defense: 77, physical: 76, gk: 14 },
+    { team: "France", name: "Lucas Hernandez", koreanName: "뤼카 에르난데스", age: 22, position: "DF", number: 21, stat: 80, speed: 82, shot: 62, pass: 72, dribble: 75, defense: 80, physical: 78, gk: 14 },
+    { team: "France", name: "Benjamin Mendy", koreanName: "뱅자맹 멘디", age: 24, position: "DF", number: 22, stat: 80, speed: 88, shot: 65, pass: 75, dribble: 79, defense: 77, physical: 78, gk: 14 },
+    { team: "France", name: "Paul Pogba", koreanName: "폴 포그바", age: 25, position: "MF", number: 6, stat: 87, speed: 79, shot: 80, pass: 84, dribble: 86, defense: 72, physical: 88, gk: 15 },
+    { team: "France", name: "Thomas Lemar", koreanName: "토마 르마르", age: 23, position: "MF", number: 8, stat: 83, speed: 84, shot: 78, pass: 82, dribble: 86, defense: 55, physical: 65, gk: 14 },
+    { team: "France", name: "Corentin Tolisso", koreanName: "코랑탱 톨리소", age: 24, position: "MF", number: 12, stat: 82, speed: 75, shot: 78, pass: 80, dribble: 81, defense: 76, physical: 80, gk: 15 },
+    { team: "France", name: "N'Golo Kanté", koreanName: "은골로 캉테", age: 27, position: "MF", number: 13, stat: 87, speed: 80, shot: 66, pass: 77, dribble: 81, defense: 87, physical: 82, gk: 15 },
+    { team: "France", name: "Blaise Matuidi", koreanName: "블레즈 마튀이디", age: 31, position: "MF", number: 14, stat: 85, speed: 78, shot: 72, pass: 80, dribble: 80, defense: 83, physical: 86, gk: 15 },
+    { team: "France", name: "Steven Nzonzi", koreanName: "스티븐 은존지", age: 30, position: "MF", number: 15, stat: 82, speed: 62, shot: 68, pass: 78, dribble: 75, defense: 80, physical: 85, gk: 15 },
+    { team: "France", name: "Nabil Fekir", koreanName: "나빌 페키르", age: 25, position: "MF", number: 18, stat: 84, speed: 82, shot: 82, pass: 81, dribble: 88, defense: 45, physical: 70, gk: 14 },
+    { team: "France", name: "Antoine Griezmann", koreanName: "앙투안 그리즈만", age: 27, position: "FW", number: 7, stat: 88, speed: 86, shot: 86, pass: 82, dribble: 88, defense: 40, physical: 70, gk: 14 },
+    { team: "France", name: "Olivier Giroud", koreanName: "올리비에 지루", age: 32, position: "FW", number: 9, stat: 82, speed: 62, shot: 83, pass: 70, dribble: 72, defense: 45, physical: 85, gk: 14 },
+    { team: "France", name: "Kylian Mbappé", koreanName: "킬리안 음바페", age: 20, position: "FW", number: 10, stat: 83, speed: 96, shot: 80, pass: 75, dribble: 88, defense: 42, physical: 70, gk: 14 },
+    { team: "France", name: "Ousmane Dembélé", koreanName: "우스만 뎀벨레", age: 21, position: "FW", number: 11, stat: 83, speed: 92, shot: 76, pass: 78, dribble: 88, defense: 45, physical: 62, gk: 14 },
+    { team: "France", name: "Florian Thauvin", koreanName: "플로리앙 토뱅", age: 25, position: "FW", number: 20, stat: 82, speed: 85, shot: 80, pass: 78, dribble: 86, defense: 45, physical: 68, gk: 14 },
+    // 호주 (Australia)
+    { team: "Australia", name: "Mathew Ryan", koreanName: "매튜 라이언", age: 26, position: "GK", number: 1, stat: 77, speed: null, shot: null, pass: null, dribble: null, defense: null, physical: null, gk: 77 },
+    { team: "Australia", name: "Danny Vukovic", koreanName: "대니 부코비치", age: 33, position: "GK", number: 12, stat: 72, speed: null, shot: null, pass: null, dribble: null, defense: null, physical: null, gk: 72 },
+    { team: "Australia", name: "Brad Jones", koreanName: "브래드 존스", age: 36, position: "GK", number: 18, stat: 74, speed: null, shot: null, pass: null, dribble: null, defense: null, physical: null, gk: 74 },
+    { team: "Australia", name: "Milos Degenek", koreanName: "밀로시 데게네크", age: 24, position: "DF", number: 2, stat: 70, speed: 72, shot: 45, pass: 60, dribble: 65, defense: 70, physical: 74, gk: 12 },
+    { team: "Australia", name: "James Meredith", koreanName: "제임스 메러디스", age: 30, position: "DF", number: 3, stat: 68, speed: 78, shot: 55, pass: 62, dribble: 67, defense: 66, physical: 70, gk: 13 },
+    { team: "Australia", name: "Mark Milligan", koreanName: "마크 밀리건", age: 33, position: "DF", number: 5, stat: 72, speed: 65, shot: 60, pass: 68, dribble: 68, defense: 72, physical: 75, gk: 14 },
+    { team: "Australia", name: "Trent Sainsbury", koreanName: "트렌트 세인스버리", age: 26, position: "DF", number: 6, stat: 72, speed: 70, shot: 45, pass: 60, dribble: 65, defense: 73, physical: 75, gk: 13 },
+    { team: "Australia", name: "Aziz Behich", koreanName: "아지즈 베히치", age: 28, position: "DF", number: 16, stat: 72, speed: 85, shot: 58, pass: 65, dribble: 72, defense: 70, physical: 70, gk: 14 },
+    { team: "Australia", name: "Josh Risdon", koreanName: "조슈아 리스던", age: 26, position: "DF", number: 19, stat: 69, speed: 80, shot: 52, pass: 62, dribble: 68, defense: 68, physical: 68, gk: 13 },
+    { team: "Australia", name: "Matthew Jurman", koreanName: "매튜 저먼", age: 29, position: "DF", number: 20, stat: 68, speed: 65, shot: 35, pass: 50, dribble: 55, defense: 69, physical: 72, gk: 12 },
+    { team: "Australia", name: "Mathew Leckie", koreanName: "매튜 레키", age: 27, position: "MF", number: 7, stat: 74, speed: 88, shot: 70, pass: 68, dribble: 78, defense: 55, physical: 72, gk: 14 },
+    { team: "Australia", name: "Massimo Luongo", koreanName: "마시모 루옹고", age: 26, position: "MF", number: 8, stat: 74, speed: 72, shot: 68, pass: 73, dribble: 77, defense: 68, physical: 75, gk: 14 },
+    { team: "Australia", name: "Aaron Mooy", koreanName: "에런 무이", age: 28, position: "MF", number: 13, stat: 78, speed: 68, shot: 72, pass: 80, dribble: 78, defense: 70, physical: 74, gk: 15 },
+    { team: "Australia", name: "Mile Jedinak", koreanName: "밀레 예디낙", age: 34, position: "MF", number: 15, stat: 75, speed: 45, shot: 68, pass: 70, dribble: 65, defense: 74, physical: 85, gk: 14 },
+    { team: "Australia", name: "Jackson Irvine", koreanName: "잭슨 어바인", age: 25, position: "MF", number: 22, stat: 71, speed: 68, shot: 68, pass: 68, dribble: 70, defense: 65, physical: 78, gk: 13 },
+    { team: "Australia", name: "Tom Rogic", koreanName: "톰 로기치", age: 26, position: "MF", number: 23, stat: 76, speed: 72, shot: 75, pass: 74, dribble: 80, defense: 50, physical: 72, gk: 14 },
+    { team: "Australia", name: "Tim Cahill", koreanName: "팀 케이힐", age: 39, position: "FW", number: 4, stat: 70, speed: 58, shot: 72, pass: 60, dribble: 65, defense: 45, physical: 75, gk: 13 },
+    { team: "Australia", name: "Tomi Juric", koreanName: "토미 유리치", age: 27, position: "FW", number: 9, stat: 72, speed: 72, shot: 73, pass: 62, dribble: 70, defense: 38, physical: 80, gk: 13 },
+    { team: "Australia", name: "Robbie Kruse", koreanName: "로비 크루즈", age: 30, position: "FW", number: 10, stat: 73, speed: 85, shot: 68, pass: 68, dribble: 76, defense: 45, physical: 65, gk: 13 },
+    { team: "Australia", name: "Andrew Nabbout", koreanName: "앤드루 내바웃", age: 26, position: "FW", number: 11, stat: 68, speed: 80, shot: 68, pass: 60, dribble: 70, defense: 40, physical: 68, gk: 12 },
+    { team: "Australia", name: "Jamie Maclaren", koreanName: "제이미 매클래런", age: 25, position: "FW", number: 14, stat: 70, speed: 82, shot: 71, pass: 60, dribble: 70, defense: 35, physical: 65, gk: 12 },
+    { team: "Australia", name: "Daniel Arzani", koreanName: "대니얼 아르자니", age: 19, position: "FW", number: 17, stat: 65, speed: 80, shot: 60, pass: 62, dribble: 75, defense: 30, physical: 55, gk: 11 },
+    { team: "Australia", name: "Dimitri Petratos", koreanName: "디미트리 페트라토스", age: 26, position: "FW", number: 21, stat: 69, speed: 75, shot: 68, pass: 68, dribble: 72, defense: 45, physical: 65, gk: 12 },
+    // 페루 (Peru)
+    { team: "Peru", name: "Pedro Gallese", koreanName: "페드로 가예세", age: 28, position: "GK", number: 1, stat: 74, speed: null, shot: null, pass: null, dribble: null, defense: null, physical: null, gk: 74 },
+    { team: "Peru", name: "Carlos Cáceda", koreanName: "카를로스 카세다", age: 27, position: "GK", number: 12, stat: 68, speed: null, shot: null, pass: null, dribble: null, defense: null, physical: null, gk: 68 },
+    { team: "Peru", name: "José Carvallo", koreanName: "호세 카르바요", age: 32, position: "GK", number: 21, stat: 69, speed: null, shot: null, pass: null, dribble: null, defense: null, physical: null, gk: 69 },
+    { team: "Peru", name: "Aldo Corzo", koreanName: "알도 코르소", age: 29, position: "DF", number: 3, stat: 70, speed: 75, shot: 52, pass: 60, dribble: 65, defense: 70, physical: 72, gk: 13 },
+    { team: "Peru", name: "Anderson Santamaría", koreanName: "안데르손 산타마리아", age: 26, position: "DF", number: 4, stat: 68, speed: 70, shot: 45, pass: 58, dribble: 62, defense: 69, physical: 70, gk: 12 },
+    { team: "Peru", name: "Miguel Araujo", koreanName: "미겔 아라우호", age: 24, position: "DF", number: 5, stat: 71, speed: 72, shot: 42, pass: 55, dribble: 60, defense: 72, physical: 74, gk: 12 },
+    { team: "Peru", name: "Miguel Trauco", koreanName: "미겔 트라우코", age: 26, position: "DF", number: 6, stat: 74, speed: 78, shot: 62, pass: 72, dribble: 75, defense: 71, physical: 70, gk: 14 },
+    { team: "Peru", name: "Christian Ramos", koreanName: "크리스티안 라모스", age: 30, position: "DF", number: 15, stat: 71, speed: 65, shot: 45, pass: 55, dribble: 58, defense: 72, physical: 76, gk: 12 },
+    { team: "Peru", name: "Luis Advíncula", koreanName: "루이스 아드빙쿨라", age: 28, position: "DF", number: 17, stat: 75, speed: 94, shot: 62, pass: 68, dribble: 76, defense: 72, physical: 75, gk: 14 },
+    { team: "Peru", name: "Alberto Rodríguez", koreanName: "알베르토 로드리게스", age: 34, position: "DF", number: 2, stat: 73, speed: 60, shot: 45, pass: 58, dribble: 60, defense: 74, physical: 75, gk: 13 },
+    { team: "Peru", name: "Nilson Loyola", koreanName: "닐손 로욜라", age: 24, position: "DF", number: 22, stat: 67, speed: 75, shot: 55, pass: 60, dribble: 68, defense: 65, physical: 68, gk: 12 },
+    { team: "Peru", name: "Paolo Hurtado", koreanName: "파올로 우르타도", age: 28, position: "MF", number: 7, stat: 74, speed: 82, shot: 70, pass: 71, dribble: 77, defense: 50, physical: 68, gk: 13 },
+    { team: "Peru", name: "Christian Cueva", koreanName: "크리스티안 쿠에바", age: 27, position: "MF", number: 8, stat: 77, speed: 84, shot: 72, pass: 76, dribble: 82, defense: 45, physical: 65, gk: 14 },
+    { team: "Peru", name: "Renato Tapia", koreanName: "레나토 타피아", age: 23, position: "MF", number: 13, stat: 74, speed: 70, shot: 65, pass: 72, dribble: 73, defense: 73, physical: 78, gk: 14 },
+    { team: "Peru", name: "Andy Polo", koreanName: "앤디 폴로", age: 24, position: "MF", number: 14, stat: 70, speed: 85, shot: 65, pass: 65, dribble: 75, defense: 45, physical: 62, gk: 12 },
+    { team: "Peru", name: "Wilder Cartagena", koreanName: "윌데르 카르타헤나", age: 24, position: "MF", number: 16, stat: 68, speed: 70, shot: 58, pass: 65, dribble: 68, defense: 67, physical: 70, gk: 12 },
+    { team: "Peru", name: "Yoshimar Yotún", koreanName: "요시마르 요툰", age: 28, position: "MF", number: 19, stat: 75, speed: 75, shot: 68, pass: 76, dribble: 77, defense: 70, physical: 72, gk: 14 },
+    { team: "Peru", name: "Edison Flores", koreanName: "에디손 플로레스", age: 24, position: "MF", number: 20, stat: 73, speed: 80, shot: 70, pass: 70, dribble: 76, defense: 48, physical: 65, gk: 13 },
+    { team: "Peru", name: "Pedro Aquino", koreanName: "페드로 아키노", age: 23, position: "MF", number: 23, stat: 71, speed: 72, shot: 62, pass: 68, dribble: 72, defense: 70, physical: 74, gk: 13 },
+    { team: "Peru", name: "Paolo Guerrero", koreanName: "파올로 게레로", age: 34, position: "FW", number: 9, stat: 78, speed: 70, shot: 79, pass: 70, dribble: 78, defense: 45, physical: 78, gk: 15 },
+    { team: "Peru", name: "Jefferson Farfán", koreanName: "헤페르손 파르판", age: 34, position: "FW", number: 10, stat: 79, speed: 86, shot: 78, pass: 74, dribble: 82, defense: 48, physical: 72, gk: 15 },
+    { team: "Peru", name: "Raúl Ruidíaz", koreanName: "라울 루이디아스", age: 28, position: "FW", number: 11, stat: 76, speed: 82, shot: 77, pass: 65, dribble: 78, defense: 38, physical: 65, gk: 14 },
+    { team: "Peru", name: "André Carrillo", koreanName: "안드레 카리요", age: 27, position: "FW", number: 18, stat: 79, speed: 90, shot: 74, pass: 75, dribble: 84, defense: 45, physical: 68, gk: 15 },
+    // 덴마크 (Denmark)
+    { team: "Denmark", name: "Kasper Schmeichel", koreanName: "카스페르 슈마이켈", age: 32, position: "GK", number: 1, stat: 83, speed: null, shot: null, pass: null, dribble: null, defense: null, physical: null, gk: 83 },
+    { team: "Denmark", name: "Jonas Lössl", koreanName: "요나스 뢰슬", age: 29, position: "GK", number: 16, stat: 76, speed: null, shot: null, pass: null, dribble: null, defense: null, physical: null, gk: 76 },
+    { team: "Denmark", name: "Frederik Rønnow", koreanName: "프레데리크 뢰노브", age: 26, position: "GK", number: 22, stat: 75, speed: null, shot: null, pass: null, dribble: null, defense: null, physical: null, gk: 75 },
+    { team: "Denmark", name: "Jannik Vestergaard", koreanName: "야니크 베스테르고르", age: 26, position: "DF", number: 3, stat: 79, speed: 45, shot: 55, pass: 65, dribble: 60, defense: 80, physical: 85, gk: 12 },
+    { team: "Denmark", name: "Simon Kjær", koreanName: "시몬 키에르", age: 29, position: "DF", number: 4, stat: 81, speed: 65, shot: 52, pass: 62, dribble: 60, defense: 82, physical: 82, gk: 12 },
+    { team: "Denmark", name: "Jonas Knudsen", koreanName: "요나스 크누드센", age: 26, position: "DF", number: 5, stat: 70, speed: 78, shot: 55, pass: 62, dribble: 68, defense: 69, physical: 72, gk: 13 },
+    { team: "Denmark", name: "Andreas Christensen", koreanName: "안드레아스 크리스텐센", age: 22, position: "DF", number: 6, stat: 81, speed: 72, shot: 35, pass: 70, dribble: 68, defense: 82, physical: 75, gk: 13 },
+    { team: "Denmark", name: "Mathias Jørgensen", koreanName: "마티아스 예르겐센", age: 28, position: "DF", number: 13, stat: 75, speed: 68, shot: 48, pass: 60, dribble: 62, defense: 76, physical: 78, gk: 13 },
+    { team: "Denmark", name: "Henrik Dalsgaard", koreanName: "헨리크 달스고르", age: 29, position: "DF", number: 14, stat: 71, speed: 80, shot: 55, pass: 65, dribble: 70, defense: 70, physical: 72, gk: 13 },
+    { team: "Denmark", name: "Jens Stryger Larsen", koreanName: "옌스 스트뤼게르 라르센", age: 27, position: "DF", number: 17, stat: 73, speed: 80, shot: 65, pass: 70, dribble: 74, defense: 71, physical: 72, gk: 14 },
+    { team: "Denmark", name: "Michael Krohn-Dehli", koreanName: "미카엘 크론델리", age: 35, position: "MF", number: 2, stat: 77, speed: 68, shot: 72, pass: 78, dribble: 78, defense: 65, physical: 68, gk: 15 },
+    { team: "Denmark", name: "William Kvist", koreanName: "윌리암 크비스트", age: 33, position: "MF", number: 7, stat: 74, speed: 62, shot: 60, pass: 72, dribble: 70, defense: 74, physical: 78, gk: 14 },
+    { team: "Denmark", name: "Thomas Delaney", koreanName: "토마스 델라니", age: 27, position: "MF", number: 8, stat: 79, speed: 75, shot: 75, pass: 76, dribble: 77, defense: 76, physical: 82, gk: 15 },
+    { team: "Denmark", name: "Christian Eriksen", koreanName: "크리스티안 에릭센", age: 26, position: "MF", number: 10, stat: 87, speed: 75, shot: 84, pass: 88, dribble: 85, defense: 55, physical: 68, gk: 15 },
+    { team: "Denmark", name: "Lasse Schöne", koreanName: "라세 쇠네", age: 32, position: "MF", number: 18, stat: 78, speed: 65, shot: 78, pass: 80, dribble: 76, defense: 72, physical: 74, gk: 15 },
+    { team: "Denmark", name: "Lukas Lerager", koreanName: "루카스 레라게르", age: 25, position: "MF", number: 19, stat: 73, speed: 70, shot: 70, pass: 72, dribble: 72, defense: 70, physical: 78, gk: 14 },
+    { team: "Denmark", name: "Pione Sisto", koreanName: "피오네 시스토", age: 23, position: "MF", number: 23, stat: 78, speed: 88, shot: 75, pass: 72, dribble: 84, defense: 45, physical: 65, gk: 14 },
+    { team: "Denmark", name: "Nicolai Jørgensen", koreanName: "니콜라이 예르겐센", age: 27, position: "FW", number: 9, stat: 81, speed: 75, shot: 82, pass: 74, dribble: 78, defense: 45, physical: 80, gk: 15 },
+    { team: "Denmark", name: "Martin Braithwaite", koreanName: "마르틴 브레이스웨이트", age: 27, position: "FW", number: 11, stat: 75, speed: 85, shot: 74, pass: 68, dribble: 78, defense: 42, physical: 70, gk: 14 },
+    { team: "Denmark", name: "Kasper Dolberg", koreanName: "카스페르 돌베르", age: 21, position: "FW", number: 12, stat: 76, speed: 80, shot: 77, pass: 68, dribble: 78, defense: 40, physical: 70, gk: 14 },
+    { team: "Denmark", name: "Viktor Fischer", koreanName: "빅토르 피셰르", age: 24, position: "FW", number: 15, stat: 74, speed: 82, shot: 72, pass: 70, dribble: 78, defense: 45, physical: 65, gk: 13 },
+    { team: "Denmark", name: "Yussuf Poulsen", koreanName: "유수프 포울센", age: 24, position: "FW", number: 20, stat: 76, speed: 86, shot: 72, pass: 70, dribble: 76, defense: 55, physical: 80, gk: 14 },
+    { team: "Denmark", name: "Andreas Cornelius", koreanName: "안드레아스 코르넬리우스", age: 25, position: "FW", number: 21, stat: 75, speed: 68, shot: 76, pass: 65, dribble: 70, defense: 45, physical: 85, gk: 14 },
+    // D조
+    // 아르헨티나 (Argentina)
+    { team: "Argentina", name: "Nahuel Guzmán", koreanName: "나우엘 구스만", age: 32, position: "GK", number: 1, stat: 79, speed: null, shot: null, pass: null, dribble: null, defense: null, physical: null, gk: 79 },
+    { team: "Argentina", name: "Wilfredo Caballero", koreanName: "윌프레도 카바예로", age: 37, position: "GK", number: 12, stat: 78, speed: null, shot: null, pass: null, dribble: null, defense: null, physical: null, gk: 78 },
+    { team: "Argentina", name: "Franco Armani", koreanName: "프랑코 아르마니", age: 32, position: "GK", number: 23, stat: 75, speed: null, shot: null, pass: null, dribble: null, defense: null, physical: null, gk: 75 },
+    { team: "Argentina", name: "Gabriel Mercado", koreanName: "가브리엘 메르카도", age: 31, position: "DF", number: 2, stat: 80, speed: 75, shot: 62, pass: 70, dribble: 72, defense: 80, physical: 80, gk: 14 },
+    { team: "Argentina", name: "Nicolás Tagliafico", koreanName: "니콜라스 탈리아피코", age: 26, position: "DF", number: 3, stat: 79, speed: 82, shot: 60, pass: 72, dribble: 78, defense: 78, physical: 75, gk: 14 },
+    { team: "Argentina", name: "Cristian Ansaldi", koreanName: "크리스티안 안살디", age: 32, position: "DF", number: 4, stat: 76, speed: 80, shot: 65, pass: 72, dribble: 76, defense: 75, physical: 72, gk: 14 },
+    { team: "Argentina", name: "Federico Fazio", koreanName: "페데리코 파시오", age: 31, position: "DF", number: 6, stat: 82, speed: 45, shot: 48, pass: 60, dribble: 62, defense: 83, physical: 82, gk: 12 },
+    { team: "Argentina", name: "Marcos Acuña", koreanName: "마르코스 아쿠냐", age: 27, position: "DF", number: 8, stat: 80, speed: 85, shot: 75, pass: 78, dribble: 82, defense: 75, physical: 78, gk: 15 },
+    { team: "Argentina", name: "Marcos Rojo", koreanName: "마르코스 로호", age: 28, position: "DF", number: 16, stat: 79, speed: 75, shot: 65, pass: 70, dribble: 70, defense: 79, physical: 82, gk: 14 },
+    { team: "Argentina", name: "Nicolás Otamendi", koreanName: "니콜라스 오타멘디", age: 30, position: "DF", number: 17, stat: 85, speed: 65, shot: 55, pass: 68, dribble: 68, defense: 86, physical: 83, gk: 12 },
+    { team: "Argentina", name: "Lucas Biglia", koreanName: "루카스 비글리아", age: 32, position: "MF", number: 5, stat: 82, speed: 62, shot: 70, pass: 81, dribble: 76, defense: 80, physical: 75, gk: 15 },
+    { team: "Argentina", name: "Éver Banega", koreanName: "에베르 바네가", age: 30, position: "MF", number: 7, stat: 83, speed: 70, shot: 75, pass: 85, dribble: 86, defense: 68, physical: 70, gk: 15 },
+    { team: "Argentina", name: "Ángel Di María", koreanName: "앙헬 디 마리아", age: 30, position: "MF", number: 11, stat: 84, speed: 86, shot: 80, pass: 82, dribble: 87, defense: 52, physical: 72, gk: 15 },
+    { team: "Argentina", name: "Maximiliano Meza", koreanName: "막시밀리아노 메사", age: 26, position: "MF", number: 13, stat: 76, speed: 80, shot: 72, pass: 74, dribble: 79, defense: 55, physical: 68, gk: 14 },
+    { team: "Argentina", name: "Javier Mascherano", koreanName: "하비에르 마스체라노", age: 34, position: "MF", number: 14, stat: 83, speed: 60, shot: 58, pass: 75, dribble: 72, defense: 83, physical: 80, gk: 15 },
+    { team: "Argentina", name: "Enzo Pérez", koreanName: "엔소 페레스", age: 32, position: "MF", number: 15, stat: 79, speed: 74, shot: 72, pass: 78, dribble: 79, defense: 75, physical: 76, gk: 15 },
+    { team: "Argentina", name: "Eduardo Salvio", koreanName: "에두아르도 살비오", age: 28, position: "MF", number: 18, stat: 80, speed: 88, shot: 75, pass: 76, dribble: 84, defense: 60, physical: 70, gk: 15 },
+    { team: "Argentina", name: "Giovani Lo Celso", koreanName: "히오바니 로 셀소", age: 22, position: "MF", number: 20, stat: 78, speed: 76, shot: 72, pass: 79, dribble: 83, defense: 70, physical: 70, gk: 14 },
+    { team: "Argentina", name: "Cristian Pavón", koreanName: "크리스티안 파본", age: 22, position: "MF", number: 22, stat: 78, speed: 90, shot: 74, pass: 72, dribble: 82, defense: 45, physical: 65, gk: 14 },
+    { team: "Argentina", name: "Gonzalo Higuaín", koreanName: "곤살로 이과인", age: 31, position: "FW", number: 9, stat: 88, speed: 78, shot: 87, pass: 72, dribble: 82, defense: 35, physical: 78, gk: 15 },
+    { team: "Argentina", name: "Lionel Messi", koreanName: "리오넬 메시", age: 31, position: "FW", number: 10, stat: 93, speed: 88, shot: 91, pass: 88, dribble: 96, defense: 28, physical: 64, gk: 14 },
+    { team: "Argentina", name: "Sergio Agüero", koreanName: "세르히오 아궤로", age: 30, position: "FW", number: 19, stat: 89, speed: 88, shot: 88, pass: 75, dribble: 90, defense: 30, physical: 74, gk: 15 },
+    { team: "Argentina", name: "Paulo Dybala", koreanName: "파울로 디발라", age: 25, position: "FW", number: 21, stat: 88, speed: 85, shot: 85, pass: 82, dribble: 91, defense: 32, physical: 68, gk: 15 },
+    // 아이슬란드 (Iceland)
+    { team: "Iceland", name: "Hannes Þór Halldórsson", koreanName: "하네스 소르 하들도르손", age: 34, position: "GK", number: 1, stat: 74, speed: null, shot: null, pass: null, dribble: null, defense: null, physical: null, gk: 74 },
+    { team: "Iceland", name: "Rúnar Alex Rúnarsson", koreanName: "루나르 알렉스 루나르손", age: 23, position: "GK", number: 12, stat: 68, speed: null, shot: null, pass: null, dribble: null, defense: null, physical: null, gk: 68 },
+    { team: "Iceland", name: "Frederik Schram", koreanName: "프레데리크 스크람", age: 23, position: "GK", number: 13, stat: 62, speed: null, shot: null, pass: null, dribble: null, defense: null, physical: null, gk: 62 },
+    { team: "Iceland", name: "Birkir Már Sævarsson", koreanName: "비르키르 마르 사에바르손", age: 34, position: "DF", number: 2, stat: 69, speed: 78, shot: 55, pass: 60, dribble: 65, defense: 68, physical: 72, gk: 13 },
+    { team: "Iceland", name: "Samúel Friðjónsson", koreanName: "사뮈엘 프리드욘손", age: 22, position: "DF", number: 3, stat: 64, speed: 68, shot: 55, pass: 62, dribble: 65, defense: 63, physical: 68, gk: 11 },
+    { team: "Iceland", name: "Ragnar Sigurðsson", koreanName: "라그나르 시귀르드손", age: 32, position: "DF", number: 6, stat: 75, speed: 62, shot: 48, pass: 58, dribble: 60, defense: 76, physical: 80, gk: 13 },
+    { team: "Iceland", name: "Kári Árnason", koreanName: "카리 아르나손", age: 36, position: "DF", number: 14, stat: 71, speed: 55, shot: 52, pass: 60, dribble: 58, defense: 72, physical: 78, gk: 12 },
+    { team: "Iceland", name: "Sverrir Ingi Ingason", koreanName: "스베리르 잉기 잉가손", age: 25, position: "DF", number: 5, stat: 73, speed: 65, shot: 45, pass: 55, dribble: 58, defense: 74, physical: 78, gk: 12 },
+    { team: "Iceland", name: "Hörður Björgvin Magnússon", koreanName: "회르뒤르 비외르그빈 마그누손", age: 25, position: "DF", number: 18, stat: 71, speed: 72, shot: 60, pass: 65, dribble: 68, defense: 70, physical: 75, gk: 13 },
+    { team: "Iceland", name: "Ari Freyr Skúlason", koreanName: "아리 프레이르 스쿨라손", age: 31, position: "DF", number: 23, stat: 70, speed: 75, shot: 62, pass: 68, dribble: 70, defense: 69, physical: 70, gk: 13 },
+    { team: "Iceland", name: "Jóhann Berg Guðmundsson", koreanName: "요한 베르그 그뷔드뮌드손", age: 28, position: "MF", number: 7, stat: 76, speed: 78, shot: 75, pass: 74, dribble: 78, defense: 58, physical: 72, gk: 14 },
+    { team: "Iceland", name: "Birkir Bjarnason", koreanName: "비르키르 비아르드나손", age: 30, position: "MF", number: 8, stat: 74, speed: 75, shot: 70, pass: 71, dribble: 75, defense: 70, physical: 78, gk: 14 },
+    { team: "Iceland", name: "Gylfi Sigurðsson", koreanName: "길피 시귀르드손", age: 29, position: "MF", number: 10, stat: 82, speed: 70, shot: 82, pass: 83, dribble: 80, defense: 55, physical: 70, gk: 15 },
+    { team: "Iceland", name: "Emil Hallfreðsson", koreanName: "에밀 하들프레드손", age: 34, position: "MF", number: 16, stat: 73, speed: 65, shot: 70, pass: 74, dribble: 72, defense: 70, physical: 78, gk: 14 },
+    { team: "Iceland", name: "Aron Gunnarsson", koreanName: "아론 귄나르손", age: 29, position: "MF", number: 17, stat: 74, speed: 65, shot: 68, pass: 72, dribble: 70, defense: 73, physical: 80, gk: 14 },
+    { team: "Iceland", name: "Rúrik Gíslason", koreanName: "루리크 기슬라손", age: 30, position: "MF", number: 19, stat: 69, speed: 80, shot: 65, pass: 64, dribble: 72, defense: 50, physical: 68, gk: 12 },
+    { team: "Iceland", name: "Arnór Ingvi Traustason", koreanName: "아르드노르 잉그비 트라위스타손", age: 25, position: "MF", number: 21, stat: 71, speed: 78, shot: 68, pass: 68, dribble: 74, defense: 52, physical: 65, gk: 13 },
+    { team: "Iceland", name: "Albert Guðmundsson", koreanName: "알베르트 그뷔드뮌드손", age: 21, position: "FW", number: 4, stat: 69, speed: 78, shot: 68, pass: 65, dribble: 74, defense: 35, physical: 60, gk: 12 },
+    { team: "Iceland", name: "Björn Bergmann Sigurðarson", koreanName: "비외르든 베르그만 시귀르다르손", age: 27, position: "FW", number: 9, stat: 72, speed: 75, shot: 73, pass: 65, dribble: 72, defense: 42, physical: 75, gk: 13 },
+    { team: "Iceland", name: "Alfreð Finnbogason", koreanName: "알프레드 핀보가손", age: 29, position: "FW", number: 11, stat: 76, speed: 75, shot: 77, pass: 68, dribble: 75, defense: 45, physical: 72, gk: 14 },
+    { team: "Iceland", name: "Jón Daði Böðvarsson", koreanName: "욘 다디 뵈드바르손", age: 26, position: "FW", number: 20, stat: 70, speed: 78, shot: 70, pass: 62, dribble: 68, defense: 45, physical: 75, gk: 12 },
+    { team: "Iceland", name: "Ólafur Ingi Skúlason", koreanName: "올라퓌르 잉기 스쿨라손", age: 35, position: "MF", number: 22, stat: 68, speed: 58, shot: 60, pass: 65, dribble: 65, defense: 68, physical: 75, gk: 12 },
+    // 크로아티아 (Croatia)
+    { team: "Croatia", name: "Dominik Livaković", koreanName: "도미니크 리바코비치", age: 23, position: "GK", number: 1, stat: 75, speed: null, shot: null, pass: null, dribble: null, defense: null, physical: null, gk: 75 },
+    { team: "Croatia", name: "Lovre Kalinić", koreanName: "로브레 칼리니치", age: 28, position: "GK", number: 12, stat: 77, speed: null, shot: null, pass: null, dribble: null, defense: null, physical: null, gk: 77 },
+    { team: "Croatia", name: "Danijel Subašić", koreanName: "다니옐 수바시치", age: 34, position: "GK", number: 23, stat: 83, speed: null, shot: null, pass: null, dribble: null, defense: null, physical: null, gk: 83 },
+    { team: "Croatia", name: "Šime Vrsaljko", koreanName: "시메 브르살코", age: 26, position: "DF", number: 2, stat: 79, speed: 84, shot: 62, pass: 72, dribble: 76, defense: 77, physical: 75, gk: 14 },
+    { team: "Croatia", name: "Ivan Strinić", koreanName: "이반 스트리니치", age: 31, position: "DF", number: 3, stat: 75, speed: 78, shot: 60, pass: 70, dribble: 72, defense: 74, physical: 74, gk: 14 },
+    { team: "Croatia", name: "Vedran Ćorluka", koreanName: "베드란 촐루카", age: 32, position: "DF", number: 5, stat: 78, speed: 60, shot: 45, pass: 62, dribble: 65, defense: 79, physical: 80, gk: 13 },
+    { team: "Croatia", name: "Dejan Lovren", koreanName: "데얀 로브렌", age: 29, position: "DF", number: 6, stat: 81, speed: 68, shot: 55, pass: 65, dribble: 68, defense: 82, physical: 82, gk: 13 },
+    { team: "Croatia", name: "Tin Jedvaj", koreanName: "틴 예드바이", age: 23, position: "DF", number: 13, stat: 75, speed: 75, shot: 55, pass: 68, dribble: 70, defense: 76, physical: 75, gk: 13 },
+    { team: "Croatia", name: "Duje Ćaleta-Car", koreanName: "두예 찰레타차르", age: 22, position: "DF", number: 15, stat: 71, speed: 65, shot: 35, pass: 50, dribble: 55, defense: 72, physical: 78, gk: 12 },
+    { team: "Croatia", name: "Domagoj Vida", koreanName: "도마고이 비다", age: 29, position: "DF", number: 21, stat: 78, speed: 75, shot: 55, pass: 65, dribble: 68, defense: 79, physical: 80, gk: 14 },
+    { team: "Croatia", name: "Josip Pivarić", koreanName: "요시프 피바리치", age: 29, position: "DF", number: 22, stat: 73, speed: 80, shot: 60, pass: 68, dribble: 72, defense: 71, physical: 70, gk: 13 },
+    { team: "Croatia", name: "Ivan Rakitić", koreanName: "이반 라키티치", age: 30, position: "MF", number: 7, stat: 87, speed: 68, shot: 84, pass: 86, dribble: 84, defense: 72, physical: 74, gk: 14 },
+    { team: "Croatia", name: "Mateo Kovačić", koreanName: "마테오 코바치치", age: 24, position: "MF", number: 8, stat: 82, speed: 80, shot: 72, pass: 82, dribble: 88, defense: 70, physical: 70, gk: 15 },
+    { team: "Croatia", name: "Luka Modrić", koreanName: "루카 모드리치", age: 33, position: "MF", number: 10, stat: 91, speed: 76, shot: 80, pass: 89, dribble: 92, defense: 70, physical: 68, gk: 13 },
+    { team: "Croatia", name: "Marcelo Brozović", koreanName: "마르첼로 브로조비치", age: 26, position: "MF", number: 11, stat: 80, speed: 75, shot: 75, pass: 80, dribble: 82, defense: 72, physical: 75, gk: 15 },
+    { team: "Croatia", name: "Filip Bradarić", koreanName: "필리프 브라다리치", age: 26, position: "MF", number: 14, stat: 73, speed: 68, shot: 65, pass: 72, dribble: 72, defense: 70, physical: 75, gk: 14 },
+    { team: "Croatia", name: "Milan Badelj", koreanName: "밀란 바델", age: 29, position: "MF", number: 19, stat: 79, speed: 68, shot: 70, pass: 78, dribble: 76, defense: 76, physical: 75, gk: 15 },
+    { team: "Croatia", name: "Ivan Perišić", koreanName: "이반 페리시치", age: 29, position: "FW", number: 4, stat: 86, speed: 88, shot: 82, pass: 80, dribble: 85, defense: 65, physical: 80, gk: 15 },
+    { team: "Croatia", name: "Andrej Kramarić", koreanName: "안드레이 크라마리치", age: 27, position: "FW", number: 9, stat: 81, speed: 80, shot: 82, pass: 75, dribble: 82, defense: 45, physical: 68, gk: 14 },
+    { team: "Croatia", name: "Nikola Kalinić", koreanName: "니콜라 칼리니치", age: 30, position: "FW", number: 16, stat: 80, speed: 78, shot: 80, pass: 70, dribble: 78, defense: 42, physical: 75, gk: 14 },
+    { team: "Croatia", name: "Mario Mandžukić", koreanName: "마리오 만주키치", age: 32, position: "FW", number: 17, stat: 83, speed: 72, shot: 82, pass: 70, dribble: 75, defense: 55, physical: 88, gk: 15 },
+    { team: "Croatia", name: "Ante Rebić", koreanName: "안테 레비치", age: 25, position: "FW", number: 18, stat: 77, speed: 86, shot: 76, pass: 70, dribble: 80, defense: 50, physical: 78, gk: 14 },
+    { team: "Croatia", name: "Marko Pjaca", koreanName: "마르코 퍄차", age: 23, position: "FW", number: 20, stat: 77, speed: 84, shot: 75, pass: 72, dribble: 82, defense: 45, physical: 70, gk: 14 },
+       // 나이지리아 (Nigeria)
+    { team: "Nigeria", name: "Ikechukwu Ezenwa", koreanName: "이케추쿠 에젠와", age: 30, position: "GK", number: 1, stat: 67, speed: 0, shot: 0, pass: 0, dribble: 0, defense: 0, physical: 0, gk: 67 },
+    { team: "Nigeria", name: "Daniel Akpeyi", koreanName: "대니얼 아크페이", age: 32, position: "GK", number: 16, stat: 68, speed: 0, shot: 0, pass: 0, dribble: 0, defense: 0, physical: 0, gk: 68 },
+    { team: "Nigeria", name: "Francis Uzoho", koreanName: "프랜시스 우조호", age: 20, position: "GK", number: 23, stat: 65, speed: 0, shot: 0, pass: 0, dribble: 0, defense: 0, physical: 0, gk: 65 },
+    { team: "Nigeria", name: "Bryan Idowu", koreanName: "브라이언 이도우", age: 26, position: "DF", number: 2, stat: 70, speed: 82, shot: 55, pass: 62, dribble: 68, defense: 68, physical: 70, gk: 13 },
+    { team: "Nigeria", name: "Elderson Echiéjilé", koreanName: "엘더슨 에치에질레", age: 30, position: "DF", number: 3, stat: 72, speed: 80, shot: 60, pass: 65, dribble: 70, defense: 71, physical: 74, gk: 14 },
+    { team: "Nigeria", name: "William Troost-Ekong", koreanName: "윌리엄 트루스트에콩", age: 25, position: "DF", number: 5, stat: 72, speed: 75, shot: 45, pass: 55, dribble: 60, defense: 73, physical: 78, gk: 13 },
+    { team: "Nigeria", name: "Leon Balogun", koreanName: "레온 발로군", age: 30, position: "DF", number: 6, stat: 74, speed: 75, shot: 48, pass: 60, dribble: 65, defense: 75, physical: 78, gk: 13 },
+    { team: "Nigeria", name: "Shehu Abdullahi", koreanName: "셰후 압둘라히", age: 25, position: "DF", number: 12, stat: 69, speed: 78, shot: 58, pass: 62, dribble: 68, defense: 68, physical: 72, gk: 13 },
+    { team: "Nigeria", name: "Tyronne Ebuehi", koreanName: "타이론 에부에히", age: 23, position: "DF", number: 21, stat: 72, speed: 84, shot: 55, pass: 65, dribble: 72, defense: 70, physical: 68, gk: 13 },
+    { team: "Nigeria", name: "Kenneth Omeruo", koreanName: "케네스 오메루오", age: 25, position: "DF", number: 22, stat: 73, speed: 78, shot: 48, pass: 60, dribble: 65, defense: 74, physical: 75, gk: 13 },
+    { team: "Nigeria", name: "Chidozie Awaziem", koreanName: "치도지 아와지엠", age: 21, position: "DF", number: 20, stat: 72, speed: 72, shot: 42, pass: 58, dribble: 62, defense: 73, physical: 76, gk: 12 },
+    { team: "Nigeria", name: "Wilfred Ndidi", koreanName: "윌프레드 은디디", age: 22, position: "MF", number: 4, stat: 80, speed: 75, shot: 68, pass: 72, dribble: 76, defense: 81, physical: 84, gk: 15 },
+    { team: "Nigeria", name: "Oghenekaro Etebo", koreanName: "오그헤네카로 에테보", age: 23, position: "MF", number: 8, stat: 74, speed: 82, shot: 70, pass: 71, dribble: 77, defense: 68, physical: 76, gk: 14 },
+    { team: "Nigeria", name: "John Obi Mikel", koreanName: "존 오비 미켈", age: 31, position: "MF", number: 10, stat: 78, speed: 58, shot: 68, pass: 78, dribble: 76, defense: 75, physical: 80, gk: 15 },
+    { team: "Nigeria", "name": "Victor Moses", "koreanName": "빅터 모지스", "age": 28, "position": "MF", "number": 11, stat: 79, speed: 85, shot: 72, pass: 75, dribble: 82, defense: 72, physical: 75, gk: 15 },
+    { team: "Nigeria", "name": "Ogenyi Onazi", "koreanName": "오게니 오나지", "age": 26, "position": "MF", "number": 17, stat: 75, speed: 78, shot: 70, pass: 72, dribble: 74, defense: 73, physical: 80, gk: 14 },
+    { team: "Nigeria", "name": "John Ogu", "koreanName": "존 오구", "age": 30, "position": "MF", "number": 19, stat: 73, speed: 65, shot: 70, pass: 70, dribble: 71, defense: 71, physical: 82, gk: 14 },
+    { team: "Nigeria", "name": "Joel Obi", "koreanName": "조엘 오비", "age": 27, "position": "MF", "number": 15, stat: 73, speed: 78, shot: 68, pass: 72, dribble: 76, defense: 68, physical: 70, gk: 14 },
+    { team: "Nigeria", "name": "Ahmed Musa", "koreanName": "아메드 무사", "age": 26, "position": "FW", "number": 7, stat: 76, speed: 93, shot: 72, pass: 68, dribble: 78, defense: 45, physical: 65, gk: 14 },
+    { team: "Nigeria", "name": "Odion Ighalo", "koreanName": "오디온 이갈로", "age": 29, "position": "FW", "number": 9, stat: 77, speed: 80, shot: 78, pass: 65, dribble: 75, defense: 40, physical: 75, gk: 14 },
+    { team: "Nigeria", "name": "Kelechi Iheanacho", "koreanName": "켈레치 이헤아나초", "age": 22, "position": "FW", "number": 14, stat: 75, speed: 78, shot: 76, pass: 68, dribble: 78, defense: 40, physical: 68, gk: 14 },
+    { team: "Nigeria", "name": "Alex Iwobi", "koreanName": "알렉스 이워비", "age": 22, "position": "FW", "number": 18, stat: 76, speed: 80, shot: 68, pass: 74, dribble: 82, defense: 45, physical: 68, gk: 14 },
+    { team: "Nigeria", "name": "Simeon Nwankwo", "koreanName": "시메온 은완코", "age": 26, "position": "FW", "number": 13, stat: 71, speed: 68, shot: 72, pass: 60, dribble: 68, defense: 40, physical: 80, gk: 12 },
+    // E조
+    // 브라질 (Brazil)
+    { team: "Brazil", name: "Alisson Becker", koreanName: "알리송 베케르", age: 26, position: "GK", number: 1, stat: 80, speed: 0, shot: 0, pass: 0, dribble: 0, defense: 0, physical: 0, gk: 80 },
+    { team: "Brazil", name: "Ederson", koreanName: "에데르송", age: 25, position: "GK", number: 16, stat: 83, speed: 0, shot: 0, pass: 0, dribble: 0, defense: 0, physical: 0, gk: 83 },
+    { team: "Brazil", name: "Cássio", koreanName: "카시우", age: 31, position: "GK", number: 23, stat: 79, speed: 0, shot: 0, pass: 0, dribble: 0, defense: 0, physical: 0, gk: 79 },
+    { team: "Brazil", name: "Thiago Silva", koreanName: "치아구 시우바", age: 34, position: "DF", number: 2, stat: 88, speed: 72, shot: 55, pass: 70, dribble: 72, defense: 89, physical: 82, gk: 11 },
+    { team: "Brazil", name: "Miranda", koreanName: "미란다", age: 34, position: "DF", number: 3, stat: 86, speed: 68, shot: 48, pass: 62, dribble: 65, defense: 87, physical: 80, gk: 12 },
+    { team: "Brazil", name: "Pedro Geromel", koreanName: "페드루 제로메우", age: 33, position: "DF", number: 4, stat: 80, speed: 65, shot: 45, pass: 60, dribble: 62, defense: 81, physical: 82, gk: 12 },
+    { team: "Brazil", name: "Filipe Luís", koreanName: "필리페 루이스", age: 33, position: "DF", number: 6, stat: 85, speed: 78, shot: 65, pass: 80, dribble: 82, defense: 83, physical: 75, gk: 14 },
+    { team: "Brazil", name: "Marcelo", koreanName: "마르셀루", age: 30, position: "DF", number: 12, stat: 87, speed: 85, shot: 72, pass: 84, dribble: 89, defense: 80, physical: 80, gk: 12 },
+    { team: "Brazil", name: "Marquinhos", koreanName: "마르퀴뇨스", age: 24, position: "DF", number: 13, stat: 84, speed: 78, shot: 48, pass: 68, dribble: 72, defense: 85, physical: 78, gk: 13 },
+    { team: "Brazil", name: "Danilo", koreanName: "다닐루", age: 27, position: "DF", number: 14, stat: 81, speed: 80, shot: 70, pass: 78, dribble: 78, defense: 79, physical: 78, gk: 14 },
+    { team: "Brazil", name: "Fagner", koreanName: "파그네르", age: 29, position: "DF", number: 22, stat: 78, speed: 82, shot: 62, pass: 74, dribble: 78, defense: 76, physical: 72, gk: 14 },
+    { team: "Brazil", name: "Casemiro", koreanName: "카제미루", age: 26, position: "MF", number: 5, stat: 86, speed: 68, shot: 72, pass: 78, dribble: 75, defense: 85, physical: 88, gk: 13 },
+    { team: "Brazil", name: "Renato Augusto", koreanName: "헤나투 아우구스투", age: 30, position: "MF", number: 8, stat: 81, speed: 72, shot: 78, pass: 80, dribble: 82, defense: 70, physical: 75, gk: 15 },
+    { team: "Brazil", name: "Philippe Coutinho", koreanName: "필리페 쿠티뉴", age: 26, position: "MF", number: 11, stat: 86, speed: 80, shot: 82, pass: 84, dribble: 91, defense: 52, physical: 65, gk: 13 },
+    { team: "Brazil", name: "Paulinho", koreanName: "파울리뉴", age: 30, position: "MF", number: 15, stat: 83, speed: 78, shot: 80, pass: 78, dribble: 80, defense: 78, physical: 85, gk: 15 },
+    { team: "Brazil", name: "Fernandinho", koreanName: "페르난지뉴", age: 33, position: "MF", number: 17, stat: 84, speed: 72, shot: 75, pass: 80, dribble: 80, defense: 82, physical: 79, gk: 12 },
+    { team: "Brazil", name: "Fred", koreanName: "프레드", age: 25, position: "MF", number: 18, stat: 80, speed: 78, shot: 72, pass: 80, dribble: 82, defense: 74, physical: 72, gk: 14 },
+    { team: "Brazil", name: "Willian", koreanName: "윌리안", age: 30, position: "MF", number: 19, stat: 84, speed: 88, shot: 80, pass: 80, dribble: 86, defense: 55, physical: 68, gk: 15 },
+    { team: "Brazil", name: "Gabriel Jesus", koreanName: "가브리에우 제주스", age: 21, position: "FW", number: 9, stat: 83, speed: 88, shot: 82, pass: 72, dribble: 86, defense: 42, physical: 70, gk: 14 },
+    { team: "Brazil", name: "Neymar", koreanName: "네이마르", age: 26, position: "FW", number: 10, stat: 92, speed: 92, shot: 84, pass: 82, dribble: 95, defense: 30, physical: 64, gk: 11 },
+    { team: "Brazil", name: "Douglas Costa", koreanName: "도글라스 코스타", age: 28, position: "FW", number: 7, stat: 84, speed: 95, shot: 78, pass: 80, dribble: 88, defense: 42, physical: 65, gk: 15 },
+    { team: "Brazil", name: "Roberto Firmino", koreanName: "호베르투 피르미누", age: 27, position: "FW", number: 20, stat: 83, speed: 78, shot: 80, pass: 80, dribble: 85, defense: 58, physical: 78, gk: 15 },
+    { team: "Brazil", name: "Taison", koreanName: "타이송", age: 30, position: "FW", number: 21, stat: 82, speed: 92, shot: 78, pass: 76, dribble: 85, defense: 45, physical: 65, gk: 15 },
+    // 스위스 (Switzerland)
+    { team: "Switzerland", name: "Yann Sommer", koreanName: "얀 조머", age: 30, position: "GK", number: 1, stat: 83, speed: 0, shot: 0, pass: 0, dribble: 0, defense: 0, physical: 0, gk: 83 },
+    { team: "Switzerland", name: "Yvon Mvogo", koreanName: "이본 음보고", age: 24, position: "GK", number: 12, stat: 75, speed: 0, shot: 0, pass: 0, dribble: 0, defense: 0, physical: 0, gk: 75 },
+    { team: "Switzerland", name: "Roman Bürki", koreanName: "로만 뷔르키", age: 28, position: "GK", number: 21, stat: 84, speed: 0, shot: 0, pass: 0, dribble: 0, defense: 0, physical: 0, gk: 84 },
+    { team: "Switzerland", name: "Stephan Lichtsteiner", koreanName: "슈테판 리히트슈타이너", age: 34, position: "DF", number: 2, stat: 80, speed: 82, shot: 62, pass: 72, dribble: 75, defense: 80, physical: 80, gk: 14 },
+    { team: "Switzerland", name: "François Moubandje", koreanName: "프랑수아 무반제", age: 28, position: "DF", number: 3, stat: 74, speed: 84, shot: 55, pass: 65, dribble: 72, defense: 72, physical: 74, gk: 13 },
+    { team: "Switzerland", name: "Nico Elvedi", koreanName: "니코 엘베디", age: 22, position: "DF", number: 4, stat: 74, speed: 75, shot: 45, pass: 65, dribble: 68, defense: 75, physical: 75, gk: 13 },
+    { team: "Switzerland", name: "Manuel Akanji", koreanName: "마누엘 아칸지", age: 23, position: "DF", number: 5, stat: 76, speed: 80, shot: 42, pass: 65, dribble: 68, defense: 77, physical: 78, gk: 12 },
+    { team: "Switzerland", name: "Michael Lang", koreanName: "미하엘 랑", age: 27, position: "DF", number: 6, stat: 76, speed: 80, shot: 68, pass: 70, dribble: 74, defense: 75, physical: 78, gk: 14 },
+    { team: "Switzerland", name: "Ricardo Rodríguez", koreanName: "리카르도 로드리게스", age: 26, position: "DF", number: 13, stat: 81, speed: 75, shot: 72, pass: 78, dribble: 78, defense: 80, physical: 78, gk: 14 },
+    { team: "Switzerland", name: "Johan Djourou", koreanName: "요한 주루", age: 31, position: "DF", number: 20, stat: 74, speed: 65, shot: 45, pass: 60, dribble: 62, defense: 75, physical: 78, gk: 13 },
+    { team: "Switzerland", name: "Fabian Schär", koreanName: "파비안 셰어", age: 27, position: "DF", number: 22, stat: 76, speed: 68, shot: 62, pass: 68, dribble: 68, defense: 77, physical: 78, gk: 13 },
+    { team: "Switzerland", name: "Granit Xhaka", koreanName: "그라니트 자카", age: 26, position: "MF", number: 10, stat: 82, speed: 58, shot: 80, pass: 84, dribble: 78, defense: 75, physical: 80, gk: 15 },
+    { team: "Switzerland", name: "Valon Behrami", koreanName: "발론 베라미", age: 33, position: "MF", number: 11, stat: 78, speed: 70, shot: 65, pass: 72, dribble: 75, defense: 78, physical: 80, gk: 15 },
+    { team: "Switzerland", name: "Steven Zuber", koreanName: "슈테벤 추버", age: 27, position: "MF", number: 14, stat: 75, speed: 84, shot: 74, pass: 72, dribble: 78, defense: 60, physical: 72, gk: 14 },
+    { team: "Switzerland", name: "Blerim Džemaili", koreanName: "블레림 제마일리", age: 32, position: "MF", number: 15, stat: 77, speed: 72, shot: 78, pass: 76, dribble: 78, defense: 68, physical: 75, gk: 15 },
+    { team: "Switzerland", name: "Gelson Fernandes", koreanName: "젤송 페르난드스", age: 32, position: "MF", number: 16, stat: 74, speed: 70, shot: 62, pass: 70, dribble: 72, defense: 74, physical: 75, gk: 14 },
+    { team: "Switzerland", name: "Denis Zakaria", koreanName: "데니스 자카리아", age: 22, position: "MF", number: 17, stat: 76, speed: 80, shot: 65, pass: 72, dribble: 75, defense: 75, physical: 82, gk: 14 },
+    { team: "Switzerland", name: "Xherdan Shaqiri", koreanName: "제르단 샤키리", age: 27, position: "MF", number: 23, stat: 82, speed: 85, shot: 80, pass: 80, dribble: 86, defense: 45, physical: 75, gk: 15 },
+    { team: "Switzerland", name: "Breel Embolo", koreanName: "브릴 엠볼로", age: 21, position: "FW", number: 7, stat: 76, speed: 88, shot: 74, pass: 68, dribble: 80, defense: 45, physical: 78, gk: 14 },
+    { team: "Switzerland", name: "Haris Seferović", koreanName: "하리스 세페로비치", age: 26, position: "FW", number: 9, stat: 75, speed: 78, shot: 76, pass: 65, dribble: 72, defense: 40, physical: 78, gk: 14 },
+    { team: "Switzerland", name: "Mario Gavranović", koreanName: "마리오 가브라노비치", age: 29, position: "FW", number: 18, stat: 74, speed: 78, shot: 75, pass: 65, dribble: 75, defense: 42, physical: 70, gk: 13 },
+    { team: "Switzerland", name: "Josip Drmić", koreanName: "요시프 드르미치", age: 26, position: "FW", number: 19, stat: 74, speed: 80, shot: 75, pass: 65, dribble: 75, defense: 40, physical: 70, gk: 13 },
+    // 코스타리카 (Costa Rica)
+    { team: "Costa Rica", name: "Keylor Navas", koreanName: "케일러 나바스", age: 32, position: "GK", number: 1, stat: 85, speed: 0, shot: 0, pass: 0, dribble: 0, defense: 0, physical: 0, gk: 85 },
+    { team: "Costa Rica", name: "Patrick Pemberton", koreanName: "파트리크 펨베르톤", age: 36, position: "GK", number: 18, stat: 69, speed: 0, shot: 0, pass: 0, dribble: 0, defense: 0, physical: 0, gk: 69 },
+    { team: "Costa Rica", name: "Leonel Moreira", koreanName: "레오넬 모레이라", age: 28, position: "GK", number: 23, stat: 68, speed: 0, shot: 0, pass: 0, dribble: 0, defense: 0, physical: 0, gk: 68 },
+    { team: "Costa Rica", name: "Johnny Acosta", koreanName: "조니 아코스타", age: 35, position: "DF", number: 2, stat: 69, speed: 65, shot: 45, pass: 55, dribble: 58, defense: 70, physical: 72, gk: 12 },
+    { team: "Costa Rica", name: "Giancarlo González", koreanName: "히안카를로 곤살레스", age: 30, position: "DF", number: 3, stat: 73, speed: 62, shot: 45, pass: 58, dribble: 60, defense: 74, physical: 78, gk: 13 },
+    { team: "Costa Rica", name: "Ian Smith", koreanName: "이안 스미스", age: 20, position: "DF", number: 4, stat: 64, speed: 75, shot: 45, pass: 55, dribble: 62, defense: 63, physical: 65, gk: 11 },
+    { team: "Costa Rica", name: "Óscar Duarte", koreanName: "오스카르 두아르테", age: 29, position: "DF", number: 6, stat: 74, speed: 68, shot: 48, pass: 60, dribble: 62, defense: 75, physical: 78, gk: 13 },
+    { team: "Costa Rica", name: "Bryan Oviedo", koreanName: "브라이언 오비에도", age: 28, position: "DF", number: 8, stat: 73, speed: 80, shot: 62, pass: 70, dribble: 74, defense: 71, physical: 70, gk: 14 },
+    { team: "Costa Rica", name: "Francisco Calvo", koreanName: "프란시스코 칼보", age: 26, position: "DF", number: 15, stat: 72, speed: 75, shot: 55, pass: 65, dribble: 68, defense: 72, physical: 75, gk: 13 },
+    { team: "Costa Rica", name: "Cristian Gamboa", koreanName: "크리스티안 감보아", age: 29, position: "DF", number: 16, stat: 72, speed: 86, shot: 58, pass: 65, dribble: 72, defense: 70, physical: 70, gk: 14 },
+    { team: "Costa Rica", name: "Kendall Waston", koreanName: "켄달 와스톤", age: 30, position: "DF", number: 19, stat: 74, speed: 60, shot: 52, pass: 55, dribble: 58, defense: 75, physical: 85, gk: 12 },
+    { team: "Costa Rica", name: "Kénner Gutiérrez", koreanName: "케네르 구티에레스", age: 29, position: "DF", number: 22, stat: 68, speed: 70, shot: 42, pass: 52, dribble: 58, defense: 69, physical: 72, gk: 11 },
+    { team: "Costa Rica", name: "Celso Borges", koreanName: "셀소 보르헤스", age: 30, position: "MF", number: 5, stat: 78, speed: 68, shot: 72, pass: 78, dribble: 76, defense: 72, physical: 78, gk: 15 },
+    { team: "Costa Rica", name: "Christian Bolaños", koreanName: "크리스티안 볼라뇨스", age: 34, position: "MF", number: 7, stat: 74, speed: 80, shot: 70, pass: 72, dribble: 76, defense: 50, physical: 65, gk: 14 },
+    { team: "Costa Rica", name: "Rodney Wallace", koreanName: "로드니 월리스", age: 30, position: "MF", number: 13, stat: 70, speed: 82, shot: 65, pass: 65, dribble: 72, defense: 55, physical: 68, gk: 12 },
+    { team: "Costa Rica", name: "Randall Azofeifa", koreanName: "란달 아소페이파", age: 34, position: "MF", number: 14, stat: 72, speed: 65, shot: 70, pass: 72, dribble: 72, defense: 65, physical: 70, gk: 14 },
+    { team: "Costa Rica", name: "Yeltsin Tejeda", koreanName: "옐친 테헤다", age: 26, position: "MF", number: 17, stat: 71, speed: 72, shot: 62, pass: 68, dribble: 71, defense: 70, physical: 72, gk: 13 },
+    { team: "Costa Rica", name: "David Guzmán", koreanName: "다비드 구스만", age: 28, position: "MF", number: 20, stat: 72, speed: 68, shot: 65, pass: 70, dribble: 70, defense: 71, physical: 75, gk: 13 },
+    { team: "Costa Rica", name: "Daniel Colindres", koreanName: "다니엘 콜린드레스", age: 33, position: "FW", number: 9, stat: 70, speed: 78, shot: 70, pass: 65, dribble: 72, defense: 42, physical: 65, gk: 12 },
+    { team: "Costa Rica", name: "Bryan Ruiz", koreanName: "브라이언 루이스", age: 33, position: "FW", number: 10, stat: 78, speed: 65, shot: 75, pass: 80, dribble: 80, defense: 50, physical: 68, gk: 15 },
+    { team: "Costa Rica", name: "Johan Venegas", koreanName: "요한 베네가스", age: 30, position: "FW", number: 11, stat: 71, speed: 80, shot: 68, pass: 68, dribble: 74, defense: 45, physical: 68, gk: 13 },
+    { team: "Costa Rica", name: "Joel Campbell", koreanName: "조엘 캠벨", age: 26, position: "FW", number: 12, stat: 76, speed: 86, shot: 74, pass: 70, dribble: 80, defense: 45, physical: 70, gk: 14 },
+    { team: "Costa Rica", name: "Marco Ureña", koreanName: "마르코 우레냐", age: 28, position: "FW", number: 21, stat: 71, speed: 80, shot: 71, pass: 62, dribble: 70, defense: 40, physical: 70, gk: 12 },
+    // 세르비아 (Serbia)
+    { team: "Serbia", name: "Vladimir Stojković", koreanName: "블라디미르 스토이코비치", age: 35, position: "GK", number: 1, stat: 76, speed: 0, shot: 0, pass: 0, dribble: 0, defense: 0, physical: 0, gk: 76 },
+    { team: "Serbia", name: "Predrag Rajković", koreanName: "프레드라그 라이코비치", age: 23, position: "GK", number: 12, stat: 75, speed: 0, shot: 0, pass: 0, dribble: 0, defense: 0, physical: 0, gk: 75 },
+    { team: "Serbia", name: "Marko Dmitrović", koreanName: "마르코 드미트로비치", age: 26, position: "GK", number: 23, stat: 74, speed: 0, shot: 0, pass: 0, dribble: 0, defense: 0, physical: 0, gk: 74 },
+    { team: "Serbia", name: "Antonio Rukavina", koreanName: "안토니오 루카비나", age: 34, position: "DF", number: 2, stat: 75, speed: 78, shot: 60, pass: 70, dribble: 72, defense: 74, physical: 74, gk: 14 },
+    { team: "Serbia", name: "Duško Tošić", koreanName: "두슈코 토시치", age: 33, position: "DF", number: 3, stat: 78, speed: 75, shot: 60, pass: 65, dribble: 68, defense: 79, physical: 80, gk: 14 },
+    { team: "Serbia", name: "Uroš Spajić", koreanName: "우로시 스파이치", age: 25, position: "DF", number: 5, stat: 76, speed: 70, shot: 45, pass: 60, dribble: 62, defense: 77, physical: 78, gk: 13 },
+    { team: "Serbia", name: "Branislav Ivanović", koreanName: "브라니슬라브 이바노비치", age: 34, position: "DF", number: 6, stat: 79, speed: 65, shot: 62, pass: 68, dribble: 70, defense: 80, physical: 82, gk: 14 },
+    { team: "Serbia", name: "Aleksandar Kolarov", koreanName: "알렉산다르 콜라로프", age: 33, position: "DF", number: 11, stat: 81, speed: 75, shot: 82, pass: 80, dribble: 78, defense: 79, physical: 80, gk: 14 },
+    { team: "Serbia", name: "Miloš Veljković", koreanName: "밀로시 벨코비치", age: 23, position: "DF", number: 13, stat: 74, speed: 70, shot: 45, pass: 65, dribble: 68, defense: 75, physical: 75, gk: 13 },
+    { team: "Serbia", name: "Milan Rodić", koreanName: "밀란 로디치", age: 27, position: "DF", number: 14, stat: 71, speed: 78, shot: 55, pass: 62, dribble: 68, defense: 70, physical: 72, gk: 13 },
+    { team: "Serbia", name: "Nikola Milenković", koreanName: "니콜라 밀렌코비치", age: 21, position: "DF", number: 15, stat: 73, speed: 70, shot: 45, pass: 60, dribble: 62, defense: 74, physical: 80, gk: 12 },
+    { team: "Serbia", name: "Luka Milivojević", koreanName: "루카 밀리보예비치", age: 27, position: "MF", number: 4, stat: 79, speed: 65, shot: 75, pass: 78, dribble: 75, defense: 77, physical: 80, gk: 15 },
+    { team: "Serbia", name: "Andrija Živković", koreanName: "안드리야 지브코비치", age: 22, position: "MF", number: 7, stat: 76, speed: 85, shot: 72, pass: 74, dribble: 82, defense: 45, physical: 65, gk: 14 },
+    { team: "Serbia", name: "Dušan Tadić", koreanName: "두샨 타디치", age: 30, position: "MF", number: 10, stat: 80, speed: 75, shot: 76, pass: 82, dribble: 84, defense: 50, physical: 70, gk: 15 },
+    { team: "Serbia", name: "Marko Grujić", koreanName: "마르코 그루이치", age: 22, position: "MF", number: 16, stat: 73, speed: 70, shot: 70, pass: 72, dribble: 74, defense: 70, physical: 80, gk: 14 },
+    { team: "Serbia", name: "Filip Kostić", koreanName: "필리프 코스티치", age: 26, position: "MF", number: 17, stat: 78, speed: 90, shot: 75, pass: 76, dribble: 82, defense: 55, physical: 72, gk: 14 },
+    { team: "Serbia", name: "Sergej Milinković-Savić", koreanName: "세르게이 밀린코비치사비치", age: 23, position: "MF", number: 20, stat: 83, speed: 75, shot: 80, pass: 82, dribble: 84, defense: 75, physical: 85, gk: 15 },
+    { team: "Serbia", name: "Nemanja Matić", koreanName: "네마냐 마티치", age: 30, position: "MF", number: 21, stat: 84, speed: 65, shot: 72, pass: 80, dribble: 76, defense: 83, physical: 85, gk: 15 },
+    { team: "Serbia", name: "Adem Ljajić", koreanName: "아뎀 랴이치", age: 27, position: "MF", number: 22, stat: 80, speed: 80, shot: 78, pass: 80, dribble: 85, defense: 45, physical: 68, gk: 15 },
+    { team: "Serbia", name: "Aleksandar Prijović", koreanName: "알렉산다르 프리요비치", age: 28, position: "FW", number: 8, stat: 75, speed: 72, shot: 76, pass: 65, dribble: 72, defense: 40, physical: 80, gk: 14 },
+    { team: "Serbia", name: "Aleksandar Mitrović", koreanName: "알렉산다르 미트로비치", age: 24, position: "FW", number: 9, stat: 76, speed: 70, shot: 77, pass: 65, dribble: 72, defense: 42, physical: 85, gk: 14 },
+    { team: "Serbia", name: "Nemanja Radonjić", koreanName: "네마냐 라도니치", age: 22, position: "FW", number: 18, stat: 71, speed: 91, shot: 68, pass: 65, dribble: 76, defense: 35, physical: 60, gk: 12 },
+    { team: "Serbia", name: "Luka Jović", koreanName: "루카 요비치", age: 21, position: "FW", number: 19, stat: 75, speed: 78, shot: 76, pass: 65, dribble: 75, defense: 40, physical: 72, gk: 14 },
+    // F조
+    // 독일 (Germany)
+    { team: "Germany", name: "Manuel Neuer", koreanName: "마누엘 노이어", age: 32, position: "GK", number: 1, stat: 92, speed: 0, shot: 0, pass: 0, dribble: 0, defense: 0, physical: 0, gk: 92 },
+    { team: "Germany", name: "Marc-André ter Stegen", koreanName: "마르크안드레 테어슈테겐", age: 26, position: "GK", number: 12, stat: 87, speed: 0, shot: 0, pass: 0, dribble: 0, defense: 0, physical: 0, gk: 87 },
+    { team: "Germany", name: "Kevin Trapp", koreanName: "케빈 트라프", age: 28, position: "GK", number: 22, stat: 82, speed: 0, shot: 0, pass: 0, dribble: 0, defense: 0, physical: 0, gk: 82 },
+    { team: "Germany", name: "Marvin Plattenhardt", koreanName: "마르빈 플라텐하르트", age: 26, position: "DF", number: 2, stat: 78, speed: 78, shot: 68, pass: 76, dribble: 75, defense: 76, physical: 72, gk: 14 },
+    { team: "Germany", name: "Jonas Hector", koreanName: "요나스 헥토어", age: 28, position: "DF", number: 3, stat: 81, speed: 78, shot: 65, pass: 78, dribble: 79, defense: 80, physical: 75, gk: 14 },
+    { team: "Germany", name: "Matthias Ginter", koreanName: "마티아스 긴터", age: 24, position: "DF", number: 4, stat: 80, speed: 70, shot: 55, pass: 70, dribble: 70, defense: 81, physical: 78, gk: 13 },
+    { team: "Germany", name: "Mats Hummels", koreanName: "마츠 훔멜스", age: 30, position: "DF", number: 5, stat: 88, speed: 68, shot: 58, pass: 75, dribble: 74, defense: 89, physical: 82, gk: 13 },
+    { team: "Germany", name: "Niklas Süle", koreanName: "니클라스 쥘레", age: 23, position: "DF", number: 15, stat: 82, speed: 75, shot: 45, pass: 65, dribble: 65, defense: 83, physical: 88, gk: 12 },
+    { team: "Germany", name: "Antonio Rüdiger", koreanName: "안토니오 뤼디거", age: 25, position: "DF", number: 16, stat: 81, speed: 80, shot: 52, pass: 65, dribble: 68, defense: 82, physical: 84, gk: 13 },
+    { team: "Germany", name: "Jérôme Boateng", koreanName: "제롬 보아텡", age: 30, position: "DF", number: 17, stat: 88, speed: 78, shot: 60, pass: 75, dribble: 72, defense: 88, physical: 84, gk: 14 },
+    { team: "Germany", name: "Joshua Kimmich", koreanName: "요주아 키미히", age: 23, position: "DF", number: 18, stat: 84, speed: 78, shot: 68, pass: 82, dribble: 82, defense: 80, physical: 75, gk: 15 },
+    { team: "Germany", name: "Sami Khedira", koreanName: "사미 케디라", age: 31, position: "MF", number: 6, stat: 84, speed: 68, shot: 75, pass: 78, dribble: 78, defense: 81, physical: 85, gk: 15 },
+    { team: "Germany", name: "Julian Draxler", koreanName: "율리안 드락슬러", age: 25, position: "MF", number: 7, stat: 84, speed: 82, shot: 80, pass: 82, dribble: 87, defense: 50, physical: 70, gk: 15 },
+    { team: "Germany", name: "Toni Kroos", koreanName: "토니 크로스", age: 28, position: "MF", number: 8, stat: 90, speed: 58, shot: 82, pass: 90, dribble: 82, defense: 72, physical: 72, gk: 10 },
+    { team: "Germany", name: "Mesut Özil", koreanName: "메수트 외질", age: 30, position: "MF", number: 10, stat: 88, speed: 72, shot: 75, pass: 88, dribble: 86, defense: 40, physical: 65, gk: 14 },
+    { team: "Germany", name: "Leon Goretzka", koreanName: "레온 고레츠카", age: 23, position: "MF", number: 14, stat: 82, speed: 80, shot: 78, pass: 80, dribble: 82, defense: 75, physical: 82, gk: 15 },
+    { team: "Germany", name: "Sebastian Rudy", koreanName: "제바스티안 루디", age: 28, position: "MF", number: 19, stat: 81, speed: 70, shot: 70, pass: 82, dribble: 80, defense: 78, physical: 75, gk: 15 },
+    { team: "Germany", name: "İlkay Gündoğan", koreanName: "일카이 귄도안", age: 28, position: "MF", number: 21, stat: 84, speed: 72, shot: 78, pass: 85, dribble: 86, defense: 72, physical: 72, gk: 14 },
+    { team: "Germany", name: "Julian Brandt", koreanName: "율리안 브란트", age: 22, position: "MF", number: 20, stat: 80, speed: 86, shot: 76, pass: 78, dribble: 84, defense: 45, physical: 68, gk: 14 },
+    { team: "Germany", name: "Timo Werner", koreanName: "티모 베르너", age: 22, position: "FW", number: 9, stat: 82, speed: 92, shot: 80, pass: 70, dribble: 82, defense: 45, physical: 70, gk: 14 },
+    { team: "Germany", name: "Marco Reus", koreanName: "마르코 로이스", age: 29, position: "FW", number: 11, stat: 86, speed: 85, shot: 85, pass: 82, dribble: 86, defense: 45, physical: 68, gk: 12 },
+    { team: "Germany", name: "Thomas Müller", koreanName: "토마스 뮐러", age: 29, position: "FW", number: 13, stat: 86, speed: 78, shot: 85, pass: 80, dribble: 82, defense: 55, physical: 75, gk: 14 },
+    { team: "Germany", name: "Mario Gómez", koreanName: "마리오 고메스", age: 33, position: "FW", number: 23, stat: 81, speed: 68, shot: 82, pass: 68, dribble: 72, defense: 42, physical: 80, gk: 14 },
+    // 멕시코 (Mexico)
+    { team: "Mexico", name: "Jesús Corona", koreanName: "헤수스 코로나", age: 37, position: "GK", number: 1, stat: 78, speed: 0, shot: 0, pass: 0, dribble: 0, defense: 0, physical: 0, gk: 78 },
+    { team: "Mexico", name: "Alfredo Talavera", koreanName: "알프레도 탈라베라", age: 36, position: "GK", number: 12, stat: 77, speed: 0, shot: 0, pass: 0, dribble: 0, defense: 0, physical: 0, gk: 77 },
+    { team: "Mexico", name: "Guillermo Ochoa", koreanName: "기예르모 오초아", age: 33, position: "GK", number: 13, stat: 79, speed: 0, shot: 0, pass: 0, dribble: 0, defense: 0, physical: 0, gk: 79 },
+    { team: "Mexico", name: "Hugo Ayala", koreanName: "우고 아얄라", age: 31, position: "DF", number: 2, stat: 76, speed: 68, shot: 45, pass: 60, dribble: 62, defense: 77, physical: 78, gk: 13 },
+    { team: "Mexico", name: "Carlos Salcedo", koreanName: "카를로스 살세도", age: 25, position: "DF", number: 3, stat: 75, speed: 72, shot: 48, pass: 62, dribble: 65, defense: 76, physical: 78, gk: 13 },
+    { team: "Mexico", name: "Rafael Márquez", koreanName: "라파엘 마르케스", age: 39, position: "DF", number: 4, stat: 75, speed: 42, shot: 62, pass: 75, dribble: 70, defense: 76, physical: 72, gk: 11 },
+    { team: "Mexico", name: "Miguel Layún", koreanName: "미겔 라윤", age: 30, position: "DF", number: 7, stat: 79, speed: 85, shot: 75, pass: 78, dribble: 80, defense: 75, physical: 75, gk: 14 },
+    { team: "Mexico", name: "Héctor Moreno", koreanName: "엑토르 모레노", age: 30, position: "DF", number: 15, stat: 79, speed: 68, shot: 55, pass: 68, dribble: 68, defense: 80, physical: 80, gk: 13 },
+    { team: "Mexico", name: "Édson Álvarez", koreanName: "에드손 알바레스", age: 21, position: "DF", number: 21, stat: 73, speed: 72, shot: 55, pass: 68, dribble: 70, defense: 74, physical: 74, gk: 13 },
+    { team: "Mexico", name: "Jesús Gallardo", koreanName: "헤수스 가야르도", age: 24, position: "DF", number: 23, stat: 72, speed: 82, shot: 60, pass: 68, dribble: 74, defense: 70, physical: 70, gk: 13 },
+    { team: "Mexico", name: "Diego Reyes", koreanName: "디에고 레예스", age: 26, position: "DF", number: 5, stat: 77, speed: 70, shot: 58, pass: 72, dribble: 72, defense: 77, physical: 78, gk: 14 },
+    { team: "Mexico", name: "Jonathan dos Santos", koreanName: "호나탄 도스 산토스", age: 28, position: "MF", number: 6, stat: 80, speed: 75, shot: 72, pass: 81, dribble: 82, defense: 72, physical: 70, gk: 15 },
+    { team: "Mexico", name: "Marco Fabián", koreanName: "마르코 파비안", age: 29, position: "MF", number: 8, stat: 78, speed: 75, shot: 78, pass: 78, dribble: 80, defense: 55, physical: 70, gk: 15 },
+    { team: "Mexico", name: "Giovani dos Santos", koreanName: "지오바니 도스 산토스", age: 29, position: "MF", number: 10, stat: 79, speed: 82, shot: 76, pass: 78, dribble: 84, defense: 45, physical: 65, gk: 15 },
+    { team: "Mexico", name: "Héctor Herrera", koreanName: "엑토르 에레라", age: 28, position: "MF", number: 16, stat: 81, speed: 78, shot: 78, pass: 80, dribble: 81, defense: 75, physical: 82, gk: 15 },
+    { team: "Mexico", name: "Andrés Guardado", koreanName: "안드레스 과르다도", age: 32, position: "MF", number: 18, stat: 80, speed: 78, shot: 72, pass: 82, dribble: 80, defense: 72, physical: 70, gk: 15 },
+    { team: "Mexico", name: "Javier Aquino", koreanName: "하비에르 아키노", age: 28, position: "MF", number: 20, stat: 78, speed: 88, shot: 70, pass: 74, dribble: 84, defense: 55, physical: 68, gk: 14 },
+    { team: "Mexico", name: "Carlos Vela", koreanName: "카를로스 벨라", age: 29, position: "FW", number: 11, stat: 81, speed: 84, shot: 80, pass: 78, dribble: 85, defense: 45, physical: 68, gk: 15 },
+    { team: "Mexico", name: "Javier Hernández", koreanName: "하비에르 에르난데스", age: 30, position: "FW", number: 14, stat: 81, speed: 82, shot: 82, pass: 70, dribble: 78, defense: 40, physical: 68, gk: 14 },
+    { team: "Mexico", name: "Raúl Jiménez", koreanName: "라울 히메네스", age: 27, position: "FW", number: 9, stat: 78, speed: 78, shot: 78, pass: 70, dribble: 78, defense: 45, physical: 75, gk: 14 },
+    { team: "Mexico", name: "Oribe Peralta", koreanName: "오리베 페랄타", age: 34, position: "FW", number: 19, stat: 78, speed: 75, shot: 79, pass: 70, dribble: 75, defense: 45, physical: 75, gk: 14 },
+    { team: "Mexico", name: "Hirving Lozano", koreanName: "이르빙 로사노", age: 23, position: "FW", number: 22, stat: 81, speed: 92, shot: 78, pass: 75, dribble: 85, defense: 45, physical: 68, gk: 14 },
+    // 스웨덴 (Sweden)
+    { team: "Sweden", name: "Robin Olsen", koreanName: "로빈 올센", age: 28, position: "GK", number: 1, stat: 75, speed: 0, shot: 0, pass: 0, dribble: 0, defense: 0, physical: 0, gk: 75 },
+    { team: "Sweden", name: "Karl-Johan Johnsson", koreanName: "칼요한 욘손", age: 28, position: "GK", number: 12, stat: 74, speed: 0, shot: 0, pass: 0, dribble: 0, defense: 0, physical: 0, gk: 74 },
+    { team: "Sweden", name: "Kristoffer Nordfeldt", koreanName: "크리스토페르 노르드펠트", age: 29, position: "GK", number: 23, stat: 71, speed: 0, shot: 0, pass: 0, dribble: 0, defense: 0, physical: 0, gk: 71 },
+    { team: "Sweden", name: "Mikael Lustig", koreanName: "미카엘 루스티그", age: 32, position: "DF", number: 2, stat: 75, speed: 75, shot: 60, pass: 70, dribble: 72, defense: 75, physical: 78, gk: 14 },
+    { team: "Sweden", name: "Victor Lindelöf", koreanName: "빅토르 린델뢰프", age: 24, position: "DF", number: 3, stat: 79, speed: 75, shot: 48, pass: 70, dribble: 70, defense: 80, physical: 78, gk: 13 },
+    { team: "Sweden", name: "Andreas Granqvist", koreanName: "안드레아스 그랑크비스트", age: 33, position: "DF", number: 4, stat: 80, speed: 58, shot: 62, pass: 65, dribble: 65, defense: 81, physical: 84, gk: 13 },
+    { team: "Sweden", name: "Martin Olsson", koreanName: "마르틴 올손", age: 30, position: "DF", number: 5, stat: 73, speed: 82, shot: 62, pass: 68, dribble: 72, defense: 71, physical: 72, gk: 14 },
+    { team: "Sweden", name: "Ludwig Augustinsson", koreanName: "루드비그 아우구스틴손", age: 24, position: "DF", number: 6, stat: 74, speed: 78, shot: 60, pass: 72, dribble: 74, defense: 72, physical: 72, gk: 14 },
+    { team: "Sweden", name: "Filip Helander", koreanName: "필리프 헬란데르", age: 25, position: "DF", number: 14, stat: 73, speed: 65, shot: 45, pass: 60, dribble: 62, defense: 74, physical: 78, gk: 12 },
+    { team: "Sweden", name: "Emil Krafth", koreanName: "에밀 크라프트", age: 24, position: "DF", number: 16, stat: 72, speed: 80, shot: 55, pass: 65, dribble: 70, defense: 71, physical: 72, gk: 13 },
+    { team: "Sweden", name: "Pontus Jansson", koreanName: "폰투스 얀손", age: 27, position: "DF", number: 18, stat: 76, speed: 62, shot: 48, pass: 60, dribble: 62, defense: 77, physical: 82, gk: 13 },
+    { team: "Sweden", name: "Sebastian Larsson", koreanName: "세바스티안 라르손", age: 33, position: "MF", number: 7, stat: 75, speed: 68, shot: 72, pass: 76, dribble: 74, defense: 70, physical: 72, gk: 14 },
+    { team: "Sweden", name: "Albin Ekdal", koreanName: "알빈 에크달", age: 29, position: "MF", number: 8, stat: 76, speed: 70, shot: 68, pass: 75, dribble: 76, defense: 72, physical: 74, gk: 14 },
+    { team: "Sweden", name: "Emil Forsberg", koreanName: "에밀 포르스베리", age: 27, position: "MF", number: 10, stat: 82, speed: 82, shot: 78, pass: 82, dribble: 85, defense: 50, physical: 68, gk: 15 },
+    { team: "Sweden", name: "Gustav Svensson", koreanName: "구스타브 스벤손", age: 31, position: "MF", number: 13, stat: 72, speed: 68, shot: 62, pass: 70, dribble: 70, defense: 71, physical: 75, gk: 13 },
+    { team: "Sweden", name: "Oscar Hiljemark", koreanName: "오스카르 힐리에마르크", age: 26, position: "MF", number: 15, stat: 74, speed: 70, shot: 70, pass: 74, dribble: 75, defense: 68, physical: 72, gk: 14 },
+    { team: "Sweden", name: "Viktor Claesson", koreanName: "빅토르 클라에손", age: 26, position: "MF", number: 17, stat: 75, speed: 75, shot: 72, pass: 74, dribble: 76, defense: 65, physical: 74, gk: 14 },
+    { team: "Sweden", name: "Jimmy Durmaz", koreanName: "지미 두르마즈", age: 29, position: "MF", number: 21, stat: 74, speed: 78, shot: 72, pass: 72, dribble: 76, defense: 50, physical: 70, gk: 14 },
+    { team: "Sweden", name: "Marcus Rohdén", koreanName: "마르쿠스 로덴", age: 27, position: "MF", number: 19, stat: 72, speed: 75, shot: 68, pass: 70, dribble: 72, defense: 65, physical: 72, gk: 13 },
+    { team: "Sweden", name: "Marcus Berg", koreanName: "마르쿠스 베리", age: 32, position: "FW", number: 9, stat: 78, speed: 75, shot: 79, pass: 70, dribble: 75, defense: 45, physical: 78, gk: 14 },
+    { team: "Sweden", name: "John Guidetti", koreanName: "욘 구이데티", age: 26, position: "FW", number: 11, stat: 75, speed: 75, shot: 76, pass: 68, dribble: 75, defense: 42, physical: 78, gk: 14 },
+    { team: "Sweden", name: "Isaac Kiese Thelin", koreanName: "이삭 키에세 텔린", age: 26, position: "FW", number: 22, stat: 74, speed: 72, shot: 75, pass: 65, dribble: 70, defense: 42, physical: 80, gk: 13 },
+    { team: "Sweden", name: "Ola Toivonen", koreanName: "올라 토이보넨", age: 32, position: "FW", number: 20, stat: 75, speed: 65, shot: 76, pass: 72, dribble: 74, defense: 45, physical: 78, gk: 14 },
+    // 대한민국 (South Korea)
+    { team: "South Korea", name: "Kim Seung-gyu", koreanName: "김승규", age: 28, position: "GK", number: 1, stat: 71, speed: 0, shot: 0, pass: 0, dribble: 0, defense: 0, physical: 0, gk: 71 },
+    { team: "South Korea", name: "Kim Jin-hyeon", koreanName: "김진현", age: 31, position: "GK", number: 21, stat: 68, speed: 0, shot: 0, pass: 0, dribble: 0, defense: 0, physical: 0, gk: 68 },
+    { team: "South Korea", name: "Cho Hyun-woo", koreanName: "조현우", age: 27, position: "GK", number: 23, stat: 69, speed: 0, shot: 0, pass: 0, dribble: 0, defense: 0, physical: 0, gk: 69 },
+    { team: "South Korea", name: "Lee Yong", koreanName: "이용", age: 32, position: "DF", number: 2, stat: 70, speed: 80, shot: 55, pass: 65, dribble: 68, defense: 69, physical: 72, gk: 13 },
+    { team: "South Korea", name: "Jung Seung-hyun", koreanName: "정승현", age: 24, position: "DF", number: 3, stat: 67, speed: 68, shot: 35, pass: 52, dribble: 55, defense: 68, physical: 72, gk: 11 },
+    { team: "South Korea", name: "Oh Ban-suk", koreanName: "오반석", age: 30, position: "DF", number: 4, stat: 68, speed: 65, shot: 42, pass: 50, dribble: 55, defense: 69, physical: 75, gk: 12 },
+    { team: "South Korea", name: "Yun Young-sun", koreanName: "윤영선", age: 30, position: "DF", number: 5, stat: 66, speed: 65, shot: 38, pass: 50, dribble: 55, defense: 67, physical: 72, gk: 11 },
+    { team: "South Korea", name: "Park Joo-ho", koreanName: "박주호", age: 31, position: "DF", number: 6, stat: 71, speed: 78, shot: 60, pass: 68, dribble: 72, defense: 70, physical: 70, gk: 13 },
+    { team: "South Korea", name: "Kim Min-woo", koreanName: "김민우", age: 28, position: "DF", number: 12, stat: 69, speed: 80, shot: 62, pass: 65, dribble: 70, defense: 67, physical: 68, gk: 13 },
+    { team: "South Korea", name: "Hong Chul", koreanName: "홍철", age: 28, position: "DF", number: 14, stat: 69, speed: 84, shot: 60, pass: 65, dribble: 70, defense: 67, physical: 68, gk: 13 },
+    { team: "South Korea", name: "Jang Hyun-soo", koreanName: "장현수", age: 27, position: "DF", number: 20, stat: 71, speed: 72, shot: 55, pass: 65, dribble: 68, defense: 72, physical: 74, gk: 13 },
+    { team: "South Korea", name: "Go Yo-han", koreanName: "고요한", age: 30, position: "DF", number: 22, stat: 70, speed: 82, shot: 62, pass: 68, dribble: 72, defense: 68, physical: 68, gk: 13 },
+    { team: "South Korea", name: "Ju Se-jong", koreanName: "주세종", age: 28, position: "MF", number: 8, stat: 69, speed: 70, shot: 65, pass: 70, dribble: 70, defense: 65, physical: 70, gk: 12 },
+    { team: "South Korea", name: "Koo Ja-cheol", koreanName: "구자철", age: 29, position: "MF", number: 13, stat: 76, speed: 70, shot: 74, pass: 75, dribble: 78, defense: 60, physical: 72, gk: 14 },
+    { team: "South Korea", name: "Jung Woo-young", koreanName: "정우영", age: 29, position: "MF", number: 15, stat: 71, speed: 65, shot: 68, pass: 72, dribble: 70, defense: 68, physical: 74, gk: 13 },
+    { team: "South Korea", name: "Ki Sung-yueng", koreanName: "기성용", age: 29, position: "MF", number: 16, stat: 78, speed: 65, shot: 72, pass: 80, dribble: 76, defense: 72, physical: 76, gk: 15 },
+    { team: "South Korea", name: "Lee Jae-sung", koreanName: "이재성", age: 26, position: "MF", number: 17, stat: 74, speed: 78, shot: 70, pass: 74, dribble: 78, defense: 55, physical: 68, gk: 14 },
+    { team: "South Korea", name: "Moon Seon-min", koreanName: "문선민", age: 26, position: "MF", number: 18, stat: 67, speed: 85, shot: 62, pass: 60, dribble: 70, defense: 45, physical: 60, gk: 11 },
+    { team: "South Korea", name: "Lee Seung-woo", koreanName: "이승우", age: 20, position: "MF", number: 10, stat: 68, speed: 82, shot: 65, pass: 62, dribble: 75, defense: 35, physical: 55, gk: 11 },
+    { team: "South Korea", name: "Son Heung-min", koreanName: "손흥민", age: 26, position: "FW", number: 7, stat: 83, speed: 88, shot: 84, pass: 75, dribble: 85, defense: 42, physical: 68, gk: 14 },
+    { team: "South Korea", name: "Kim Shin-wook", koreanName: "김신욱", age: 30, position: "FW", number: 9, stat: 73, speed: 55, shot: 74, pass: 60, dribble: 65, defense: 45, physical: 90, gk: 13 },
+    { team: "South Korea", name: "Hwang Hee-chan", koreanName: "황희찬", age: 22, position: "FW", number: 11, stat: 71, speed: 86, shot: 70, pass: 62, dribble: 74, defense: 40, physical: 70, gk: 12 },
+    { team: "South Korea", name: "Kim Young-gwon", koreanName: "김영권", age: 28, position: "DF", number: 19, stat: 70, speed: 70, shot: 45, pass: 62, dribble: 65, defense: 71, physical: 72, gk: 13 },
+    // G조
+    // 벨기에 (Belgium)
+    { team: "Belgium", name: "Thibaut Courtois", koreanName: "티보 쿠르투아", age: 26, position: "GK", number: 1, stat: 89, speed: 0, shot: 0, pass: 0, dribble: 0, defense: 0, physical: 0, gk: 89 },
+    { team: "Belgium", name: "Simon Mignolet", koreanName: "시몬 미뇰레", age: 30, position: "GK", number: 12, stat: 79, speed: 0, shot: 0, pass: 0, dribble: 0, defense: 0, physical: 0, gk: 79 },
+    { team: "Belgium", name: "Koen Casteels", koreanName: "코엔 카스테일스", age: 26, position: "GK", number: 13, stat: 78, speed: 0, shot: 0, pass: 0, dribble: 0, defense: 0, physical: 0, gk: 78 },
+    { team: "Belgium", name: "Toby Alderweireld", koreanName: "토비 알데르베이럴트", age: 29, position: "DF", number: 2, stat: 86, speed: 70, shot: 58, pass: 72, dribble: 70, defense: 87, physical: 82, gk: 14 },
+    { team: "Belgium", name: "Thomas Vermaelen", koreanName: "토마스 베르마엘렌", age: 33, position: "DF", number: 3, stat: 82, speed: 68, shot: 60, pass: 70, dribble: 70, defense: 83, physical: 78, gk: 13 },
+    { team: "Belgium", name: "Vincent Kompany", koreanName: "뱅상 콩파니", age: 32, position: "DF", number: 4, stat: 85, speed: 68, shot: 55, pass: 68, dribble: 70, defense: 85, physical: 84, gk: 13 },
+    { team: "Belgium", name: "Jan Vertonghen", koreanName: "얀 베르통언", age: 31, position: "DF", number: 5, stat: 85, speed: 72, shot: 62, pass: 75, dribble: 75, defense: 86, physical: 80, gk: 14 },
+    { team: "Belgium", name: "Thomas Meunier", koreanName: "토마 뫼니에", age: 27, position: "DF", number: 15, stat: 81, speed: 82, shot: 72, pass: 78, dribble: 79, defense: 79, physical: 82, gk: 14 },
+    { team: "Belgium", name: "Dedryck Boyata", koreanName: "데드릭 보야타", age: 28, position: "DF", number: 20, stat: 75, speed: 72, shot: 45, pass: 60, dribble: 62, defense: 76, physical: 80, gk: 13 },
+    { team: "Belgium", name: "Leander Dendoncker", koreanName: "레안데르 덴동커르", age: 23, position: "DF", number: 23, stat: 78, speed: 72, shot: 70, pass: 75, dribble: 76, defense: 77, physical: 82, gk: 14 },
+    { team: "Belgium", name: "Axel Witsel", koreanName: "악셀 위첼", age: 29, position: "MF", number: 6, stat: 82, speed: 70, shot: 72, pass: 82, dribble: 82, defense: 78, physical: 80, gk: 15 },
+    { team: "Belgium", name: "Kevin De Bruyne", koreanName: "케빈 더 브라위너", age: 27, position: "MF", number: 7, stat: 91, speed: 78, shot: 85, pass: 92, dribble: 87, defense: 60, physical: 78, gk: 15 },
+    { team: "Belgium", name: "Marouane Fellaini", koreanName: "마루안 펠라이니", age: 31, position: "MF", number: 8, stat: 79, speed: 55, shot: 72, pass: 75, dribble: 75, defense: 75, physical: 90, gk: 15 },
+    { team: "Belgium", name: "Yannick Carrasco", koreanName: "야니크 카라스코", age: 25, position: "MF", number: 11, stat: 82, speed: 88, shot: 78, pass: 78, dribble: 86, defense: 55, physical: 70, gk: 15 },
+    { team: "Belgium", name: "Thorgan Hazard", koreanName: "토르강 아자르", age: 25, position: "MF", number: 16, stat: 81, speed: 84, shot: 78, pass: 79, dribble: 85, defense: 50, physical: 68, gk: 14 },
+    { team: "Belgium", name: "Youri Tielemans", koreanName: "유리 틸레만스", age: 21, position: "MF", number: 17, stat: 79, speed: 70, shot: 78, pass: 82, dribble: 81, defense: 70, physical: 72, gk: 15 },
+    { team: "Belgium", name: "Mousa Dembélé", koreanName: "무사 뎀벨레", age: 31, position: "MF", number: 19, stat: 82, speed: 72, shot: 70, pass: 80, dribble: 88, defense: 75, physical: 85, gk: 15 },
+    { team: "Belgium", name: "Nacer Chadli", koreanName: "나세르 샤들리", age: 29, position: "MF", number: 22, stat: 78, speed: 80, shot: 76, pass: 78, dribble: 82, defense: 60, physical: 75, gk: 14 },
+    { team: "Belgium", name: "Romelu Lukaku", koreanName: "로멜루 루카쿠", age: 25, position: "FW", number: 9, stat: 86, speed: 85, shot: 85, pass: 72, dribble: 78, defense: 40, physical: 88, gk: 15 },
+    { team: "Belgium", name: "Eden Hazard", koreanName: "에덴 아자르", age: 27, position: "FW", number: 10, stat: 91, speed: 90, shot: 82, pass: 86, dribble: 94, defense: 35, physical: 68, gk: 11 },
+    { team: "Belgium", name: "Dries Mertens", koreanName: "드리스 메르턴스", age: 31, position: "FW", number: 14, stat: 87, speed: 88, shot: 82, pass: 80, dribble: 90, defense: 40, physical: 60, gk: 10 },
+    { team: "Belgium", name: "Adnan Januzaj", koreanName: "아드난 야누자이", age: 23, position: "FW", number: 18, stat: 78, speed: 82, shot: 75, pass: 76, dribble: 84, defense: 45, physical: 62, gk: 14 },
+    { team: "Belgium", name: "Michy Batshuayi", koreanName: "미치 바추아이", age: 25, position: "FW", number: 21, stat: 80, speed: 82, shot: 81, pass: 68, dribble: 80, defense: 38, physical: 72, gk: 14 },
+    // 파나마 (Panama)
+    { team: "Panama", name: "Jaime Penedo", koreanName: "하이메 페네도", age: 37, position: "GK", number: 1, stat: 70, speed: 0, shot: 0, pass: 0, dribble: 0, defense: 0, physical: 0, gk: 70 },
+    { team: "Panama", name: "José Calderón", koreanName: "호세 칼데론", age: 33, position: "GK", number: 12, stat: 66, speed: 0, shot: 0, pass: 0, dribble: 0, defense: 0, physical: 0, gk: 66 },
+    { team: "Panama", name: "Álex Rodríguez", koreanName: "알렉스 로드리게스", age: 28, position: "GK", number: 22, stat: 63, speed: 0, shot: 0, pass: 0, dribble: 0, defense: 0, physical: 0, gk: 63 },
+    { team: "Panama", name: "Michael Amir Murillo", koreanName: "미차엘 아미르 무리요", age: 22, position: "DF", number: 2, stat: 68, speed: 80, shot: 52, pass: 60, dribble: 68, defense: 67, physical: 70, gk: 12 },
+    { team: "Panama", name: "Hárold Cummings", koreanName: "아롤드 쿠밍스", age: 26, position: "DF", number: 3, stat: 67, speed: 70, shot: 42, pass: 52, dribble: 58, defense: 68, physical: 74, gk: 11 },
+    { team: "Panama", name: "Fidel Escobar", koreanName: "피델 에스코바르", age: 23, position: "DF", number: 4, stat: 66, speed: 70, shot: 55, pass: 60, dribble: 65, defense: 65, physical: 72, gk: 11 },
+    { team: "Panama", name: "Román Torres", koreanName: "로만 토레스", age: 32, position: "DF", number: 5, stat: 71, speed: 55, shot: 45, pass: 55, dribble: 58, defense: 72, physical: 82, gk: 12 },
+    { team: "Panama", name: "Adolfo Machado", koreanName: "아돌포 마차도", age: 33, position: "DF", number: 13, stat: 68, speed: 68, shot: 48, pass: 58, dribble: 60, defense: 69, physical: 74, gk: 12 },
+    { team: "Panama", name: "Erick Davis", koreanName: "에리크 다비스", age: 27, position: "DF", number: 15, stat: 69, speed: 78, shot: 58, pass: 64, dribble: 68, defense: 68, physical: 70, gk: 13 },
+    { team: "Panama", name: "Luis Ovalle", koreanName: "루이스 오바예", age: 30, position: "DF", number: 17, stat: 65, speed: 75, shot: 52, pass: 58, dribble: 65, defense: 64, physical: 68, gk: 11 },
+    { team: "Panama", name: "Felipe Baloy", koreanName: "펠리페 발로이", age: 37, position: "DF", number: 23, stat: 68, speed: 52, shot: 48, pass: 55, dribble: 58, defense: 69, physical: 75, gk: 12 },
+    { team: "Panama", name: "Gabriel Gómez", koreanName: "가브리엘 고메스", age: 34, position: "MF", number: 6, stat: 69, speed: 62, shot: 62, pass: 68, dribble: 68, defense: 68, physical: 74, gk: 13 },
+    { team: "Panama", name: "Édgar Bárcenas", koreanName: "에드가르 바르세나스", age: 25, position: "MF", number: 8, stat: 67, speed: 78, shot: 62, pass: 64, dribble: 70, defense: 48, physical: 62, gk: 11 },
+    { team: "Panama", name: "Armando Cooper", koreanName: "아르만도 쿠페르", age: 31, position: "MF", number: 11, stat: 70, speed: 75, shot: 65, pass: 68, dribble: 72, defense: 60, physical: 70, gk: 12 },
+    { team: "Panama", name: "Valentín Pimentel", koreanName: "발렌틴 피멘텔", age: 27, position: "MF", number: 14, stat: 66, speed: 75, shot: 62, pass: 62, dribble: 68, defense: 50, physical: 68, gk: 11 },
+    { team: "Panama", name: "Ricardo Ávila", koreanName: "리카르도 아빌라", age: 21, position: "MF", number: 16, stat: 62, speed: 70, shot: 58, pass: 62, dribble: 65, defense: 55, physical: 60, gk: 10 },
+    { team: "Panama", name: "José Luis Rodríguez", koreanName: "호세 루이스 로드리게스", age: 20, position: "MF", number: 19, stat: 63, speed: 75, shot: 58, pass: 60, dribble: 68, defense: 45, physical: 58, gk: 10 },
+    { team: "Panama", name: "Aníbal Godoy", koreanName: "아니발 고도이", age: 28, position: "MF", number: 20, stat: 70, speed: 68, shot: 62, pass: 68, dribble: 70, defense: 69, physical: 74, gk: 13 },
+    { team: "Panama", name: "Alberto Quintero", koreanName: "알베르토 킨테로", age: 31, position: "MF", number: 21, stat: 71, speed: 85, shot: 65, pass: 68, dribble: 75, defense: 48, physical: 65, gk: 12 },
+    { team: "Panama", name: "Blas Pérez", koreanName: "블라스 페레스", age: 37, position: "FW", number: 7, stat: 69, speed: 65, shot: 70, pass: 60, dribble: 68, defense: 45, physical: 75, gk: 12 },
+    { team: "Panama", name: "Gabriel Torres", koreanName: "가브리엘 토레스", age: 30, position: "FW", number: 9, stat: 70, speed: 78, shot: 71, pass: 62, dribble: 70, defense: 40, physical: 70, gk: 12 },
+    { team: "Panama", name: "Ismael Díaz", koreanName: "이스마엘 디아스", age: 21, position: "FW", number: 10, stat: 67, speed: 80, shot: 65, pass: 60, dribble: 70, defense: 35, physical: 60, gk: 11 },
+    { team: "Panama", name: "Abdiel Arroyo", koreanName: "아브디엘 아로요", age: 25, position: "FW", number: 18, stat: 66, speed: 82, shot: 64, pass: 58, dribble: 68, defense: 40, physical: 68, gk: 11 },
+    // 튀니지 (Tunisia)
+    { team: "Tunisia", name: "Farouk Ben Mustapha", koreanName: "파루크 벤 무스타파", age: 29, position: "GK", number: 1, stat: 71, speed: 0, shot: 0, pass: 0, dribble: 0, defense: 0, physical: 0, gk: 71 },
+    { team: "Tunisia", name: "Mouez Hassen", koreanName: "무에즈 하센", age: 23, position: "GK", number: 16, stat: 69, speed: 0, shot: 0, pass: 0, dribble: 0, defense: 0, physical: 0, gk: 69 },
+    { team: "Tunisia", name: "Aymen Mathlouthi", koreanName: "아이멘 마틀루티", age: 34, position: "GK", number: 22, stat: 70, speed: 0, shot: 0, pass: 0, dribble: 0, defense: 0, physical: 0, gk: 70 },
+    { team: "Tunisia", name: "Syam Ben Youssef", koreanName: "시암 벤 유세프", age: 29, position: "DF", number: 2, stat: 73, speed: 68, shot: 45, pass: 58, dribble: 60, defense: 74, physical: 78, gk: 13 },
+    { team: "Tunisia", name: "Yohan Benalouane", koreanName: "요안 베날루안", age: 31, position: "DF", number: 3, stat: 72, speed: 65, shot: 42, pass: 55, dribble: 58, defense: 73, physical: 77, gk: 12 },
+    { team: "Tunisia", name: "Yassine Meriah", koreanName: "야신 메리아", age: 25, position: "DF", number: 4, stat: 70, speed: 70, shot: 52, pass: 62, dribble: 65, defense: 71, physical: 74, gk: 12 },
+    { team: "Tunisia", name: "Oussama Haddadi", koreanName: "우사마 하다디", age: 26, position: "DF", number: 5, stat: 71, speed: 80, shot: 58, pass: 65, dribble: 70, defense: 70, physical: 70, gk: 13 },
+    { team: "Tunisia", name: "Rami Bedoui", koreanName: "라미 베두이", age: 28, position: "DF", number: 6, stat: 68, speed: 70, shot: 45, pass: 55, dribble: 60, defense: 69, physical: 73, gk: 12 },
+    { team: "Tunisia", name: "Ali Maâloul", koreanName: "알리 마룰", age: 28, position: "DF", number: 12, stat: 74, speed: 82, shot: 65, pass: 70, dribble: 75, defense: 72, physical: 70, gk: 14 },
+    { team: "Tunisia", name: "Dylan Bronn", koreanName: "딜랑 브론", age: 23, position: "DF", number: 11, stat: 72, speed: 78, shot: 55, pass: 65, dribble: 70, defense: 71, physical: 73, gk: 13 },
+    { team: "Tunisia", name: "Hamdi Nagguez", koreanName: "함디 나게즈", age: 26, position: "DF", number: 21, stat: 70, speed: 78, shot: 55, pass: 62, dribble: 68, defense: 69, physical: 75, gk: 13 },
+    { team: "Tunisia", name: "Saîf-Eddine Khaoui", koreanName: "사이페딘 카우이", age: 23, position: "MF", number: 7, stat: 72, speed: 78, shot: 70, pass: 71, dribble: 76, defense: 50, physical: 65, gk: 13 },
+    { team: "Tunisia", name: "Ferjani Sassi", koreanName: "페르자니 사시", age: 26, position: "MF", number: 13, stat: 73, speed: 70, shot: 68, pass: 72, dribble: 74, defense: 70, physical: 78, gk: 14 },
+    { team: "Tunisia", name: "Mohamed Amine Ben Amor", koreanName: "모하메드 아민 벤 아모르", age: 26, position: "MF", number: 14, stat: 72, speed: 68, shot: 65, pass: 70, dribble: 72, defense: 71, physical: 76, gk: 13 },
+    { team: "Tunisia", "name": "Ellyes Skhiri", "koreanName": "엘리스 스키리", "age": 23, "position": "MF", "number": 17, stat: 74, speed: 72, shot: 65, pass: 74, dribble: 74, defense: 73, physical: 78, gk: 14 },
+    { team: "Tunisia", "name": "Ghaylen Chaaleli", "koreanName": "가일렌 찰랄리", "age": 24, "position": "MF", "number": 20, stat: 71, speed: 72, shot: 65, pass: 70, dribble: 72, defense: 68, physical: 72, gk: 13 },
+    { team: "Tunisia", "name": "Naïm Sliti", "koreanName": "나임 슬리티", "age": 26, "position": "MF", "number": 23, stat: 76, speed: 84, shot: 72, pass: 74, dribble: 82, defense: 45, physical: 65, gk: 14 },
+    { team: "Tunisia", "name": "Fakhreddine Ben Youssef", "koreanName": "파크레딘 벤 유세프", "age": 27, "position": "FW", "number": 8, stat: 72, speed: 78, shot: 72, pass: 65, dribble: 72, defense: 45, physical: 72, gk: 13 },
+    { team: "Tunisia", "name": "Anice Badri", "koreanName": "아니스 바드리", "age": 28, "position": "FW", "number": 9, stat: 73, speed: 82, shot: 70, pass: 68, dribble: 76, defense: 42, physical: 65, gk: 13 },
+    { team: "Tunisia", "name": "Wahbi Khazri", "koreanName": "와흐비 카즈리", "age": 27, "position": "FW", "number": 10, stat: 78, speed: 80, shot: 78, pass: 76, dribble: 81, defense: 50, physical: 72, gk: 15 },
+    { team: "Tunisia", "name": "Ahmed Akaïchi", "koreanName": "아메드 아카이치", "age": 29, "position": "FW", "number": 15, stat: 70, speed: 75, shot: 71, pass: 60, dribble: 68, defense: 40, physical: 72, gk: 12 },
+    { team: "Tunisia", "name": "Bassem Srarfi", "koreanName": "바셈 스라르피", "age": 21, "position": "FW", "number": 18, stat: 69, speed: 82, shot: 65, pass: 62, dribble: 74, defense: 38, physical: 58, gk: 11 },
+    { team: "Tunisia", "name": "Saber Khalifa", "koreanName": "사베르 칼리파", "age": 32, "position": "FW", "number": 19, stat: 71, speed: 80, shot: 71, pass: 62, dribble: 72, defense: 40, physical: 68, gk: 12 },
+    // 잉글랜드 (England)
+    { team: "England", name: "Jordan Pickford", koreanName: "조던 픽포드", age: 24, position: "GK", number: 1, stat: 79, speed: 0, shot: 0, pass: 0, dribble: 0, defense: 0, physical: 0, gk: 79 },
+    { team: "England", name: "Jack Butland", koreanName: "잭 버틀랜드", age: 25, position: "GK", number: 13, stat: 80, speed: 0, shot: 0, pass: 0, dribble: 0, defense: 0, physical: 0, gk: 80 },
+    { team: "England", name: "Nick Pope", koreanName: "닉 포프", age: 26, position: "GK", number: 23, stat: 75, speed: 0, shot: 0, pass: 0, dribble: 0, defense: 0, physical: 0, gk: 75 },
+    { team: "England", name: "Kyle Walker", koreanName: "카일 워커", age: 28, position: "DF", number: 2, stat: 84, speed: 93, shot: 65, pass: 78, dribble: 80, defense: 81, physical: 80, gk: 12 },
+    { team: "England", name: "Danny Rose", koreanName: "대니 로즈", age: 28, position: "DF", number: 3, stat: 81, speed: 88, shot: 62, pass: 75, dribble: 79, defense: 79, physical: 75, gk: 14 },
+    { team: "England", name: "John Stones", koreanName: "존 스톤스", age: 24, position: "DF", number: 5, stat: 81, speed: 72, shot: 52, pass: 72, dribble: 72, defense: 82, physical: 78, gk: 12 },
+    { team: "England", name: "Harry Maguire", koreanName: "해리 매과이어", age: 25, position: "DF", number: 6, stat: 79, speed: 65, shot: 55, pass: 68, dribble: 70, defense: 80, physical: 85, gk: 13 },
+    { team: "England", name: "Kieran Trippier", koreanName: "키어런 트리피어", age: 28, position: "DF", number: 12, stat: 78, speed: 78, shot: 65, pass: 80, dribble: 78, defense: 76, physical: 70, gk: 14 },
+    { team: "England", name: "Phil Jones", koreanName: "필 존스", age: 26, position: "DF", number: 15, stat: 81, speed: 70, shot: 52, pass: 65, dribble: 68, defense: 82, physical: 82, gk: 13 },
+    { team: "England", name: "Gary Cahill", koreanName: "게리 케이힐", age: 33, position: "DF", number: 16, stat: 81, speed: 62, shot: 55, pass: 62, dribble: 62, defense: 82, physical: 82, gk: 13 },
+    { team: "England", name: "Ashley Young", koreanName: "애슐리 영", age: 33, position: "DF", number: 18, stat: 78, speed: 80, shot: 72, pass: 78, dribble: 80, defense: 76, physical: 72, gk: 14 },
+    { team: "England", name: "Trent Alexander-Arnold", koreanName: "트렌트 알렉산더아놀드", age: 20, position: "DF", number: 22, stat: 72, speed: 82, shot: 60, pass: 72, dribble: 74, defense: 70, physical: 68, gk: 13 },
+    { team: "England", name: "Eric Dier", koreanName: "에릭 다이어", age: 24, position: "MF", number: 4, stat: 80, speed: 68, shot: 65, pass: 75, dribble: 72, defense: 80, physical: 82, gk: 14 },
+    { team: "England", name: "Jesse Lingard", koreanName: "제시 린가드", age: 26, position: "MF", number: 7, stat: 80, speed: 84, shot: 78, pass: 78, dribble: 82, defense: 60, physical: 68, gk: 14 },
+    { team: "England", name: "Jordan Henderson", koreanName: "조던 헨더슨", age: 28, position: "MF", number: 8, stat: 81, speed: 70, shot: 70, pass: 82, dribble: 78, defense: 78, physical: 80, gk: 14 },
+    { team: "England", name: "Dele Alli", koreanName: "델리 알리", age: 22, position: "MF", number: 20, stat: 84, speed: 75, shot: 80, pass: 80, dribble: 85, defense: 65, physical: 75, gk: 15 },
+    { team: "England", name: "Ruben Loftus-Cheek", koreanName: "루벤 로프터스치크", age: 22, position: "MF", number: 21, stat: 74, speed: 75, shot: 70, pass: 74, dribble: 78, defense: 68, physical: 80, gk: 14 },
+    { team: "England", name: "Fabian Delph", koreanName: "페이비언 델프", age: 29, position: "MF", number: 17, stat: 77, speed: 75, shot: 70, pass: 78, dribble: 80, defense: 75, physical: 72, gk: 14 },
+    { team: "England", name: "Harry Kane", koreanName: "해리 케인", age: 25, position: "FW", number: 9, stat: 89, speed: 75, shot: 91, pass: 78, dribble: 82, defense: 45, physical: 85, gk: 14 },
+    { team: "England", name: "Raheem Sterling", koreanName: "라힘 스털링", age: 24, position: "FW", number: 10, stat: 85, speed: 93, shot: 78, pass: 80, dribble: 88, defense: 45, physical: 65, gk: 15 },
+    { team: "England", name: "Jamie Vardy", koreanName: "제이미 바디", age: 31, position: "FW", number: 11, stat: 82, speed: 90, shot: 82, pass: 70, dribble: 78, defense: 50, physical: 75, gk: 14 },
+    { team: "England", name: "Danny Welbeck", koreanName: "대니 웰벡", age: 28, position: "FW", number: 14, stat: 78, speed: 82, shot: 78, pass: 72, dribble: 78, defense: 50, physical: 78, gk: 14 },
+    { team: "England", name: "Marcus Rashford", koreanName: "마커스 래시포드", age: 21, position: "FW", number: 19, stat: 81, speed: 92, shot: 80, pass: 75, dribble: 84, defense: 45, physical: 70, gk: 14 },
+    // 폴란드 (Poland)
+    { team: "Poland", name: "Wojciech Szczęsny", koreanName: "보이치에흐 슈체스니", age: 28, position: "GK", number: 1, stat: 82, speed: 0, shot: 0, pass: 0, dribble: 0, defense: 0, physical: 0, gk: 82 },
+    { team: "Poland", name: "Bartosz Białkowski", koreanName: "바르토시 비아우코프스키", age: 31, position: "GK", number: 12, stat: 75, speed: 0, shot: 0, pass: 0, dribble: 0, defense: 0, physical: 0, gk: 75 },
+    { team: "Poland", name: "Łukasz Fabiański", koreanName: "우카시 파비안스키", age: 33, position: "GK", number: 22, stat: 80, speed: 0, shot: 0, pass: 0, dribble: 0, defense: 0, physical: 0, gk: 80 },
+    { team: "Poland", name: "Michał Pazdan", koreanName: "미하우 파즈단", age: 31, position: "DF", number: 2, stat: 76, speed: 70, shot: 45, pass: 60, dribble: 62, defense: 77, physical: 78, gk: 13 },
+    { team: "Poland", name: "Artur Jędrzejczyk", koreanName: "아르투르 옝제이치크", age: 31, position: "DF", number: 3, stat: 74, speed: 75, shot: 55, pass: 65, dribble: 68, defense: 74, physical: 78, gk: 14 },
+    { team: "Poland", name: "Thiago Cionek", koreanName: "치아구 치오네크", age: 32, position: "DF", number: 4, stat: 72, speed: 65, shot: 45, pass: 58, dribble: 60, defense: 73, physical: 77, gk: 12 },
+    { team: "Poland", name: "Jan Bednarek", koreanName: "얀 베드나레크", age: 22, position: "DF", number: 5, stat: 70, speed: 65, shot: 35, pass: 55, dribble: 60, defense: 71, physical: 75, gk: 12 },
+    { team: "Poland", name: "Kamil Glik", koreanName: "카밀 글리크", age: 30, position: "DF", number: 15, stat: 85, speed: 58, shot: 52, pass: 60, dribble: 60, defense: 86, physical: 86, gk: 12 },
+    { team: "Poland", name: "Bartosz Bereszyński", koreanName: "바르토시 베레신스키", age: 26, position: "DF", number: 18, stat: 74, speed: 82, shot: 55, pass: 65, dribble: 72, defense: 73, physical: 72, gk: 13 },
+    { team: "Poland", name: "Łukasz Piszczek", koreanName: "우카시 피슈체크", age: 33, position: "DF", number: 20, stat: 82, speed: 80, shot: 65, pass: 75, dribble: 78, defense: 81, physical: 80, gk: 14 },
+    { team: "Poland", name: "Jacek Góralski", koreanName: "야체크 구랄스키", age: 26, position: "MF", number: 6, stat: 72, speed: 75, shot: 60, pass: 68, dribble: 72, defense: 71, physical: 78, gk: 13 },
+    { team: "Poland", name: "Karol Linetty", koreanName: "카롤 리네티", age: 23, position: "MF", number: 8, stat: 76, speed: 78, shot: 68, pass: 75, dribble: 78, defense: 70, physical: 72, gk: 14 },
+    { team: "Poland", name: "Grzegorz Krychowiak", koreanName: "그제고시 크리호비아크", age: 28, position: "MF", number: 10, stat: 81, speed: 68, shot: 72, pass: 78, dribble: 78, defense: 80, physical: 84, gk: 15 },
+    { team: "Poland", name: "Kamil Grosicki", koreanName: "카밀 그로시츠키", age: 30, position: "MF", number: 11, stat: 77, speed: 91, shot: 72, pass: 72, dribble: 80, defense: 48, physical: 68, gk: 14 },
+    { team: "Poland", name: "Maciej Rybus", koreanName: "마치에이 리부스", age: 29, position: "MF", number: 13, stat: 75, speed: 85, shot: 68, pass: 72, dribble: 78, defense: 72, physical: 70, gk: 14 },
+    { team: "Poland", name: "Jakub Błaszczykowski", koreanName: "야쿠프 브와슈치코프스키", age: 33, position: "MF", number: 16, stat: 78, speed: 82, shot: 72, pass: 75, dribble: 80, defense: 60, physical: 70, gk: 15 },
+    { team: "Poland", name: "Sławomir Peszko", koreanName: "스와보미르 페슈코", age: 33, position: "MF", number: 17, stat: 72, speed: 80, shot: 68, pass: 68, dribble: 74, defense: 55, physical: 70, gk: 13 },
+    { team: "Poland", name: "Piotr Zieliński", koreanName: "피오트르 지엘린스키", age: 24, position: "MF", number: 19, stat: 80, speed: 80, shot: 75, pass: 80, dribble: 84, defense: 60, physical: 68, gk: 15 },
+    { team: "Poland", name: "Rafał Kurzawa", koreanName: "라파우 쿠자바", age: 25, position: "MF", number: 21, stat: 73, speed: 75, shot: 68, pass: 78, dribble: 74, defense: 55, physical: 65, gk: 13 },
+    { team: "Poland", name: "Arkadiusz Milik", koreanName: "아르카디우시 밀리크", age: 24, position: "FW", number: 7, stat: 82, speed: 78, shot: 83, pass: 75, dribble: 82, defense: 45, physical: 75, gk: 14 },
+    { team: "Poland", name: "Robert Lewandowski", koreanName: "로베르트 레반도프스키", age: 30, position: "FW", number: 9, stat: 91, speed: 82, shot: 88, pass: 75, dribble: 86, defense: 42, physical: 84, gk: 15 },
+    { team: "Poland", name: "Łukasz Teodorczyk", koreanName: "우카시 테오도르치크", age: 27, position: "FW", number: 14, stat: 76, speed: 72, shot: 77, pass: 65, dribble: 72, defense: 42, physical: 82, gk: 14 },
+    { team: "Poland", name: "Dawid Kownacki", koreanName: "다비트 코브나츠키", age: 21, position: "FW", number: 23, stat: 71, speed: 78, shot: 72, pass: 62, dribble: 74, defense: 40, physical: 68, gk: 12 },
+        // 세네갈 (Senegal)
+    { team: "Senegal", name: "Abdoulaye Diallo", koreanName: "압둘라예 디알로", age: 26, position: "GK", number: 1, stat: 73, speed: 0, shot: 0, pass: 0, dribble: 0, defense: 0, physical: 0, gk: 73 },
+    { team: "Senegal", name: "Alfred Gomis", koreanName: "알프레드 고미스", age: 25, position: "GK", number: 16, stat: 72, speed: 0, shot: 0, pass: 0, dribble: 0, defense: 0, physical: 0, gk: 72 },
+    { team: "Senegal", name: "Khadim N'Diaye", koreanName: "카딤 은디아예", age: 33, position: "GK", number: 23, stat: 69, speed: 0, shot: 0, pass: 0, dribble: 0, defense: 0, physical: 0, gk: 69 },
+    { team: "Senegal", name: "Adama Mbengue", koreanName: "아다마 음벵게", age: 25, position: "DF", number: 2, stat: 69, speed: 82, shot: 55, pass: 62, dribble: 68, defense: 68, physical: 70, gk: 12 },
+    { team: "Senegal", name: "Kalidou Koulibaly", koreanName: "칼리두 쿨리발리", age: 27, position: "DF", number: 3, stat: 86, speed: 78, shot: 45, pass: 65, dribble: 70, defense: 87, physical: 88, gk: 13 },
+    { team: "Senegal", name: "Kara Mbodji", koreanName: "카라 음보지", age: 29, position: "DF", number: 4, stat: 78, speed: 70, shot: 55, pass: 62, dribble: 65, defense: 79, physical: 84, gk: 13 },
+    { team: "Senegal", name: "Salif Sané", koreanName: "살리프 사네", age: 28, position: "DF", number: 6, stat: 78, speed: 72, shot: 62, pass: 70, dribble: 72, defense: 78, physical: 85, gk: 14 },
+    { team: "Senegal", name: "Youssouf Sabaly", koreanName: "유수프 사발리", age: 25, position: "DF", number: 12, stat: 76, speed: 84, shot: 60, pass: 70, dribble: 76, defense: 75, physical: 72, gk: 14 },
+    { team: "Senegal", name: "Lamine Gassama", koreanName: "라민 가사마", age: 29, position: "DF", number: 21, stat: 72, speed: 84, shot: 55, pass: 65, dribble: 70, defense: 70, physical: 72, gk: 13 },
+    { team: "Senegal", name: "Moussa Wagué", koreanName: "무사 와귀에", age: 20, position: "DF", number: 22, stat: 69, speed: 85, shot: 55, pass: 62, dribble: 70, defense: 67, physical: 68, gk: 12 },
+    { team: "Senegal", name: "Idrissa Gueye", koreanName: "이드리사 게예", age: 29, position: "MF", number: 5, stat: 82, speed: 78, shot: 65, pass: 78, dribble: 80, defense: 83, physical: 78, gk: 15 },
+    { team: "Senegal", name: "Cheikhou Kouyaté", koreanName: "셰이쿠 쿠야테", age: 29, position: "MF", number: 8, stat: 77, speed: 75, shot: 68, pass: 72, dribble: 75, defense: 77, physical: 85, gk: 14 },
+    { team: "Senegal", name: "Badou Ndiaye", koreanName: "바두 은디아예", age: 28, position: "MF", number: 13, stat: 76, speed: 80, shot: 72, pass: 74, dribble: 78, defense: 72, physical: 78, gk: 14 },
+    { team: "Senegal", name: "Alfred N'Diaye", koreanName: "알프레드 은디아예", age: 28, position: "MF", number: 17, stat: 75, speed: 70, shot: 68, pass: 72, dribble: 74, defense: 75, physical: 82, gk: 14 },
+    { team: "Senegal", name: "Cheikh N'Doye", koreanName: "셰이크 은도예", age: 32, position: "MF", number: 11, stat: 73, speed: 58, shot: 70, pass: 68, dribble: 70, defense: 72, physical: 90, gk: 14 },
+    { team: "Senegal", name: "Moussa Sow", koreanName: "무사 소우", age: 32, position: "FW", number: 7, stat: 76, speed: 80, shot: 78, pass: 68, dribble: 75, defense: 45, physical: 75, gk: 14 },
+    { team: "Senegal", name: "M'Baye Niang", koreanName: "음바예 니앙", age: 24, position: "FW", number: 9, stat: 77, speed: 88, shot: 76, pass: 70, dribble: 80, defense: 42, physical: 75, gk: 14 },
+    { team: "Senegal", name: "Sadio Mané", koreanName: "사디오 마네", age: 26, position: "FW", number: 10, stat: 86, speed: 94, shot: 80, pass: 78, dribble: 88, defense: 45, physical: 72, gk: 15 },
+    { team: "Senegal", name: "Keita Baldé", koreanName: "케이타 발데", age: 23, position: "FW", number: 14, stat: 80, speed: 92, shot: 76, pass: 74, dribble: 85, defense: 40, physical: 70, gk: 14 },
+    { team: "Senegal", name: "Diafra Sakho", koreanName: "디아프라 사코", age: 29, position: "FW", number: 15, stat: 75, speed: 82, shot: 75, pass: 62, dribble: 74, defense: 45, physical: 75, gk: 14 },
+    { team: "Senegal", name: "Ismaïla Sarr", koreanName: "이스마일라 사르", age: 20, position: "FW", number: 18, stat: 76, speed: 94, shot: 72, pass: 68, dribble: 80, defense: 42, physical: 70, gk: 14 },
+    { team: "Senegal", name: "Mame Biram Diouf", koreanName: "마메 비람 디우프", age: 31, position: "FW", number: 19, stat: 75, speed: 82, shot: 75, pass: 68, dribble: 74, defense: 50, physical: 78, gk: 14 },
+    { team: "Senegal", name: "Moussa Konaté", koreanName: "무사 코나테", age: 25, position: "FW", number: 20, stat: 74, speed: 84, shot: 74, pass: 62, dribble: 75, defense: 42, physical: 75, gk: 13 },
+    // 콜롬비아 (Colombia)
+    { team: "Colombia", name: "David Ospina", koreanName: "다비드 오스피나", age: 30, position: "GK", number: 1, stat: 79, speed: 0, shot: 0, pass: 0, dribble: 0, defense: 0, physical: 0, gk: 79 },
+    { team: "Colombia", name: "Camilo Vargas", koreanName: "카밀로 바르가스", age: 29, position: "GK", number: 12, stat: 74, speed: 0, shot: 0, pass: 0, dribble: 0, defense: 0, physical: 0, gk: 74 },
+    { team: "Colombia", name: "José Fernando Cuadrado", koreanName: "호세 페르난도 콰드라도", age: 33, position: "GK", number: 22, stat: 71, speed: 0, shot: 0, pass: 0, dribble: 0, defense: 0, physical: 0, gk: 71 },
+    { team: "Colombia", name: "Cristián Zapata", koreanName: "크리스티안 사파타", age: 32, position: "DF", number: 2, stat: 78, speed: 78, shot: 52, pass: 62, dribble: 65, defense: 79, physical: 82, gk: 13 },
+    { team: "Colombia", name: "Óscar Murillo", koreanName: "오스카르 무리요", age: 30, position: "DF", number: 3, stat: 77, speed: 75, shot: 48, pass: 58, dribble: 62, defense: 78, physical: 80, gk: 13 },
+    { team: "Colombia", name: "Santiago Arias", koreanName: "산티아고 아리아스", age: 26, position: "DF", number: 4, stat: 79, speed: 86, shot: 62, pass: 72, dribble: 78, defense: 78, physical: 75, gk: 14 },
+    { team: "Colombia", name: "Johan Mojica", koreanName: "호안 모히카", age: 26, position: "DF", number: 17, stat: 74, speed: 90, shot: 65, pass: 68, dribble: 75, defense: 71, physical: 72, gk: 13 },
+    { team: "Colombia", name: "Frank Fabra", koreanName: "프랑크 파브라", age: 27, position: "DF", number: 18, stat: 76, speed: 88, shot: 62, pass: 70, dribble: 76, defense: 74, physical: 75, gk: 14 },
+    { team: "Colombia", name: "Yerry Mina", koreanName: "예리 미나", age: 24, position: "DF", number: 13, stat: 78, speed: 68, shot: 55, pass: 65, dribble: 68, defense: 79, physical: 85, gk: 12 },
+    { team: "Colombia", name: "Dávinson Sánchez", koreanName: "다빈손 산체스", age: 22, position: "DF", number: 23, stat: 81, speed: 82, shot: 48, pass: 65, dribble: 68, defense: 82, physical: 82, gk: 13 },
+    { team: "Colombia", name: "Wílmar Barrios", koreanName: "윌마르 바리오스", age: 25, position: "MF", number: 5, stat: 78, speed: 80, shot: 65, pass: 72, dribble: 76, defense: 78, physical: 82, gk: 14 },
+    { team: "Colombia", name: "Carlos Sánchez", koreanName: "카를로스 산체스", age: 32, position: "MF", number: 6, stat: 78, speed: 68, shot: 65, pass: 72, dribble: 74, defense: 78, physical: 82, gk: 14 },
+    { team: "Colombia", name: "Abel Aguilar", koreanName: "아벨 아길라르", age: 33, position: "MF", number: 8, stat: 74, speed: 65, shot: 68, pass: 72, dribble: 72, defense: 72, physical: 75, gk: 14 },
+    { team: "Colombia", name: "James Rodríguez", koreanName: "하메스 로드리게스", age: 27, position: "MF", number: 10, stat: 86, speed: 75, shot: 85, pass: 88, dribble: 86, defense: 52, physical: 72, gk: 15 },
+    { team: "Colombia", name: "Juan Cuadrado", koreanName: "후안 콰드라도", age: 30, position: "MF", number: 11, stat: 83, speed: 92, shot: 75, pass: 78, dribble: 86, defense: 70, physical: 72, gk: 14 },
+    { team: "Colombia", name: "Mateus Uribe", koreanName: "마테우스 우리베", age: 27, position: "MF", number: 15, stat: 77, speed: 78, shot: 75, pass: 75, dribble: 78, defense: 72, physical: 78, gk: 14 },
+    { team: "Colombia", name: "Jefferson Lerma", koreanName: "헤페르손 레르마", age: 24, position: "MF", number: 16, stat: 77, speed: 80, shot: 70, pass: 74, dribble: 76, defense: 76, physical: 82, gk: 14 },
+    { team: "Colombia", name: "Juan Fernando Quintero", koreanName: "후안 페르난도 킨테로", age: 25, position: "MF", number: 20, stat: 79, speed: 82, shot: 78, pass: 82, dribble: 85, defense: 45, physical: 62, gk: 14 },
+    { team: "Colombia", name: "Radamel Falcao", koreanName: "라다멜 팔카오", age: 32, position: "FW", number: 9, stat: 84, speed: 75, shot: 85, pass: 70, dribble: 78, defense: 45, physical: 78, gk: 15 },
+    { team: "Colombia", name: "Carlos Bacca", koreanName: "카를로스 바카", age: 32, position: "FW", number: 7, stat: 82, speed: 82, shot: 83, pass: 68, dribble: 80, defense: 40, physical: 75, gk: 14 },
+    { team: "Colombia", name: "Luis Muriel", koreanName: "루이스 무리엘", age: 27, position: "FW", number: 14, stat: 80, speed: 90, shot: 80, pass: 72, dribble: 84, defense: 42, physical: 70, gk: 14 },
+    { team: "Colombia", name: "Miguel Borja", koreanName: "미겔 보르하", age: 25, position: "FW", number: 19, stat: 76, speed: 82, shot: 77, pass: 65, dribble: 74, defense: 42, physical: 78, gk: 14 },
+    { team: "Colombia", name: "José Izquierdo", koreanName: "호세 이스키에르도", age: 26, position: "FW", number: 21, stat: 79, speed: 92, shot: 78, pass: 72, dribble: 82, defense: 45, physical: 70, gk: 14 },
+    // 일본 (Japan)
+    { team: "Japan", name: "Eiji Kawashima", koreanName: "가와시마 에이지", age: 35, position: "GK", number: 1, stat: 70, speed: 0, shot: 0, pass: 0, dribble: 0, defense: 0, physical: 0, gk: 70 },
+    { team: "Japan", name: "Masaaki Higashiguchi", koreanName: "히가시구치 마사아키", age: 32, position: "GK", number: 12, stat: 69, speed: 0, shot: 0, pass: 0, dribble: 0, defense: 0, physical: 0, gk: 69 },
+    { team: "Japan", name: "Kosuke Nakamura", koreanName: "나카무라 코스케", age: 23, position: "GK", number: 23, stat: 68, speed: 0, shot: 0, pass: 0, dribble: 0, defense: 0, physical: 0, gk: 68 },
+    { team: "Japan", name: "Naomichi Ueda", koreanName: "우에다 나오미치", age: 24, position: "DF", number: 2, stat: 67, speed: 70, shot: 42, pass: 55, dribble: 58, defense: 68, physical: 74, gk: 11 },
+    { team: "Japan", name: "Gen Shoji", koreanName: "쇼지 겐", age: 26, position: "DF", number: 3, stat: 69, speed: 72, shot: 45, pass: 58, dribble: 62, defense: 70, physical: 75, gk: 12 },
+    { team: "Japan", name: "Yuto Nagatomo", koreanName: "나가토모 유토", age: 32, position: "DF", number: 5, stat: 75, speed: 85, shot: 62, pass: 70, dribble: 76, defense: 74, physical: 72, gk: 14 },
+    { team: "Japan", name: "Wataru Endo", koreanName: "엔도 와타루", age: 25, position: "DF", number: 6, stat: 70, speed: 72, shot: 60, pass: 68, dribble: 70, defense: 70, physical: 74, gk: 13 },
+    { team: "Japan", name: "Tomoaki Makino", koreanName: "마키노 토모아키", age: 31, position: "DF", number: 20, stat: 70, speed: 70, shot: 55, pass: 62, dribble: 65, defense: 71, physical: 75, gk: 12 },
+    { team: "Japan", name: "Hiroki Sakai", koreanName: "사카이 히로키", age: 28, position: "DF", number: 19, stat: 78, speed: 85, shot: 62, pass: 72, dribble: 76, defense: 77, physical: 80, gk: 14 },
+    { team: "Japan", name: "Gōtoku Sakai", koreanName: "사카이 고토쿠", age: 27, position: "DF", number: 21, stat: 73, speed: 82, shot: 60, pass: 70, dribble: 74, defense: 72, physical: 72, gk: 14 },
+    { team: "Japan", name: "Maya Yoshida", koreanName: "요시다 마야", age: 30, position: "DF", number: 22, stat: 76, speed: 65, shot: 48, pass: 62, dribble: 65, defense: 77, physical: 78, gk: 13 },
+    { team: "Japan", name: "Keisuke Honda", koreanName: "혼다 케이스케", age: 32, position: "MF", number: 4, stat: 78, speed: 65, shot: 80, pass: 78, dribble: 78, defense: 55, physical: 72, gk: 15 },
+    { team: "Japan", name: "Gaku Shibasaki", koreanName: "시바사키 가쿠", age: 26, position: "MF", number: 7, stat: 74, speed: 72, shot: 70, pass: 76, dribble: 76, defense: 60, physical: 68, gk: 14 },
+    { team: "Japan", name: "Genki Haraguchi", koreanName: "하라구치 겐키", age: 27, position: "MF", number: 8, stat: 75, speed: 86, shot: 70, pass: 72, dribble: 78, defense: 55, physical: 68, gk: 14 },
+    { team: "Japan", name: "Shinji Kagawa", koreanName: "카가와 신지", age: 29, position: "MF", number: 10, stat: 83, speed: 78, shot: 78, pass: 82, dribble: 86, defense: 48, physical: 65, gk: 12 },
+    { team: "Japan", name: "Takashi Usami", koreanName: "우사미 타카시", age: 26, position: "MF", number: 11, stat: 74, speed: 80, shot: 72, pass: 70, dribble: 78, defense: 42, physical: 65, gk: 13 },
+    { team: "Japan", name: "Takashi Inui", koreanName: "이누이 다카시", age: 30, position: "MF", number: 14, stat: 78, speed: 85, shot: 75, pass: 74, dribble: 82, defense: 48, physical: 65, gk: 14 },
+    { team: "Japan", name: "Hotaru Yamaguchi", koreanName: "야마구치 호타루", age: 28, position: "MF", number: 16, stat: 71, speed: 72, shot: 65, pass: 70, dribble: 72, defense: 70, physical: 75, gk: 13 },
+    { team: "Japan", name: "Makoto Hasebe", koreanName: "하세베 마코토", age: 34, position: "MF", number: 17, stat: 76, speed: 68, shot: 65, pass: 75, dribble: 74, defense: 76, physical: 75, gk: 14 },
+    { team: "Japan", name: "Ryota Oshima", koreanName: "오시마 료타", age: 25, position: "MF", number: 18, stat: 70, speed: 75, shot: 62, pass: 72, dribble: 74, defense: 62, physical: 65, gk: 12 },
+    { team: "Japan", name: "Shinji Okazaki", koreanName: "오카자키 신지", age: 32, position: "FW", number: 9, stat: 77, speed: 78, shot: 78, pass: 70, dribble: 76, defense: 55, physical: 80, gk: 14 },
+    { team: "Japan", name: "Yoshinori Muto", koreanName: "무토 요시노리", age: 26, position: "FW", number: 13, stat: 75, speed: 86, shot: 75, pass: 68, dribble: 78, defense: 45, physical: 70, gk: 14 },
+    { team: "Japan", name: "Yuya Osako", koreanName: "오사코 유야", age: 28, position: "FW", number: 15, stat: 75, speed: 78, shot: 75, pass: 70, dribble: 78, defense: 45, physical: 72, gk: 14 }
+];
+const countryNameMap = { "Russia": "러시아", "Saudi Arabia": "사우디", "Egypt": "이집트", "Uruguay": "우루과이", "Portugal": "포르투갈", "Spain": "스페인", "Morocco": "모로코", "Iran": "이란", "France": "프랑스", "Australia": "호주", "Peru": "페루", "Denmark": "덴마크", "Argentina": "아르헨티나", "Iceland": "아이슬란드", "Croatia": "크로아티아", "Nigeria": "나이지리아", "Brazil": "브라질", "Switzerland": "스위스", "Costa Rica": "코스타리카", "Serbia": "세르비아", "Germany": "독일", "Mexico": "멕시코", "Sweden": "스웨덴", "South Korea": "대한민국", "Belgium": "벨기에", "Panama": "파나마", "Tunisia": "튀니지", "England": "잉글랜드", "Poland": "폴란드", "Senegal": "세네갈", "Colombia": "콜롬비아", "Japan": "일본" };
+
+let gameState = 'TEAM_SELECTION';
+let previousGameState = '';
+let userTeam = null;
+let teams = [];
+let groups = [];
+let tournamentBracket = {};
+let buttons = {};
+let NotoSansKR;
+let currentMatch = null;
+let currentMatchResult = null;
+let currentStage = '';
+let matchLog = [];
+let gameMinute = 0;
+let awards = {};
+let userSquad = { lineup: [], substitutes: [] };
+let squadScrollOffset = 0;
+let logScrollOffset = 0;
+let selectedPlayer = null;
+
+const framesPerGameMinute = 30;
+let frameCounterForSim = 0;
+
+function setup() {
+    createCanvas(1280, 720);
+    textFont(NotoSansKR || 'sans-serif');
+    resetGame();
+}
+
+function resetGame() {
+    gameState = 'TEAM_SELECTION';
+    userTeam = null;
+    groups = [];
+    tournamentBracket = {};
+    awards = {};
+    currentStage = '';
+    currentMatch = null;
+    userSquad = { lineup: [], substitutes: [] };
+    squadScrollOffset = 0;
+    logScrollOffset = 0;
+    selectedPlayer = null;
+    populatePlayerStats();
+    teams = Object.keys(countryNameMap);
+    setupButtons();
+}
+
+function draw() {
+    background(20, 40, 60);
+    switch (gameState) {
+        case 'TEAM_SELECTION':
+            drawTeamSelectionScreen();
+            break;
+        case 'GROUP_DRAW':
+            drawGroupDrawScreen();
+            break;
+        case 'GROUP_STAGE':
+            drawGroupStageScreen();
+            break;
+        case 'PRE_MATCH_BRIEFING':
+            drawPreMatchBriefingScreen();
+            break;
+        case 'SQUAD_MANAGEMENT':
+            drawSquadManagementScreen();
+            break;
+        case 'MATCH_SIMULATION':
+            updateMatchSimulation();
+            drawMatchSimulationScreen();
+            break;
+        case 'MATCH_RESULT':
+            drawMatchResultScreen();
+            break;
+        case 'KNOCKOUT':
+            drawKnockoutScreen();
+            break;
+        case 'AWARDS_CEREMONY':
+            drawAwardsScreen();
+            break;
+        case 'ROSTER_VIEW':
+            drawRosterScreen();
+            break;
+        case 'PLAYER_DETAIL':
+            drawPlayerDetailScreen();
+            break;
+    }
+}
+
+function mousePressed() {
+    const activeButtons = buttons[gameState] || [];
+    for (const btn of activeButtons) {
+        if (mouseX > btn.x && mouseX < btn.x + btn.w && mouseY > btn.y && mouseY < btn.y + btn.h) {
+            btn.onClick();
+            return;
+        }
+    }
+    if (gameState === 'SQUAD_MANAGEMENT') {
+        handleSquadManagementClick();
+    } else if (['PRE_MATCH_BRIEFING', 'MATCH_RESULT', 'ROSTER_VIEW'].includes(gameState)) {
+        handlePlayerNameClick();
+    }
+}
+
+
+function mouseWheel(event) {
+    if (gameState === 'SQUAD_MANAGEMENT') {
+        squadScrollOffset += event.delta;
+        const listHeight = max(userSquad.lineup.length, userSquad.substitutes.length) * 30;
+        const viewHeight = height - 180;
+        const maxScroll = -max(0, listHeight - viewHeight);
+        squadScrollOffset = constrain(squadScrollOffset, maxScroll, 0);
+        return false;
+    }
+    if (gameState === 'MATCH_SIMULATION') {
+        logScrollOffset += event.delta;
+        const logHeight = matchLog.length * 25;
+        const viewHeight = height - 150;
+        const maxScroll = -max(0, logHeight - viewHeight);
+        logScrollOffset = constrain(logScrollOffset, maxScroll, 0);
+        return false;
+    }
+}
+
+function setupButtons() {
+    buttons.TEAM_SELECTION = [];
+    const btnW = 180,
+        btnH = 35,
+        gap = 10,
+        cols = 4;
+    teams.forEach((teamName, i) => {
+        const col = i % cols,
+            row = Math.floor(i / cols);
+        buttons.TEAM_SELECTION.push({
+            x: 20 + col * (btnW + gap),
+            y: 100 + row * (btnH + gap),
+            w: btnW,
+            h: btnH,
+            text: countryNameMap[teamName] || teamName,
+            onClick: () => {
+                userTeam = teamName;
+                gameState = 'GROUP_DRAW';
+            }
+        });
+    });
+    buttons.GROUP_DRAW = [{
+        x: width / 2 - 210,
+        y: 200,
+        w: 200,
+        h: 50,
+        text: '실제 조 편성',
+        onClick: () => setupGroups('actual')
+    }, {
+        x: width / 2 + 10,
+        y: 200,
+        w: 200,
+        h: 50,
+        text: '랜덤 조 추첨',
+        onClick: () => setupGroups('random')
+    }];
+
+    const rosterViewAction = () => {
+        previousGameState = gameState;
+        gameState = 'ROSTER_VIEW';
+    };
+    buttons.GROUP_STAGE = [{
+        x: width - 200,
+        y: height - 110,
+        w: 180,
+        h: 40,
+        text: '선수단 보기 🧑‍🤝‍🧑',
+        onClick: rosterViewAction
+    }, {
+        x: width - 200,
+        y: height - 60,
+        w: 180,
+        h: 40,
+        text: '다음 경기 진행 ⏩',
+        onClick: () => advanceTournament()
+    }];
+    buttons.PRE_MATCH_BRIEFING = [{
+        x: width / 2 - 220,
+        y: height - 80,
+        w: 200,
+        h: 50,
+        text: '스쿼드 변경',
+        onClick: () => {
+            squadScrollOffset = 0;
+            gameState = 'SQUAD_MANAGEMENT';
+        }
+    }, {
+        x: width / 2 + 20,
+        y: height - 80,
+        w: 200,
+        h: 50,
+        text: '킥오프! ⚽',
+        onClick: () => startMatchSimulation()
+    }];
+    buttons.MATCH_RESULT = [{
+        x: width / 2 - 100,
+        y: height - 60,
+        w: 200,
+        h: 40,
+        text: '다음으로 ➡️',
+        onClick: () => returnToTournamentView()
+    }];
+    buttons.KNOCKOUT = [{
+        x: width - 200,
+        y: height - 110,
+        w: 180,
+        h: 40,
+        text: '선수단 보기 🧑‍🤝‍🧑',
+        onClick: rosterViewAction
+    }, {
+        x: width - 200,
+        y: height - 60,
+        w: 180,
+        h: 40,
+        text: '다음 일정 진행 ⏩',
+        onClick: () => advanceTournament()
+    }];
+    buttons.AWARDS_CEREMONY = [{
+        x: width / 2 - 125,
+        y: height - 70,
+        w: 250,
+        h: 50,
+        text: '새 게임 시작 🔄',
+        onClick: () => resetGame()
+    }];
+    buttons.SQUAD_MANAGEMENT = [{
+        x: width / 2 - 100,
+        y: height - 60,
+        w: 200,
+        h: 40,
+        text: '스쿼드 확정',
+        onClick: () => {
+            const {
+                isValid,
+                message
+            } = validateSquad(userSquad);
+            if (isValid) {
+                gameState = 'PRE_MATCH_BRIEFING';
+            } else {
+                alert(message);
+            }
+        }
+    }];
+    
+    // [수정됨] ROSTER_VIEW의 버튼을 '대진표 보기'와 '경기 시작하기'로 변경
+    buttons.ROSTER_VIEW = [
+        {
+            x: width / 2 - 220,
+            y: height - 60,
+            w: 200,
+            h: 40,
+            text: '대진표 보기 📊',
+            onClick: () => {
+                gameState = previousGameState;
+            }
+        },
+        {
+            x: width / 2 + 20,
+            y: height - 60,
+            w: 200,
+            h: 40,
+            text: '경기 시작하기 ⚽',
+            onClick: () => advanceTournament()
+        }
+    ];
+
+    buttons.PLAYER_DETAIL = [{
+        x: width / 2 - 100,
+        y: height - 60,
+        w: 200,
+        h: 40,
+        text: '돌아가기 ↩️',
+        onClick: () => {
+            gameState = previousGameState;
+            selectedPlayer = null; // 돌아갈 때 선택된 선수 정보 초기화
+        }
+    }];
+}
+
+
+function drawButton(btn) {
+    const isHover = mouseX > btn.x && mouseX < btn.x + btn.w && mouseY > btn.y && mouseY < btn.y + btn.h;
+    fill(isHover ? color(100, 200, 255) : color(220));
+    stroke(10);
+    rect(btn.x, btn.y, btn.w, btn.h, 8);
+    fill(isHover ? 0 : 30);
+    noStroke();
+    textSize(btn.h > 40 ? 20 : 16);
+    textAlign(CENTER, CENTER);
+    text(btn.text, btn.x + btn.w / 2, btn.y + btn.h / 2);
+}
+
+// =================================================
+//   화면 그리기 함수들
+// =================================================
+function drawTeamSelectionScreen() {
+    fill(255);
+    textSize(32);
+    textAlign(CENTER, CENTER);
+    text("⚽ 2018 월드컵 매니저 ⚽", width / 2, 50);
+    buttons.TEAM_SELECTION.forEach(btn => drawButton(btn));
+}
+
+function drawGroupDrawScreen() {
+    fill(255);
+    textSize(32);
+    textAlign(CENTER, CENTER);
+    text("조 추첨 방식을 선택하세요", width / 2, 100);
+    textSize(18);
+    text(`선택한 팀: ${countryNameMap[userTeam]}`, width / 2, 150);
+    buttons.GROUP_DRAW.forEach(btn => drawButton(btn));
+}
+
+function drawGroupStageScreen() {
+    textSize(28);
+    textAlign(CENTER, CENTER);
+    fill(255);
+    text("🏆 조별 리그 순위 🏆", width / 2, 30);
+    drawGroupTables();
+    buttons.GROUP_STAGE.forEach(btn => drawButton(btn));
+}
+
+function drawPreMatchBriefingScreen() {
+    fill(255);
+    textSize(28);
+    textAlign(CENTER, CENTER);
+    text("📋 경기 전 브리핑 📋", width / 2, 40);
+    const [teamA, teamB] = currentMatch;
+    const squadA = getSquadByFormation(teamA.name);
+    const squadB = getSquadByFormation(teamB.name);
+
+    textSize(20);
+    text(countryNameMap[teamA.name], width / 4, 80);
+    text(countryNameMap[teamB.name], width * 3 / 4, 80);
+    drawPlayerList(squadA, width / 4, 110, false);
+    drawPlayerList(squadB, width * 3 / 4, 110, false);
+    buttons.PRE_MATCH_BRIEFING.forEach(btn => drawButton(btn));
+}
+
+function drawPlayerList(squad, x, y, showRating = false) {
+    const {
+        lineup,
+        substitutes
+    } = squad;
+    const align = (x < width / 2) ? RIGHT : LEFT;
+    textSize(14);
+    for (let i = 0; i < lineup.length; i++) {
+        const player = lineup[i];
+        const lineY = y + i * 24;
+        let txt = `${player.koreanName} (${player.position})`;
+        textAlign(align, TOP);
+        if (showRating) {
+            fill(255);
+            if (currentMatchResult.scorers.some(s => s.player.name === player.name)) txt = '⚽ ' + txt;
+            if (currentMatchResult.yellows.some(p => p.name === player.name)) txt = '🟨 ' + txt;
+            if (currentMatchResult.reds.some(p => p.name === player.name)) txt = '🟥 ' + txt;
+            text(txt, x + (align === RIGHT ? 60 : -60), lineY);
+            textAlign(align === RIGHT ? LEFT : RIGHT, TOP);
+            text(player.rating.toFixed(1), x + (align === RIGHT ? 70 : -70), lineY);
+        } else {
+            const c = player.condition;
+            if (c > 95) fill(144, 238, 144);
+            else if (c > 80) fill(255, 255, 224);
+            else fill(255, 182, 193);
+            text(txt, x + (align === RIGHT ? 60 : -60), lineY);
+            textAlign(align === RIGHT ? LEFT : RIGHT, TOP);
+            text(c > 95 ? '🟢' : (c > 80 ? '🟡' : '🔴'), x + (align === RIGHT ? 70 : -70), lineY);
+        }
+    }
+    if (substitutes.length > 0) {
+        const subStartY = y + lineup.length * 24 + 10;
+        stroke(150);
+        line(x - 100, subStartY, x + 100, subStartY);
+        noStroke();
+        textAlign(CENTER, TOP);
+        fill(180);
+        text("후보", x, subStartY + 5);
+        for (let i = 0; i < substitutes.length; i++) {
+            const p = substitutes[i];
+            const lineY = subStartY + 25 + i * 20;
+            fill(200, 180);
+            text(`${p.koreanName} (${p.position})`, x, lineY);
+        }
+    }
+}
+
+function drawMatchSimulationScreen() {
+    textAlign(CENTER, CENTER);
+    fill(255);
+    textSize(40);
+    text(`${countryNameMap[currentMatch[0].name]} ${currentMatchResult.scoreA} : ${currentMatchResult.scoreB} ${countryNameMap[currentMatch[1].name]}`, width / 2, 50);
+    textSize(24);
+    fill(200);
+    text(`${gameMinute}'`, width / 2, 100);
+
+    const logYStart = 150;
+    const logLineHeight = 25;
+    textAlign(LEFT, TOP);
+    textSize(16);
+    fill(220);
+    for (let i = 0; i < matchLog.length; i++) {
+        const logY = logYStart + i * logLineHeight + logScrollOffset;
+        if (logY > logYStart - logLineHeight && logY < height) {
+            text(matchLog[i], 50, logY);
+        }
+    }
+}
+
+function drawMatchResultScreen() {
+    textAlign(CENTER, CENTER);
+    fill(255);
+    textSize(28);
+    text("📊 경기 결과 리포트 📊", width / 2, 30);
+    const [teamA, teamB] = currentMatch;
+    textSize(24);
+    fill(255);
+    text(countryNameMap[teamA.name], width / 4, 70);
+    text(countryNameMap[teamB.name], width * 3 / 4, 70);
+    textSize(36);
+    text(`${currentMatchResult.scoreA} : ${currentMatchResult.scoreB}`, width / 2, 70);
+    const drawScorers = (teamName, x) => {
+        const scorers = currentMatchResult.scorers.filter(s => s.teamName === teamName);
+        if (scorers.length > 0) {
+            textAlign(CENTER, TOP);
+            textSize(12);
+            fill(200, 220, 255);
+            let y = 95;
+            scorers.forEach(s => {
+                text(`⚽ ${s.player.koreanName} '${s.minute}`, x, y);
+                y += 15;
+            });
+        }
+    };
+    drawScorers(teamA.name, width / 4);
+    drawScorers(teamB.name, width * 3 / 4);
+    const squadA = getSquadByFormation(teamA.name),
+        squadB = getSquadByFormation(teamB.name);
+    drawPlayerList(squadA, width / 4, 150, true);
+    drawPlayerList(squadB, width * 3 / 4, 150, true);
+    if (currentMatchResult.mom) {
+        fill(255, 230, 150);
+        textAlign(CENTER, TOP);
+        textSize(16);
+        text(`⭐ MoM: ${currentMatchResult.mom.koreanName} (${currentMatchResult.mom.rating.toFixed(1)})`, width / 2, height - 85);
+    }
+    buttons.MATCH_RESULT.forEach(btn => drawButton(btn));
+}
+
+function drawKnockoutScreen() {
+    const stageName = {
+        'round_of_16': '16강',
+        'quarter_finals': '8강',
+        'semi_finals': '준결승',
+        'third_place_playoff': '3-4위전',
+        'final': '결승'
+    };
+    textSize(28);
+    textAlign(CENTER, CENTER);
+    fill(255);
+    text(`🏆 ${stageName[currentStage]} 대진표 🏆`, width / 2, 30);
+    const bracket = tournamentBracket[currentStage];
+    if (!bracket) return;
+    const isFinals = ['final', 'third_place_playoff'].includes(currentStage);
+    const matchHeight = isFinals ? height / 2 - 50 : 100;
+    const maxMatches = isFinals ? 1 : (currentStage === 'semi_finals' ? 2 : 4);
+    bracket.forEach((match, i) => {
+        const xPos = isFinals ? width / 2 : (i < maxMatches ? width / 4 + 50 : width * 3 / 4 - 50);
+        const yPos = 100 + (i % maxMatches) * matchHeight;
+        const [team1, team2] = match.teams;
+        if (!team1 || !team2) return;
+        const team1Name = countryNameMap[team1.name],
+            team2Name = countryNameMap[team2.name];
+        textAlign(CENTER, CENTER);
+        if (match.winner) {
+            const isTeam1Winner = team1 && match.winner.name === team1.name;
+            fill(isTeam1Winner ? 255 : 120);
+            textSize(16);
+            text(`${team1Name} ${match.scoreA}`, xPos, yPos - 15);
+            fill(isTeam1Winner ? 120 : 255);
+            text(`${team2Name} ${match.scoreB}`, xPos, yPos + 15);
+        } else {
+            fill(220);
+            textSize(16);
+            text(team1Name, xPos, yPos - 15);
+            text("vs", xPos, yPos);
+            text(team2Name, xPos, yPos + 15);
+        }
+    });
+    buttons.KNOCKOUT.forEach(btn => drawButton(btn));
+}
+
+function drawAwardsScreen() {
+    textAlign(CENTER, TOP);
+    fill(255);
+    textSize(32);
+    text("🏆 월드컵 최종 시상식 🏆", width / 2, 40);
+    const col1 = width / 4,
+        col2 = width * 3 / 4,
+        startY = 100;
+    textSize(24);
+    fill(255, 215, 0);
+    text(`🥇 1위: ${countryNameMap[awards.first?.name]}`, col1, startY);
+    fill(192, 192, 192);
+    text(`🥈 2위: ${countryNameMap[awards.second?.name]}`, col1, startY + 50);
+    fill(205, 127, 50);
+    text(`🥉 3위: ${countryNameMap[awards.third?.name]}`, col1, startY + 100);
+    const drawAward = (title, awardInfo, y) => {
+        textSize(22);
+        fill(255);
+        text(title, col2, y);
+        textSize(16);
+        fill(220);
+        let awardY = y + 35;
+        awardInfo?.forEach(p => {
+            text(`${p.name} (${countryNameMap[p.team]}) - ${p.stat}`, col2, awardY);
+            awardY += 25;
+        });
+    };
+    drawAward("⚽ 득점왕 (골든 부트)", awards.goldenBoot, startY);
+    drawAward("👟 도움왕 (플레이메이커)", awards.assistKing, startY + 120);
+    drawAward("✨ 신인상 (영 플레이어)", awards.youngPlayer, startY + 240);
+    buttons.AWARDS_CEREMONY.forEach(btn => drawButton(btn));
+}
+
+function drawGroupTables() {
+    const startX = 20,
+        startY = 70,
+        groupW = 370,
+        groupH = 120,
+        gap = 10;
+    groups.forEach((group, index) => {
+        const col = index % 2,
+            row = Math.floor(index / 2);
+        const x = startX + col * (groupW + gap),
+            y = startY + row * (groupH + gap);
+        fill(40, 60, 80, 200);
+        stroke(150, 180);
+        rect(x, y, groupW, groupH, 8);
+        fill(255);
+        noStroke();
+        textSize(18);
+        textAlign(LEFT, TOP);
+        text(`Group ${group.name}`, x + 10, y + 8);
+        textSize(12);
+        const headers = ["#", "팀", "경기", "승", "무", "패", "득", "실", "차", "승점"];
+        const colWidths = [20, 110, 25, 25, 25, 25, 25, 25, 30, 40];
+        let currentX = x + 10;
+        headers.forEach((header, i) => {
+            fill(180);
+            text(header, currentX, y + 35);
+            currentX += colWidths[i];
+        });
+        stroke(100);
+        line(x + 5, y + 52, x + groupW - 5, y + 52);
+        noStroke();
+        const sortedTeams = [...group.teams].sort((a, b) => b.points - a.points || b.gd - a.gd || b.gf - a.gf);
+        sortedTeams.forEach((team, i) => {
+            currentX = x + 10;
+            const rowY = y + 60 + i * 15;
+            const teamData = [i + 1, countryNameMap[team.name], team.wins + team.draws + team.losses, team.wins, team.draws, team.losses, team.gf, team.ga, team.gd, team.points];
+            if (team.name === userTeam) fill(150, 255, 150);
+            else fill(220);
+            teamData.forEach((data, j) => {
+                textAlign(j === 1 ? LEFT : CENTER, CENTER);
+                text(data, j === 1 ? currentX : currentX + colWidths[j] / 2, rowY);
+                currentX += colWidths[j];
+            });
+        });
+    });
+}
+
+// [수정됨] 선수단 정보 화면 그리기 함수
+function drawRosterScreen() {
+    if (!userTeam) return;
+    textAlign(CENTER, TOP);
+    fill(255);
+    textSize(28);
+    text(`🧑‍🤝‍🧑 ${countryNameMap[userTeam]} 선수단 정보 🧑‍🤝‍🧑`, width / 2, 30);
+
+    const teamPlayers = players.filter(p => p.team === userTeam);
+    const startY = 80;
+    const rowHeight = 22;
+    // 모든 능력치를 표시하기 위해 컬럼 위치와 개수 재조정
+    const colXs = [40, 170, 250, 310, 370, 430, 490, 550, 610, 690, 820]; 
+
+    fill(180);
+    textSize(14);
+    textAlign(LEFT, CENTER);
+    text("이름", colXs[0], startY);
+    text("포지션", colXs[1], startY);
+    text("능력치", colXs[2], startY);
+    text("속도", colXs[3], startY);
+    text("슛", colXs[4], startY);
+    text("패스", colXs[5], startY);
+    text("드리블", colXs[6], startY);
+    text("수비", colXs[7], startY);
+    text("피지컬", colXs[8], startY);
+    text("GK", colXs[9], startY);
+    text("상태", colXs[10], startY);
+    stroke(100);
+    line(colXs[0] - 10, startY + rowHeight / 2 + 2, width - 50, startY + rowHeight / 2 + 2);
+    noStroke();
+
+    for (let i = 0; i < teamPlayers.length; i++) {
+        const player = teamPlayers[i];
+        const y = startY + (i + 1) * rowHeight;
+
+        fill(255);
+        textSize(14);
+        textAlign(LEFT, CENTER);
+        text(player.koreanName, colXs[0], y);
+        text(player.position, colXs[1], y);
+        text(player.stat, colXs[2], y);
+        text(player.speed !== null ? player.speed : '-', colXs[3], y);
+        text(player.shot !== null ? player.shot : '-', colXs[4], y);
+        text(player.pass !== null ? player.pass : '-', colXs[5], y);
+        text(player.dribble !== null ? player.dribble : '-', colXs[6], y);
+        text(player.defense !== null ? player.defense : '-', colXs[7], y);
+        text(player.physical !== null ? player.physical : '-', colXs[8], y);
+        text(player.gk !== null ? player.gk : '-', colXs[9], y);
+
+        let statusText = '정상';
+        let statusColor = color(144, 238, 144);
+
+        if (player.injury > 0) {
+            statusText = `🚑 부상 (${player.injury}경기)`;
+            statusColor = color(255, 100, 100);
+        } else if (player.suspension > 0) {
+            statusText = `🟥 징계 (${player.suspension}경기)`;
+            statusColor = color(255, 180, 100);
+        } else if (player.yellowCards > 0) {
+            statusText = `🟨 경고 (${player.yellowCards}장)`;
+            statusColor = color(255, 255, 150);
+        }
+        fill(statusColor);
+        text(statusText, colXs[10], y);
+    }
+
+    buttons.ROSTER_VIEW.forEach(btn => drawButton(btn));
+}
+
+
+function drawSquadManagementScreen() {
+    textAlign(CENTER, TOP);
+    fill(255);
+    textSize(28);
+    text("📜 스쿼드 관리 📜", width / 2, 30);
+
+    const lineupX = width / 4,
+        subsX = width * 3 / 4;
+    const startY = 80;
+
+    fill(255);
+    textSize(18);
+    textAlign(CENTER, TOP);
+    text(`선발 라인업 (${userSquad.lineup.length} / 11)`, lineupX, startY);
+    stroke(150);
+    line(lineupX - 150, startY + 25, lineupX + 150, startY + 25);
+    noStroke();
+
+    text("후보 선수", subsX, startY);
+    stroke(150);
+    line(subsX - 150, startY + 25, subsX + 150, startY + 25);
+    noStroke();
+
+    const drawPlayerBox = (player, x, y) => {
+        const boxW = 220,
+            boxH = 25;
+        const finalY = y + squadScrollOffset;
+
+        if (finalY < startY + 30 || finalY > height - 100) return;
+
+        const isHover = mouseX > x - boxW / 2 && mouseX < x + boxW / 2 && mouseY > finalY && mouseY < finalY + boxH;
+        fill(isHover ? color(80, 100, 120) : color(40, 60, 80));
+        rectMode(CORNER);
+        rect(x - boxW / 2, finalY, boxW, boxH, 4);
+        fill(220);
+        textSize(12);
+        textAlign(LEFT, CENTER);
+        text(`${player.koreanName} (${player.position}, ${player.stat})`, x - boxW / 2 + 10, finalY + boxH / 2);
+    };
+
+    userSquad.lineup.forEach((p, i) => drawPlayerBox(p, lineupX, startY + 40 + i * 30));
+    userSquad.substitutes.forEach((p, i) => drawPlayerBox(p, subsX, startY + 40 + i * 30));
+
+    const {
+        isValid,
+        message
+    } = validateSquad(userSquad);
+    if (!isValid) {
+        fill(255, 100, 100);
+        textSize(16);
+        textAlign(CENTER, CENTER);
+        text(message, width / 2, height - 90);
+    }
+
+    buttons.SQUAD_MANAGEMENT.forEach(btn => drawButton(btn));
+}
+
+
+function handleSquadManagementClick() {
+    const lineupX = width / 4,
+        subsX = width * 3 / 4;
+    const startY = 80,
+        boxW = 220,
+        boxH = 25,
+        gapY = 30;
+
+    for (let i = userSquad.lineup.length - 1; i >= 0; i--) {
+        const p = userSquad.lineup[i];
+        const y = startY + 40 + i * gapY + squadScrollOffset;
+        if (mouseX > lineupX - boxW / 2 && mouseX < lineupX + boxW / 2 && mouseY > y && mouseY < y + boxH) {
+            userSquad.substitutes.push(p);
+            userSquad.lineup.splice(i, 1);
+            userSquad.substitutes.sort((a, b) => b.stat - a.stat);
+            return;
+        }
+    }
+
+    for (let i = userSquad.substitutes.length - 1; i >= 0; i--) {
+        const p = userSquad.substitutes[i];
+        const y = startY + 40 + i * gapY + squadScrollOffset;
+        if (mouseX > subsX - boxW / 2 && mouseX < subsX + boxW / 2 && mouseY > y && mouseY < y + boxH) {
+            userSquad.lineup.push(p);
+            userSquad.substitutes.splice(i, 1);
+            userSquad.lineup.sort((a, b) => b.stat - a.stat);
+            return;
+        }
+    }
+}
+
+
+function validateSquad(squad) {
+    if (squad.lineup.length !== 11) {
+        return {
+            isValid: false,
+            message: "선발 라인업은 반드시 11명이어야 합니다."
+        };
+    }
+    const gkCount = squad.lineup.filter(p => p.position === 'GK').length;
+    if (gkCount !== 1) {
+        return {
+            isValid: false,
+            message: "골키퍼(GK)는 반드시 1명이어야 합니다."
+        };
+    }
+    return {
+        isValid: true,
+        message: "스쿼드가 유효합니다."
+    };
+}
+
+// =================================================
+//   핵심 게임 로직
+// =================================================
+const actualGroups2018 = {
+    A: ["Russia", "Saudi Arabia", "Egypt", "Uruguay"],
+    B: ["Portugal", "Spain", "Morocco", "Iran"],
+    C: ["France", "Australia", "Peru", "Denmark"],
+    D: ["Argentina", "Iceland", "Croatia", "Nigeria"],
+    E: ["Brazil", "Switzerland", "Costa Rica", "Serbia"],
+    F: ["Germany", "Mexico", "Sweden", "South Korea"],
+    G: ["Belgium", "Panama", "Tunisia", "England"],
+    H: ["Poland", "Senegal", "Colombia", "Japan"]
+};
+
+function setupGroups(type) {
+    let allNames = Object.keys(countryNameMap);
+    if (type === 'random') allNames = shuffle(allNames);
+    groups = [];
+    for (let i = 0; i < 8; i++) {
+        const gName = String.fromCharCode(65 + i);
+        const tNames = type === 'actual' ? actualGroups2018[gName] : allNames.slice(i * 4, (i + 1) * 4);
+        const teams = tNames.map(name => ({
+            name,
+            points: 0,
+            wins: 0,
+            draws: 0,
+            losses: 0,
+            gf: 0,
+            ga: 0,
+            gd: 0
+        }));
+        const matches = [{
+            teams: [teams[0], teams[1]]
+        }, {
+            teams: [teams[2], teams[3]]
+        }, {
+            teams: [teams[0], teams[2]]
+        }, {
+            teams: [teams[1], teams[3]]
+        }, {
+            teams: [teams[0], teams[3]]
+        }, {
+            teams: [teams[1], teams[2]]
+        }];
+        matches.forEach(m => {
+            m.played = false;
+            m.scoreA = 0;
+            m.scoreB = 0;
+        });
+        groups.push({
+            name: gName,
+            teams,
+            matches
+        });
+    }
+    currentStage = 'GROUP_STAGE';
+    gameState = 'GROUP_STAGE';
+}
+
+function advanceTournament() {
+    if (gameState === 'AWARDS_CEREMONY' || gameState === 'PRE_MATCH_BRIEFING') return;
+
+    players.forEach(p => {
+        if (p.injury > 0) p.injury--;
+        if (p.suspension > 0) p.suspension--;
+    });
+
+    let nextMatchInfo = findNextMatch();
+
+    if (nextMatchInfo) {
+        const {
+            match
+        } = nextMatchInfo;
+        const teamsInMatch = match.teams;
+
+        if (teamsInMatch.some(t => t.name === userTeam)) {
+            currentMatch = teamsInMatch;
+            updatePlayerConditions(currentMatch.map(t => t.name));
+            userSquad = autoSelectSquad(userTeam);
+            gameState = 'PRE_MATCH_BRIEFING';
+        } else {
+            playAIMatch(match);
+            gameState = currentStage === 'GROUP_STAGE' ? 'GROUP_STAGE' : 'KNOCKOUT';
+        }
+    } else {
+        setupNextStage();
+    }
+}
+
+
+function findNextMatch() {
+    if (currentStage === 'GROUP_STAGE') {
+        for (let matchIndex = 0; matchIndex < 6; matchIndex++) {
+            for (const group of groups) {
+                const match = group.matches[matchIndex];
+                if (!match.played) {
+                    return {
+                        match: match
+                    };
+                }
+            }
+        }
+    } else if (tournamentBracket[currentStage]) {
+        const match = tournamentBracket[currentStage].find(m => !m.winner);
+        if (match) {
+            return {
+                match: match
+            };
+        }
+    }
+    return null;
+}
+
+function setupNextStage() {
+    const stageTransitions = {
+        'GROUP_STAGE': 'round_of_16',
+        'round_of_16': 'quarter_finals',
+        'quarter_finals': 'semi_finals',
+        'semi_finals': 'third_place_playoff',
+        'third_place_playoff': 'final'
+    };
+    const nextStage = stageTransitions[currentStage];
+
+    if (nextStage) {
+        if (currentStage === 'GROUP_STAGE') {
+            groups.forEach(g => g.teams.sort((a, b) => b.points - a.points || b.gd - a.gd || b.gf - a.gf));
+            generateRoundOf16Bracket();
+        } else if (currentStage === 'semi_finals') {
+            const semis = tournamentBracket.semi_finals;
+            const winners = semis.map(m => m.winner);
+            const losers = semis.map(m => m.teams.find(t => t.name !== m.winner.name));
+            tournamentBracket.final = [{
+                teams: winners,
+                winner: null,
+                scoreA: 0,
+                scoreB: 0
+            }];
+            tournamentBracket.third_place_playoff = [{
+                teams: losers,
+                winner: null,
+                scoreA: 0,
+                scoreB: 0
+            }];
+        } else if (currentStage !== 'third_place_playoff' && currentStage !== 'final') {
+            generateNextRoundBracket(currentStage, nextStage);
+        }
+        currentStage = nextStage;
+        gameState = 'KNOCKOUT';
+    } else if (currentStage === 'final') {
+        calculateAwards();
+        gameState = 'AWARDS_CEREMONY';
+    }
+}
+
+
+function playAIMatch(match) {
+    const teams = match.teams;
+    updatePlayerConditions(teams.map(t => t.name));
+    const {
+        squadA,
+        squadB,
+        scoreA,
+        scoreB,
+        yellows,
+        reds
+    } = simulateMatch(teams[0].name, teams[1].name);
+
+    for (let i = 0; i < scoreA; i++) {
+        const scorers = squadA.lineup.filter(p => p.position !== 'GK');
+        if (scorers.length > 0) {
+            const scorer = scorers[Math.floor(Math.random() * scorers.length)];
+            scorer.goals++;
+            if (Math.random() < 0.7) {
+                const assisters = squadA.lineup.filter(p => p.name !== scorer.name);
+                if (assisters.length > 0) assisters[Math.floor(Math.random() * assisters.length)].assists++;
+            }
+        }
+    }
+    for (let i = 0; i < scoreB; i++) {
+        const scorers = squadB.lineup.filter(p => p.position !== 'GK');
+        if (scorers.length > 0) {
+            const scorer = scorers[Math.floor(Math.random() * scorers.length)];
+            scorer.goals++;
+            if (Math.random() < 0.7) {
+                const assisters = squadB.lineup.filter(p => p.name !== scorer.name);
+                if (assisters.length > 0) assisters[Math.floor(Math.random() * assisters.length)].assists++;
+            }
+        }
+    }
+
+    let finalScoreA = scoreA,
+        finalScoreB = scoreB;
+    if (currentStage === 'GROUP_STAGE') {
+        updateGroupStats(teams[0], teams[1], finalScoreA, finalScoreB);
+        match.played = true;
+        match.scoreA = finalScoreA;
+        match.scoreB = finalScoreB;
+    } else {
+        if (finalScoreA === finalScoreB) {
+            if (getTeamStrength(teams[0].name) > getTeamStrength(teams[1].name)) finalScoreA++;
+            else finalScoreB++;
+        }
+        match.scoreA = finalScoreA;
+        match.scoreB = finalScoreB;
+        match.winner = finalScoreA > finalScoreB ? teams[0] : teams[1];
+    }
+    applyPostMatchEffects(teams.map(t => t.name), {
+        yellows,
+        reds
+    });
+}
+
+
+function returnToTournamentView() {
+    gameState = currentStage === 'GROUP_STAGE' ? 'GROUP_STAGE' : 'KNOCKOUT';
+}
+
+function calculateAwards() {
+    const final = tournamentBracket.final[0];
+    const thirdMatch = tournamentBracket.third_place_playoff[0];
+    awards.first = final.winner;
+    awards.second = final.teams.find(t => t.name !== final.winner.name);
+    awards.third = thirdMatch.winner;
+    const findTop = (stat, tiebreaker = 'goals') => {
+        const sorted = [...players].sort((a, b) => b[stat] - a[stat] || b[tiebreaker] - a[tiebreaker]);
+        const topValue = sorted[0] ?.[stat];
+        if (!topValue) return [];
+        return sorted.filter(p => p[stat] === topValue).map(p => ({
+            name: p.koreanName,
+            team: p.team,
+            stat: `${p[stat]}${stat==='goals'?'골':'도움'}`
+        }));
+    };
+    const findSoloWinner = (stat, tiebreaker = 'goals') => {
+        const sorted = [...players].sort((a, b) => b[stat] - a[stat] || b[tiebreaker] - a[tiebreaker]);
+        if (!sorted[0] || sorted[0][stat] === 0) return [];
+        return sorted.slice(0, 1).map(p => ({
+            name: p.koreanName,
+            team: p.team,
+            stat: `${p[stat]}${stat==='assists'?'도움':'골'}`
+        }));
+    };
+    awards.goldenBoot = findTop('goals', 'assists');
+    awards.assistKing = findSoloWinner('assists', 'goals');
+    const young = players.filter(p => p.age <= 23).sort((a, b) => (b.goals + b.assists) - (a.goals + a.assists));
+    if (young.length > 0 && young[0].goals + young[0].assists > 0) awards.youngPlayer = young.slice(0, 1).map(p => ({
+        name: p.koreanName,
+        team: p.team,
+        stat: `${p.goals}골 ${p.assists}도움`
+    }));
+    else awards.youngPlayer = [];
+}
+
+function generateRoundOf16Bracket() {
+    const getTeam = (groupLetter, rank) => groups.find(g => g.name === groupLetter).teams[rank - 1];
+    tournamentBracket.round_of_16 = [{
+        teams: [getTeam('A', 1), getTeam('B', 2)]
+    }, {
+        teams: [getTeam('C', 1), getTeam('D', 2)]
+    }, {
+        teams: [getTeam('E', 1), getTeam('F', 2)]
+    }, {
+        teams: [getTeam('G', 1), getTeam('H', 2)]
+    }, {
+        teams: [getTeam('B', 1), getTeam('A', 2)]
+    }, {
+        teams: [getTeam('D', 1), getTeam('C', 2)]
+    }, {
+        teams: [getTeam('F', 1), getTeam('E', 2)]
+    }, {
+        teams: [getTeam('H', 1), getTeam('G', 2)]
+    }].map(m => ({ ...m,
+        winner: null,
+        scoreA: 0,
+        scoreB: 0
+    }));
+}
+
+function generateNextRoundBracket(prevStageKey, nextStageKey) {
+    const winners = tournamentBracket[prevStageKey].map(m => m.winner);
+    tournamentBracket[nextStageKey] = [];
+    for (let i = 0; i < winners.length; i += 2) {
+        tournamentBracket[nextStageKey].push({
+            teams: [winners[i], winners[i + 1]],
+            winner: null,
+            scoreA: 0,
+            scoreB: 0
+        });
+    }
+}
+
+function updateGroupStats(teamA, teamB, scoreA, scoreB) {
+    teamA.gf += scoreA;
+    teamA.ga += scoreB;
+    teamB.gf += scoreB;
+    teamB.ga += scoreA;
+    teamA.gd = teamA.gf - teamA.ga;
+    teamB.gd = teamB.gf - teamB.ga;
+    if (scoreA > scoreB) {
+        teamA.wins++;
+        teamB.losses++;
+        teamA.points += 3;
+    } else if (scoreA < scoreB) {
+        teamB.wins++;
+        teamA.losses++;
+        teamB.points += 3;
+    } else {
+        teamA.draws++;
+        teamB.draws++;
+        teamA.points += 1;
+    }
+}
+
+// =================================================
+//   상세 경기 시뮬레이션 및 선수 관리
+// =================================================
+function startMatchSimulation() {
+    gameMinute = 0;
+    frameCounterForSim = 0;
+    matchLog = [`[0'] ${countryNameMap[currentMatch[0].name]}과(와) ${countryNameMap[currentMatch[1].name]}의 경기가 시작됩니다!`];
+    currentMatchResult = {
+        scoreA: 0,
+        scoreB: 0,
+        scorers: [],
+        injuries: [],
+        yellows: [],
+        reds: [],
+        mom: null
+    };
+    logScrollOffset = 0;
+    gameState = 'MATCH_SIMULATION';
+}
+
+function simulateMatch(teamAName, teamBName) {
+    const squadA = getSquadByFormation(teamAName),
+        squadB = getSquadByFormation(teamBName);
+    const strengthA = getTeamStrength(teamAName),
+        strengthB = getTeamStrength(teamBName);
+    const powerA = strengthA * (0.8 + Math.random() * 0.4),
+        powerB = strengthB * (0.8 + Math.random() * 0.4);
+    let yellows = [],
+        reds = [];
+    const allPlayersInMatch = [...squadA.lineup, ...squadB.lineup];
+    allPlayersInMatch.forEach(p => {
+        if (Math.random() < 0.1) {
+            yellows.push(p);
+            if (yellows.filter(pl => pl.name === p.name).length === 2) {
+                reds.push(p);
+            }
+        }
+        if (Math.random() < 0.01) {
+            reds.push(p);
+        }
+    });
+    return {
+        squadA,
+        squadB,
+        scoreA: Math.floor(Math.pow(powerA / 40, 2)),
+        scoreB: Math.floor(Math.pow(powerB / 40, 2)),
+        yellows,
+        reds
+    };
+}
+
+function updateMatchSimulation() {
+    if (gameMinute >= 90) {
+        if (gameState === 'MATCH_SIMULATION') endMatchSimulation();
+        return;
+    }
+    frameCounterForSim++;
+    if (frameCounterForSim >= framesPerGameMinute) {
+        frameCounterForSim = 0;
+        gameMinute++;
+        if (Math.random() < 0.35) {
+            const [teamA, teamB] = currentMatch;
+            const strA = getTeamStrength(teamA.name),
+                strB = getTeamStrength(teamB.name);
+            const possTeamName = (Math.random() * (strA + strB) < strA) ? teamA.name : teamB.name;
+            const eventLog = generateMatchEvent(possTeamName);
+            if (eventLog) {
+                matchLog.push(`[${gameMinute}'] ${eventLog}`);
+                logScrollOffset = -max(0, (matchLog.length * 25) - (height - 150));
+            }
+        }
+    }
+}
+
+function generateMatchEvent(teamName) {
+    const squad = getSquadByFormation(teamName);
+    if (squad.lineup.length === 0) return null;
+    const opponent = currentMatch.find(t => t.name !== teamName);
+    const {
+        lineup: opponentLineup
+    } = getSquadByFormation(opponent.name);
+    const eventType = Math.random();
+
+    if (eventType < 0.25) {
+        const shooter = squad.lineup.filter(p => p.position !== 'GK').sort((a, b) => b.shot - a.shot)[0];
+        const oppGK = opponentLineup.find(p => p.position === 'GK');
+        if (shooter) {
+            if (Math.random() * 100 < shooter.shot * (shooter.condition / 100) - (oppGK?.gk * (oppGK.condition / 100) || 60) + 25) {
+                const isTeamA = currentMatch[0].name === teamName;
+                if (isTeamA) currentMatchResult.scoreA++;
+                else currentMatchResult.scoreB++;
+                shooter.goals++;
+                if (Math.random() < 0.8) {
+                    const assisters = squad.lineup.filter(p => p.position !== 'GK' && p.name !== shooter.name).sort((a, b) => b.pass - a.pass);
+                    if (assisters.length > 0) assisters[0].assists++;
+                }
+                currentMatchResult.scorers.push({
+                    player: shooter,
+                    minute: gameMinute,
+                    teamName
+                });
+                return `⚽ GOAL!!! ${shooter.koreanName}의 득점!`;
+            } else {
+                return `${shooter.koreanName}의 슈팅! ${oppGK?.koreanName||'골키퍼'} 선방!`;
+            }
+        }
+    } else if (eventType < 0.5) {
+        const fouler = squad.lineup.sort((a, b) => b.defense - a.defense)[0];
+        const cardProb = Math.random();
+        if (cardProb < 0.03 && !currentMatchResult.reds.some(p => p.name === fouler.name)) {
+            currentMatchResult.reds.push(fouler);
+            return `🟥 레드카드! ${fouler.koreanName}이(가) 거친 태클로 퇴장당합니다!`;
+        } else if (cardProb < 0.2) {
+            if (!currentMatchResult.reds.some(p => p.name === fouler.name)) {
+                currentMatchResult.yellows.push(fouler);
+                if (currentMatchResult.yellows.filter(p => p.name === fouler.name).length === 2) {
+                    currentMatchResult.reds.push(fouler);
+                    return `🟥 경고 누적 퇴장! ${fouler.koreanName}이(가) 두 번째 옐로카드를 받고 퇴장합니다!`;
+                }
+                return `🟨 옐로카드! ${fouler.koreanName}에게 경고가 주어집니다.`;
+            }
+        } else {
+            return `${fouler.koreanName}의 깊은 태클! 파울이 선언됩니다.`;
+        }
+    } else if (eventType < 0.75) {
+        const dribbler = squad.lineup.filter(p => ['FW', 'MF'].includes(p.position)).sort((a, b) => b.dribble - a.dribble)[0];
+        const oppDef = opponentLineup.filter(p => p.position === 'DF').sort((a, b) => b.defense - a.defense)[0];
+        if (dribbler && oppDef && Math.random() * 100 < dribbler.dribble * (dribbler.condition / 100) - oppDef.defense * (oppDef.condition / 100) + 30) return `${dribbler.koreanName}의 환상적인 돌파!`;
+        else if (oppDef) return `${oppDef.koreanName}의 깔끔한 수비!`;
+    }
+    return `${countryNameMap[teamName]}이(가) 공격을 전개합니다.`;
+}
+
+
+function endMatchSimulation() {
+    const [teamA, teamB] = currentMatch;
+    let matchInfo = findNextMatch();
+
+    if (matchInfo) {
+        const {
+            match
+        } = matchInfo;
+        if (currentStage === 'GROUP_STAGE') {
+            updateGroupStats(teamA, teamB, currentMatchResult.scoreA, currentMatchResult.scoreB);
+            match.played = true;
+            match.scoreA = currentMatchResult.scoreA;
+            match.scoreB = currentMatchResult.scoreB;
+        } else {
+            if (currentMatchResult.scoreA === currentMatchResult.scoreB) {
+                if (getTeamStrength(teamA.name) >= getTeamStrength(teamB.name)) currentMatchResult.scoreA++;
+                else currentMatchResult.scoreB++;
+            }
+            match.scoreA = currentMatchResult.scoreA;
+            match.scoreB = currentMatchResult.scoreB;
+            match.winner = currentMatchResult.scoreA > currentMatchResult.scoreB ? teamA : teamB;
+        }
+    }
+
+    const {
+        lineup: lineupA
+    } = getSquadByFormation(teamA.name), {
+        lineup: lineupB
+    } = getSquadByFormation(teamB.name);
+    calculatePlayerRatings(lineupA, currentMatchResult.scoreA, currentMatchResult.scoreB);
+    calculatePlayerRatings(lineupB, currentMatchResult.scoreB, currentMatchResult.scoreA);
+    currentMatchResult.mom = [...lineupA, ...lineupB].sort((a, b) => b.rating - a.rating)[0];
+    applyPostMatchEffects([teamA.name, teamB.name], currentMatchResult);
+
+    gameState = 'MATCH_RESULT';
+}
+
+
+function getSquadByFormation(teamName) {
+    if (teamName === userTeam) {
+        return userSquad;
+    }
+    return autoSelectSquad(teamName);
+}
+
+function autoSelectSquad(teamName) {
+    const available = players.filter(p => p.team === teamName && p.injury === 0 && p.suspension === 0);
+    const pos = {
+        GK: [],
+        DF: [],
+        MF: [],
+        FW: []
+    };
+    available.forEach(p => pos[p.position]?.push(p));
+    Object.keys(pos).forEach(k => pos[k].sort((a, b) => b.stat - a.stat));
+
+    const pickBest = (formation) => {
+        let lineup = [];
+        const pCopy = JSON.parse(JSON.stringify(pos));
+        for (const [posKey, num] of Object.entries(formation)) {
+            if (pCopy[posKey].length < num) return null;
+            lineup.push(...pCopy[posKey].splice(0, num));
+        }
+        return lineup;
+    };
+
+    let lineup = pickBest({
+        GK: 1,
+        DF: 4,
+        MF: 4,
+        FW: 2
+    }) || pickBest({
+        GK: 1,
+        DF: 4,
+        MF: 3,
+        FW: 3
+    }) || pickBest({
+        GK: 1,
+        DF: 3,
+        MF: 5,
+        FW: 2
+    }) || pickBest({
+        GK: 1,
+        DF: 5,
+        MF: 4,
+        FW: 1
+    });
+    if (!lineup) {
+        lineup = available.sort((a, b) => b.stat - a.stat).slice(0, 11);
+    }
+
+    const substitutes = available.filter(p => !lineup.some(l => l.name === p.name)).sort((a, b) => b.stat - a.stat);
+    return {
+        lineup,
+        substitutes
+    };
+}
+
+
+function applyPostMatchEffects(teamNames, matchResult) {
+    teamNames.forEach(name => {
+        players.filter(p => p.team === name).forEach(p => {
+            if (p.injury === 0 && Math.random() < 0.05) {
+                p.injury = Math.floor(Math.random() * 2) + 1;
+            }
+        });
+    });
+    if (matchResult) {
+        matchResult.reds?.forEach(redPlayer => {
+            const p = players.find(pl => pl.name === redPlayer.name);
+            if (p) p.suspension = 1;
+        });
+        matchResult.yellows?.forEach(yellowPlayer => {
+            const p = players.find(pl => pl.name === yellowPlayer.name);
+            if (p && p.suspension === 0) {
+                p.yellowCards++;
+                if (p.yellowCards >= 2) {
+                    p.suspension = 1;
+                    p.yellowCards = 0;
+                }
+            }
+        });
+    }
+}
+
+function getTeamStrength(teamName) {
+    const {
+        lineup
+    } = getSquadByFormation(teamName);
+    if (lineup.length < 11) return 60 - ((11 - lineup.length) * 5);
+    const totalStrength = lineup.reduce((sum, p) => sum + (p.stat * (p.condition / 100)), 0);
+    return totalStrength / lineup.length;
+}
+
+function calculatePlayerRatings(lineup, gf, ga) {
+    lineup.forEach(p => {
+        let r = 6.5;
+        if (gf > ga) r += 0.5;
+        else if (gf < ga) r -= 0.3;
+        r += currentMatchResult.scorers.filter(s => s.player.name === p.name).length * 1.5;
+        r -= currentMatchResult.yellows.filter(s => s.name === p.name).length * 0.5;
+        r -= currentMatchResult.reds.filter(s => s.name === p.name).length * 1.5;
+        if ((p.position === 'DF' || p.position === 'GK') && ga === 0) r += 1.0;
+        if (p.position === 'GK' && ga > 2) r -= 0.5;
+        r += (p.condition - 90) * 0.02;
+        p.rating = Math.max(4.0, Math.min(10.0, r));
+    });
+}
+
+function populatePlayerStats() {
+    players.forEach(p => {
+        if (p.stat === undefined || p.stat === null) {
+            if (p.position === 'GK') {
+                p.stat = Math.floor((p.gk || 0) * 0.8 + (p.pass || 0) * 0.1 + (p.physical || 0) * 0.1);
+            } else {
+                p.stat = Math.floor((p.shot || 0) * 0.2 + (p.pass || 0) * 0.2 + (p.dribble || 0) * 0.15 + (p.defense || 0) * 0.15 + (p.physical || 0) * 0.15);
+            }
+        }
+        p.goals = 0;
+        p.assists = 0;
+        p.rating = 0;
+        p.injury = 0;
+        p.condition = 0;
+        p.yellowCards = 0;
+        p.suspension = 0;
+    });
+}
+
+function updatePlayerConditions(names) {
+    const teams = names || players.map(p => p.team);
+    players.forEach(p => {
+        if (teams.includes(p.team)) p.condition = 75 + Math.floor(Math.random() * 26);
+    });
+}
+
+function shuffle(array) {
+    let i = array.length,
+        r;
+    while (i != 0) {
+        r = Math.floor(Math.random() * i);
+        i--;
+        [array[i], array[r]] = [array[r], array[i]];
+    }
+    return array;
+}
+
+// =================================================
+//   선수 상세 정보 및 클릭 처리
+// =================================================
+
+function drawPlayerDetailScreen() {
+    if (!selectedPlayer) return;
+
+    textAlign(CENTER, TOP);
+    fill(255);
+    textSize(32);
+    text(`⭐ 선수 상세 정보 ⭐`, width / 2, 40);
+
+    textSize(24);
+    text(`${selectedPlayer.koreanName} (${selectedPlayer.name})`, width / 2, 100);
+
+    textSize(18);
+    fill(220);
+    text(`소속팀: ${countryNameMap[selectedPlayer.team]} | 포지션: ${selectedPlayer.position} | 나이: ${selectedPlayer.age}`, width / 2, 140);
+
+    const startY = 200;
+    const lineHeight = 35;
+    const statX = width / 2 - 150;
+    const barX = width / 2 - 50;
+    const barW = 200;
+
+    const stats = [{
+        label: '속도',
+        value: selectedPlayer.speed
+    }, {
+        label: '슈팅',
+        value: selectedPlayer.shot
+    }, {
+        label: '패스',
+        value: selectedPlayer.pass
+    }, {
+        label: '드리블',
+        value: selectedPlayer.dribble
+    }, {
+        label: '수비',
+        value: selectedPlayer.defense
+    }, {
+        label: '피지컬',
+        value: selectedPlayer.physical
+    }];
+
+    if (selectedPlayer.position === 'GK') {
+        stats.push({
+            label: '골키퍼',
+            value: selectedPlayer.gk
+        });
+    }
+
+    stats.forEach((stat, i) => {
+        if (stat.value === null || stat.value === undefined) return;
+
+        const y = startY + i * lineHeight;
+        textAlign(RIGHT, CENTER);
+        textSize(16);
+        fill(255);
+        text(stat.label, statX, y);
+
+        fill(50, 80, 110);
+        rect(barX, y - 10, barW, 20, 5);
+
+        const statColor = color(100, 180, 255);
+        fill(statColor);
+        rect(barX, y - 10, (stat.value / 99) * barW, 20, 5);
+
+        textAlign(LEFT, CENTER);
+        fill(255);
+        text(stat.value, barX + barW + 10, y);
+    });
+
+
+    buttons.PLAYER_DETAIL.forEach(btn => drawButton(btn));
+}
+
+// [수정됨] 선수 이름 클릭 처리 함수
+function handlePlayerNameClick() {
+    let clickAreas = [];
+
+    const addPlayerClickArea = (squad, x, y, isLeft) => {
+        const xOffset = isLeft ? -100 : -60;
+        
+        squad.lineup.forEach((p, i) => {
+            clickAreas.push({ player: p, x: x + xOffset, y: y + i * 24, w: 160, h: 20 });
+        });
+
+        const subStartY = y + squad.lineup.length * 24 + 10;
+        squad.substitutes.forEach((p, i) => {
+            clickAreas.push({ player: p, x: x - 100, y: subStartY + 25 + i * 20, w: 200, h: 20 });
+        });
+    };
+
+    if (gameState === 'PRE_MATCH_BRIEFING' || gameState === 'MATCH_RESULT') {
+        const [teamA, teamB] = currentMatch;
+        addPlayerClickArea(getSquadByFormation(teamA.name), width / 4, 110, true);
+        addPlayerClickArea(getSquadByFormation(teamB.name), width * 3 / 4, 110, false);
+    } else if (gameState === 'ROSTER_VIEW') {
+        const teamPlayers = players.filter(p => p.team === userTeam);
+        teamPlayers.forEach((p, i) => {
+            clickAreas.push({ player: p, x: 50, y: 80 + (i + 1) * 22 - 10, w: 120, h: 20 });
+        });
+    }
+
+    for (const area of clickAreas) {
+        if (mouseX > area.x && mouseX < area.x + area.w && mouseY > area.y && mouseY < area.y + area.h) {
+            selectedPlayer = area.player;
+            previousGameState = gameState; // 상태 전환 직전에 현재 상태 저장
+            gameState = 'PLAYER_DETAIL';
+            return;
+        }
+    }
+}
